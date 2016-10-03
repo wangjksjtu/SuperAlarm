@@ -18,4 +18,8 @@ The second sprint's deadline is **Dec.1st in 2016.**
 *  *NIisavella*   
 *  *zhengjilai*
 
+<a href="https://github.com/wangjksjtu/SuperAlarm/">
+<img src="https://raw.githubusercontent.com/wangjksjtu/SuperAlarm/master/alarm.jpg" width=256 height=256 />
+</a>
+
 ***May we succeed!***
