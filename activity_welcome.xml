@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_welcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="superalarm.firsttry.WelcomeActivity"
+    android:baselineAligned="false"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgView1"
+        android:layout_width="match_parent"
+        android:layout_height="211dp"
+        android:src="@drawable/clock1"/>
+
+    <TextView
+        android:id="@+id/txtUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/UserName"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:layout_marginTop="90dp"
+        android:layout_below="@+id/imgView1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="36dp" />
+
+    <EditText
+        android:id="@+id/EtxtUserName"
+        android:inputType="textEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="输入邮箱或昵称"
+        android:lines="1"
+        android:layout_marginStart="22dp"
+        android:layout_alignTop="@+id/txtUserName"
+        android:layout_toEndOf="@+id/txtUserName"/>
+
+    <TextView
+        android:id="@+id/txtPassWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PassWord"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="7dp"
+        android:layout_below="@+id/EtxtUserName"
+        android:layout_alignEnd="@+id/txtUserName" />
+
+    <Button
+        android:id="@+id/BtnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Button"
+        android:backgroundTint="@android:color/transparent"
+        android:text="注册→"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/EtxtPassWord"
+        android:layout_alignStart="@+id/txtPassWord"
+        android:layout_marginTop="37dp" />
+
+    <Button
+        android:id="@+id/BtnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Button"
+        android:backgroundTint="@android:color/transparent"
+        android:text="登录"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        android:layout_marginStart="48dp"
+        android:layout_alignBaseline="@+id/BtnRegister"
+        android:layout_alignBottom="@+id/BtnRegister"
+        android:layout_alignStart="@+id/EtxtPassWord" />
+
+    <EditText
+        android:id="@+id/EtxtPassWord"
+        android:inputType="textPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="输入密码"
+        android:lines="1"
+        android:layout_marginStart="8dp"
+        android:layout_alignBaseline="@+id/txtPassWord"
+        android:layout_alignBottom="@+id/txtPassWord"
+        android:layout_toEndOf="@+id/BtnRegister" />
+</RelativeLayout>
