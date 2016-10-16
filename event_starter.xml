@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.asus.myapplication.event_start_activity">
+
+    <Button
+        android:id="@+id/buttonCancelEvent"
+        android:text="CANCEL"
+        tools:textStyle="bold"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:clickable="true"
+        android:background="#036197"
+        tools:text="@android:string/no"
+        />
+
+    <Button
+        android:id="@+id/buttonOkEvent"
+        android:text="OK"
+        tools:textStyle="bold"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:clickable="true"
+        android:layout_alignBaseline="@+id/buttonCancelEvent"
+        android:layout_alignBottom="@+id/RadioGroupAnnoy"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#e08ddad4"
+        tools:text="@android:string/VideoView_error_button"
+        />
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_height="wrap_content"
+        android:text="新建一个项目吧......"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+        tools:textStyle="bold"
+        tools:layout_width="match_parent"
+        android:layout_width="400dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#036197"
+        android:textSize="25sp"
+        />
+
+    <RadioGroup
+        android:id="@+id/RadioGroupAnnoy"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/single"
+        android:layout_below="@+id/textFillDetails"
+        android:layout_marginTop="15dp"
+        >
+
+        <RadioButton
+            android:id="@+id/RadioButtonSingle"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:text="单次事件"
+            />
+
+        <RadioButton
+            android:id="@+id/RadioButtonFrequency"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:text="循环提醒"
+            />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textEvent"
+        android:text="事项名称:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/textSignificance"
+        android:text="重要程度:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textTitle"
+        android:layout_marginTop="60dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/textDetails"
+        android:text="备注信息:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textTitle"
+        android:layout_marginTop="105dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/textFillName"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_alignBaseline="@+id/textEvent"
+        android:layout_alignBottom="@+id/textEvent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#32728ea3"
+        />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textFillName"
+        android:layout_marginTop="8dp"
+        android:layout_alignLeft="@+id/textFillName"
+        android:layout_alignStart="@+id/textFillName"
+        android:isIndicator="false"
+        style="@style/Widget.AppCompat.RatingBar"
+        />
+
+    <EditText
+        android:id="@+id/textFillDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="225dp"
+        android:inputType="textMultiLine"
+        android:hint="Details"
+        android:ems="300"
+        android:gravity="start"
+        android:maxLines="10"
+        android:background="#32728ea3"
+        android:layout_below="@+id/textDetails"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+
+
+</RelativeLayout>
