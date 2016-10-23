@@ -51,7 +51,7 @@ public class Item {
     path="D:/SuperAlarm"+classTitle;
     fileName=path+"/"+title+".txt";
     File filePath=new File(path);
-    if (!filePath.exists()){filePath.mkdir();}
+    if (!filePath.exists()){filePath.mkdir();}//创建文件夹
     FileWriter fw =new FileWriter(fileName,true);
     fw.write(classTitle+"\r\n");
     fw.write(title+"\r\n");
