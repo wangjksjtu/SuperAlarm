@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">超级闹钟 Super Alarm</string>
+
+    <string name="title_activity_welcome">Welcome To Super Alarm</string>
+    <string name="UserName">用户名：</string>
+    <string name="PassWord">密码：</string>
+
+    <string name="title_activity_login">注册信息填写</string>
+
+    <string name="title_activity_avatar">个人信息完善</string>
+
+    <string name="title_activity_guide">Home Screen</string>
+
+</resources>

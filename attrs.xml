@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="itempreview">
+        <attr name="buttoncolor" format="color"/>
+        <attr name="buttontextcolor" format="color"/>
+        <attr name="buttontext" format="string"/>
+        <attr name="textcolor" format="color"/>
+        <attr name="titletext" format="string"/>
+        <attr name="titlesize" format="dimension"/>
+        <attr name="timetext" format="string"/>
+        <attr name="timesize" format="dimension"/>
+    </declare-styleable>
+</resources>
