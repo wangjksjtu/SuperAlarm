@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_personal_information"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:background="#FFFFFFFF"
+    tools:context="com.example.admin.superalarm.PersonalInformation">
+
+    <ImageButton
+        android:background="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        android:id="@+id/imageButton_close"
+        tools:ignore="ContentDescription"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@android:drawable/sym_def_app_icon"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/imageButton_close"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:text="退出登录"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:background="#ff0000"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:text="昵称"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText,SpUsage" />
+
+    <Button
+        android:text="我也不记得应该写什么"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="修改信息"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/button3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
