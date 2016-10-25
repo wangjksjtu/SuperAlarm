@@ -1,4 +1,7 @@
 package basic;
+
+import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
         
 /**
@@ -89,10 +92,18 @@ public class ItemManager {
             if (flag) break;
         }
     }
+    void write() throws IOException {
+        File newfile = new File("./ItemData/items.txt");
+        newfile.delete();
+        newfile.createNewFile();
+        for (int i = 0; i < length; ++i) {
+            itemArr.get(i).write();
+        }
+    }
     String display() {
         String s = "";
         for (int i = 0; i < length; ++i) {
-            s = s + itemArr.get(i).getTitle() + "\t" + itemArr.get(i).getDeadline() + "\t\t" + 
+            s = s + itemArr.get(i).getClassTitle() + "\t" + itemArr.get(i).getTitle() + "\t" + itemArr.get(i).getDeadline() + "\t\t" + 
             itemArr.get(i).getImportance() + "\t" + itemArr.get(i).getContent() + "\n";
         }
         return s;
