@@ -1,7 +1,10 @@
 package basic;
 import java.util.ArrayList;
 import static java.lang.Math.random;
-
+import java.io.*;
+/**date 2016-10-25
+ * @yanglinbo
+ */
 /**
  * date:2016-10-02
  * @author wangjksjtu
@@ -143,5 +146,23 @@ public class UserManager {
         }
         System.out.printf("\n");
         return s;
+    }  
+   
+    public   String read() throws IOException{
+    	  BufferedReader fr=new BufferedReader (new FileReader("D:/SuperAlarm/User.txt"));
+          String data=fr.readLine();
+          String totalData=" ";
+          int count=1;
+          while  (data!=null){
+            totalData=totalData+data+" ";
+            count++;
+            if (count==6)
+               {totalData=totalData+"\r\n";count=0;}//Every 5 times
+            data=fr.readLine();                        	  
+                }
+          fr.close();
+          return totalData;
+                        	     
+    	
     }
 }
