@@ -1,10 +1,15 @@
 package basic;
 
 /**
+ * date 2016-10-24
+ * @yanglinbo
+ */
+
+/**
  * date:2016-10-02
  * @author wangjksjtu
  */
-
+import java.io.*;
 public class User {
     private String mail;
     private String password;
@@ -13,11 +18,10 @@ public class User {
     private int age;
     private int vertifictionCode;
     private boolean isActivated = false; 
-    ItemManager itemManager;
     static int count = 0;
     User(String m, String p, String n, int a, String s) {
         mail = m; password = p;
-        name = n; age = a; sex = s;
+        name = n; age = a; sex = s;++count;
     }
     User(String m, String p) {
         mail = m; password = p;
@@ -27,7 +31,7 @@ public class User {
     User() {this("","");}
     void setAll(String m, String p, String n, int a, String s) {
         mail = m; password = p;
-        name = n; age = a; sex = s;        // May be I will delete this method
+        name = n; age = a; sex = s;       // May be I will delete this method
     }
     void setSex(String s) {sex = s;}
     void setName(String n) {name = n;}
@@ -47,5 +51,21 @@ public class User {
     boolean equals(User user) {
         return mail.equals(user.mail) && password.equals(user.password) && name.equals(user.name)
                 && age == user.age && sex.equals(user.sex);
+    }
+    
+    public void write() throws IOException{
+    
+    	String fileName;
+    	fileName="User.txt";
+    	FileWriter fw=new FileWriter("D:/"+fileName,true);
+    	fw.write(mail+"\r\n");
+    	fw.write(password+"\r\n");
+    	fw.write(name+"\r\n");
+    	fw.write(sex+"\r\n");
+    	fw.write(age+"\r\n");
+    	fw.write("\t\t\r\n");
+    	fw.close();
+    	
+    	
     }
 }
