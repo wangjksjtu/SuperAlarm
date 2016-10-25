@@ -1,5 +1,6 @@
 package basic;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,10 +9,10 @@ import java.util.logging.Logger;
  * @author wangjksjtu
  */
 public class test {
-   public static void main(String []args) throws UsedMailException {
+   public static void main(String []args) throws UsedMailException, IOException {
        //Test the Item.java
-       Item it1 = new Item("Study","20161002234523",1);
-       Item it2 = new Item("Study","20161002334523",2);
+       Item it1 = new Item("Study","study1","20161002234523",1);
+       Item it2 = new Item("Study","study2","20161002334523",2);
        Item it3 = new Item();
        it3.copy(it2);
        System.out.println(it3.equals(it2));
@@ -24,15 +25,17 @@ public class test {
            //itmanager.add(it3);
            itmanager.delete(it1);
            //itmanager.delete(it1);
-           itmanager.modify(it2, "Study   ","20151002334523",3,"have a try!");
-           Item it4 = new Item("Exercise","20151002347523",4,"I am happy!");
-           Item it5 = new Item("Play    ","20161002334523",2,"Have a good time!");
-           Item it6 = new Item("Food    ","20161102334523",1,"banana!");
+           itmanager.modify(it2, "Study","20151002334523",3,"have a try!");
+           Item it4 = new Item("Exercise","exercise1","20151002347523",4,"I am happy!");
+           Item it5 = new Item("Play","play1","20161002334523",2,"Have a good time!");
+           Item it6 = new Item("Food","food1","20161102334523",1,"banana!");
            itmanager.add(it4); itmanager.add(it5); itmanager.add(it6);
            itmanager.sortByDeadline();
+           itmanager.write();
            System.out.printf(itmanager.display());
            System.out.printf("\n");
            itmanager.sortByImportance();
+           itmanager.write();
            System.out.printf(itmanager.display());
        } catch (RepeatedAddtionException ex) {
            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
