@@ -32,7 +32,9 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".AvatarActivity" />
         <activity android:name=".SelfInfoActivity" />
-        <activity android:name=".GuideActivity"></activity>
+        <activity android:name=".GuideActivity" />
+        <activity android:name=".Detail" />
+        <activity android:name=".PersonalInformation"></activity>
     </application>
 
 </manifest>
