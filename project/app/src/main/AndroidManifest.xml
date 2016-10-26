@@ -33,6 +33,15 @@
         <activity android:name=".AvatarActivity" />
         <activity android:name=".SelfInfoActivity" />
         <activity android:name=".GuideActivity"></activity>
+        <activity
+            android:name=".type_set_activity">
+        </activity>
+        <activity
+            android:name=".event_start_activity">
+        </activity>
+        <activity
+            android:name=".time_set_activity">
+        </activity>
     </application>
 
 </manifest>
