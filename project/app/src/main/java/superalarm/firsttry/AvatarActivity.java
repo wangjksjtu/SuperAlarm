@@ -18,7 +18,14 @@ public class AvatarActivity extends AppCompatActivity {
         yesTo=(Button)findViewById(R.id.Ensure);
         Head=(ImageButton)findViewById(R.id.RandomAvatar);
 
-        //yesTo.setOnClickListener(EnsureOnClick);
+        yesTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AvatarActivity.this,type_set_activity.class);
+                startActivity(intent);
+                AvatarActivity.this.finish();
+            }
+        });
         //Head.setOnClickListener(RandomAvatarOnClick);
     }
 }

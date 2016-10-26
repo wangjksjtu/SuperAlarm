@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <string name="app_name">超级闹钟 Super Alarm</string>
 
     <string name="title_activity_welcome">Welcome To Super Alarm</string>
@@ -11,4 +11,22 @@
 
     <string name="title_activity_guide">Home Screen</string>
 
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string-array name="advanceTime">
+        <item>       None</item>
+        <item>       准时</item>
+        <item>       提前 2 分钟</item>
+        <item>       提前 5 分钟</item>
+        <item>       提前 10 分钟</item>
+        <item>       提前 15 分钟</item>
+        <item>       提前 30 分钟</item>
+        <item>       提前 1 小时</item>
+        <item>       提前 2 小时</item>
+        <item>       提前 5 小时</item>
+        <item>       提前 24 小时</item>
+        <item>       提前 2 天</item>
+        <item>       提前 5 天</item>
+        <item>       提前 30 天</item>
+    </string-array>
 </resources>
