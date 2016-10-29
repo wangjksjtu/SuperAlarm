@@ -33,11 +33,11 @@
         tools:ignore="ContentDescription" />
 
     <Button
-        android:text="退出登录"
+        android:text="登录"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:background="#ff0000"
+        android:id="@+id/btn_login"
+        android:background="#99ff99"
         android:textColor="#ffffff"
         android:textSize="30dp"
         android:layout_alignParentBottom="true"
@@ -56,7 +56,7 @@
         tools:ignore="HardcodedText,SpUsage" />
 
     <Button
-        android:text="我也不记得应该写什么"
+        android:text="这两个按钮"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button3"
@@ -66,7 +66,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="修改信息"
+        android:text="在登陆情况不同时显示情况不同"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button2"

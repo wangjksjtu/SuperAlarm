@@ -191,7 +191,7 @@ public class time_set_activity extends AppCompatActivity {
         btOkTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(time_set_activity.this,type_set_activity.class);
+                Intent intent = new Intent(time_set_activity.this,MainActivity.class);
                 startActivity(intent);
                 time_set_activity.this.finish();
             }

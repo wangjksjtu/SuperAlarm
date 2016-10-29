@@ -40,7 +40,7 @@ public class SelfInfoActivity extends AppCompatActivity {
             Intent it = new Intent();
             it.setClass(SelfInfoActivity.this, AvatarActivity.class);
             startActivity(it);
-            //finish();
+            finish();
         }
     };
     //ImageButton写函数，处理性别三选一，取代RadioGroup;

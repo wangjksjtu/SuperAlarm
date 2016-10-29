@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this,PersonalInformation.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -48,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this,"No Service",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        ImageButton btn_new = (ImageButton)findViewById(R.id.imageButton_add);
+        btn_new.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,type_set_activity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

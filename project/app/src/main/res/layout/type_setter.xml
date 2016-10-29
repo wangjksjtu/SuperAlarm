@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button1"
         android:text="娱乐"
         android:textSize="26sp"
@@ -13,10 +14,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#e0deac74"
+        android:background="#907b76"
         />
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button2"
         android:text="学习"
         android:textSize="26sp"
@@ -27,10 +29,11 @@
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/button1"
         android:layout_toRightOf= "@+id/button1"
-        android:background="#e08ec921"
+        android:background="#c9c0ae"
         />
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button3"
         android:text="餐饮"
         android:textSize="26sp"
@@ -40,10 +43,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/button1"
-        android:background="#e011c604"
+        android:background="#b2d7dd"
         />
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button5"
         android:text="运动"
         android:textSize="26sp"
@@ -55,10 +59,11 @@
         android:layout_toLeftOf="@+id/button6"
         android:layout_toStartOf="@+id/button6"
         android:layout_alignBottom="@id/button1"
-        android:background="#e0c63b26"
+        android:background="#92808c"
         />
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button6"
         android:text="交际"
         android:textSize="26sp"
@@ -68,10 +73,11 @@
         android:layout_above="@+id/button7"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="#e08ddad4"
+        android:background="#b2d7dd"
         />
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button7"
         android:text="Button7"
         android:layout_width="160dp"
@@ -79,10 +85,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="#e09c8dda"
+        android:background="#907b76"
         />
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button8"
         android:text="Button8"
         android:layout_width="wrap_content"
@@ -92,10 +99,11 @@
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@id/button7"
         android:layout_toStartOf="@id/button7"
-        android:background="#e0cf3c44"
+        android:background="#c9c0ae"
         />
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button4"
         android:text="Button4"
         android:layout_width="wrap_content"
@@ -106,12 +114,13 @@
         android:layout_toLeftOf="@+id/button7"
         android:layout_toStartOf="@+id/button7"
         android:layout_alignTop="@id/button7"
-        android:background="#f1e4d105"
+        android:background="#92808c"
         />
 
     <Button
+        android:textColor="#ffffff"
         android:id="@+id/button9"
-        android:text="Button9"
+        android:text="后退"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button1"
@@ -120,7 +129,7 @@
         android:layout_toEndOf="@+id/button3"
         android:layout_toLeftOf="@+id/button6"
         android:layout_toStartOf="@+id/button6"
-        android:background="#e0034963"
+        android:background="#474e5e"
         />
 
 </RelativeLayout>

@@ -21,7 +21,7 @@ public class AvatarActivity extends AppCompatActivity {
         yesTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AvatarActivity.this,type_set_activity.class);
+                Intent intent = new Intent(AvatarActivity.this,PersonalInformation.class);
                 startActivity(intent);
                 AvatarActivity.this.finish();
             }

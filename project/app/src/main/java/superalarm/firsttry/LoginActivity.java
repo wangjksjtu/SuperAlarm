@@ -30,7 +30,7 @@ public class LoginActivity extends Activity {
             Intent it = new Intent();
             it.setClass(LoginActivity.this, SelfInfoActivity.class);
             startActivity(it);
-            //finish();
+            finish();
         }
     };
 }

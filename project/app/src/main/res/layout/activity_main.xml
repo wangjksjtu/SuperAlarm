@@ -18,7 +18,7 @@
         android:layout_height="120dp"
         app:srcCompat="@drawable/apic7209"
         android:id="@+id/imageView2"
-        tools:ignore="ContentDescription"
+        tools:ignore="ContentDescription,RtlHardcoded"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/imageButton_add"
         android:layout_alignParentLeft="true"
@@ -33,7 +33,7 @@
         android:layout_below="@+id/textClock4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <ImageView
         android:scaleType="fitXY"
@@ -41,7 +41,7 @@
         android:layout_height="40dp"
         app:srcCompat="@drawable/background_buttom"
         android:id="@+id/imageView3"
-        tools:ignore="ContentDescription"
+        tools:ignore="ContentDescription,RtlHardcoded"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -66,7 +66,7 @@
         app:srcCompat="@drawable/btn_person"
         android:id="@+id/imageButton_person"
         android:contentDescription=""
-        tools:ignore="ContentDescription"
+        tools:ignore="ContentDescription,RtlHardcoded"
         android:layout_marginRight="45dp"
         android:layout_marginEnd="45dp"
         android:layout_alignParentBottom="true"
@@ -81,7 +81,7 @@
         app:srcCompat="@drawable/btn_add"
         android:id="@+id/imageButton_add"
         android:contentDescription=""
-        tools:ignore="ContentDescription"
+        tools:ignore="ContentDescription,RtlHardcoded"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -115,8 +115,4 @@
         android:layout_below="@+id/textClock3"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffffff"/>
-
-    <GridView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></GridView>
 </RelativeLayout>
