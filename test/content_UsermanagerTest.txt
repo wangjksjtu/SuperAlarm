@@ -1,0 +1,21 @@
+package basic;
+
+/**
+ * date:2016-10-30
+ * @author sjrGCkym
+ */
+
+!define TEST_SYSTEM {slim}
+
+|script:userManagerTest|userManagerTest|
+|setPw|abcdefg|
+|ensure|checkPw|
+|setuser:|123456789@sjtu.edu.cn|abcdefg|man|xyz|99|1234|
+|check|add|1|
+|setuser:|987654321@sjtu.edu.cn|1234567|woman|sand|0|2580|
+|check|add|2|
+|ensure|isExist|
+|ensure|search|
+|setMail|ahdjaiwodalk.com|
+|ensure|validMail|
+|check|delete|1|
