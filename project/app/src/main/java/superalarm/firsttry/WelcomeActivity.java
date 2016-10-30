@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Button;
 
 public class WelcomeActivity extends Activity {
+    public static WelcomeActivity instance = null;
     private EditText aUserName, aPassWord;
     private Button aLogin, aRegister;
 
@@ -16,6 +17,7 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        instance = this;
 
         aUserName = (EditText) findViewById(R.id.EtxtUserName);
         aPassWord = (EditText) findViewById(R.id.EtxtPassWord);
@@ -34,6 +36,11 @@ public class WelcomeActivity extends Activity {
                 String thisPassWord = aPassWord.getText().toString();
 
                 //下接密码判断机制……
+                //跳转至已登陆
+                Intent it = new Intent();
+                it.setClass(WelcomeActivity.this, PresonalInformationHaveLogin.class);
+                startActivity(it);
+                finish();
             }
         };
             //点击“注册”按钮，跳转至注册信息填写界面

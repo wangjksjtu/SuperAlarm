@@ -9,12 +9,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class type_set_activity extends AppCompatActivity {
+
+    public static type_set_activity instance = null;
     private Button bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.type_setter);
+        instance = this;
 
         bt1 = (Button) findViewById(R.id.button1);
         bt1.setOnClickListener(new OnClickListener() {
@@ -23,7 +26,7 @@ public class type_set_activity extends AppCompatActivity {
                 Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
                 intent.putExtra("typeConvey",bt1.getText());
                 startActivity(intent);
-                type_set_activity.this.finish();
+//                type_set_activity.this.finish();
             }
         });
 
@@ -34,7 +37,7 @@ public class type_set_activity extends AppCompatActivity {
                 Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
                 intent.putExtra("typeConvey",bt2.getText());
                 startActivity(intent);
-                type_set_activity.this.finish();
+//                type_set_activity.this.finish();
             }
         });
 
@@ -45,7 +48,7 @@ public class type_set_activity extends AppCompatActivity {
                 Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
                 intent.putExtra("typeConvey",bt3.getText());
                 startActivity(intent);
-                type_set_activity.this.finish();
+//                type_set_activity.this.finish();
             }
         });
 
@@ -56,7 +59,7 @@ public class type_set_activity extends AppCompatActivity {
                 Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
                 intent.putExtra("typeConvey",bt4.getText());
                 startActivity(intent);
-                type_set_activity.this.finish();
+//                type_set_activity.this.finish();
             }
         });
 
@@ -67,7 +70,7 @@ public class type_set_activity extends AppCompatActivity {
                 Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
                 intent.putExtra("typeConvey",bt5.getText());
                 startActivity(intent);
-                type_set_activity.this.finish();
+//                type_set_activity.this.finish();
             }
         });
 
@@ -78,7 +81,7 @@ public class type_set_activity extends AppCompatActivity {
                 Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
                 intent.putExtra("typeConvey",bt6.getText());
                 startActivity(intent);
-                type_set_activity.this.finish();
+//                type_set_activity.this.finish();
             }
         });
 
@@ -89,7 +92,7 @@ public class type_set_activity extends AppCompatActivity {
                 Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
                 intent.putExtra("typeConvey",bt7.getText());
                 startActivity(intent);
-                type_set_activity.this.finish();
+//                type_set_activity.this.finish();
             }
         });
 
@@ -100,7 +103,7 @@ public class type_set_activity extends AppCompatActivity {
                 Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
                 intent.putExtra("typeConvey",bt8.getText());
                 startActivity(intent);
-                type_set_activity.this.finish();
+//                type_set_activity.this.finish();
             }
         });
 
@@ -108,10 +111,10 @@ public class type_set_activity extends AppCompatActivity {
         bt9.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(type_set_activity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
+//                Intent intent = new Intent();
+//                intent.setClass(type_set_activity.this,MainActivity.class);
+//                startActivity(intent);
+                type_set_activity.this.finish();
             }
         });
     }

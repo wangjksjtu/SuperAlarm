@@ -18,13 +18,16 @@ import superalarm.firsttry.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static MainActivity instance = null;
     private TextClock hTextClock;
     private TextClock dTextClock;
+    private boolean have_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        instance = this;
 
         hTextClock = (TextClock)findViewById(R.id.textClock3);
         dTextClock = (TextClock)findViewById(R.id.textClock4);
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this,PersonalInformation.class);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
 
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this,type_set_activity.class);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
     }

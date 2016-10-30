@@ -4,45 +4,12 @@
     android:id="@+id/activity_main1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.asus.myapplication.event_start_activity">
+    android:paddingBottom="@dimen/activity_zero_margin"
+    android:paddingLeft="@dimen/activity_zero_margin"
+    android:paddingRight="@dimen/activity_zero_margin"
+    android:paddingTop="@dimen/activity_zero_margin"
+    tools:context="superalarm.firsttry.event_start_activity">
 
-    <Button
-        android:id="@+id/buttonCancelEvent"
-        android:text="@string/cancel"
-        tools:textStyle="bold"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:clickable="true"
-        android:background="#036197"
-        tools:text="@android:string/no"
-        />
-
-    <Button
-        android:id="@+id/buttonOkEvent"
-        android:text="@string/ok"
-        tools:textStyle="bold"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp"
-        android:clickable="true"
-        android:layout_alignBaseline="@+id/buttonCancelEvent"
-        android:layout_alignBottom="@+id/RadioGroupAnnoy"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="#e08ddad4"
-        tools:text="@android:string/VideoView_error_button"
-        />
 
     <TextView
         android:id = "@+id/textTitleLeft"
@@ -195,7 +162,33 @@
         android:layout_alignParentStart="true"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"><Button
+        android:id="@+id/buttonCancelEvent"
+        android:text="@string/cancel"
+        tools:textStyle="bold"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="#036197"
+        tools:text="@android:string/no"
+        />
 
+        <Button
+            android:id="@+id/buttonOkEvent"
+            android:text="@string/ok"
+            tools:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="#e08ddad4"
+            tools:text="@android:string/VideoView_error_button"
+            /></LinearLayout>
 
 
 </RelativeLayout>

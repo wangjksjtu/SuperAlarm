@@ -1,5 +1,6 @@
 package superalarm.firsttry;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 public class time_set_activity extends AppCompatActivity {
 
+    public static time_set_activity instance = null;
     private Spinner yearSpinner, monthSpinner, daySpinner, hourSpinner, minuteSpinner;
     private Spinner timeAhead1, timeAhead2, timeAhead3, timeAhead4, timeAhead5;
     private Button btCancelTime, btOkTime;
@@ -22,6 +24,7 @@ public class time_set_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_setter);
+        instance = this;
 
 
         //时间属性下拉表Spinner变量
@@ -181,8 +184,8 @@ public class time_set_activity extends AppCompatActivity {
         btCancelTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(time_set_activity.this,event_start_activity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(time_set_activity.this,event_start_activity.class);
+//                startActivity(intent);
                 time_set_activity.this.finish();
             }
         });
@@ -191,9 +194,12 @@ public class time_set_activity extends AppCompatActivity {
         btOkTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.instance.finish();
                 Intent intent = new Intent(time_set_activity.this,MainActivity.class);
                 startActivity(intent);
                 time_set_activity.this.finish();
+                type_set_activity.instance.finish();
+                event_start_activity.instance.finish();
             }
         });
     }

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 public class event_start_activity extends AppCompatActivity {
 
+    public static event_start_activity instance;
     private EditText textEventName, textEventDetails;
     private RatingBar ratingBar;
     private Button btOkEvent, btCancelEvent;
@@ -29,6 +30,7 @@ public class event_start_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_starter);
+        instance = this;
 
         //intent接收事项类型
         Intent intent = getIntent();
@@ -67,8 +69,8 @@ public class event_start_activity extends AppCompatActivity {
         btCancelEvent.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(event_start_activity.this,type_set_activity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(event_start_activity.this,type_set_activity.class);
+//                startActivity(intent);
                 event_start_activity.this.finish();
             }
         });

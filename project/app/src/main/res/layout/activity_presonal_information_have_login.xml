@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_personal_information"
+    android:id="@+id/activity_presonal_information_have_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_zero_margin"
@@ -10,7 +10,8 @@
     android:paddingRight="@dimen/activity_zero_margin"
     android:paddingTop="@dimen/activity_zero_margin"
     android:background="#ffffff"
-    tools:context="superalarm.firsttry.PersonalInformation">
+    tools:context="superalarm.firsttry.PresonalInformationHaveLogin">
+
 
     <ImageButton
         android:background="#ffffff"
@@ -23,12 +24,22 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@android:drawable/sym_def_app_icon"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/imageButton_close"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription" />
+
     <Button
-        android:text="登录"
+        android:text="退出登录"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_login"
-        android:background="#99ff99"
+        android:background="#ff9999"
         android:textColor="#ffffff"
         android:textSize="30dp"
         android:layout_alignParentBottom="true"
@@ -37,14 +48,32 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:text="你还没有登陆哦~"
-        android:textSize="40dp"
+        android:text="昵称"
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        tools:ignore="HardcodedText,SpUsage"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="132dp" />
+        tools:ignore="HardcodedText,SpUsage" />
 
+    <Button
+        android:text="这两个按钮"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="在登陆情况不同时显示情况不同"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/button3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

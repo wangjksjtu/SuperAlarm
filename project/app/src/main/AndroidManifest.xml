@@ -30,21 +30,16 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".AvatarActivity" />
         <activity android:name=".SelfInfoActivity" />
-======= HEAD
+        ======= HEAD
         <activity android:name=".GuideActivity" />
         <activity android:name=".Detail" />
-        <activity android:name=".PersonalInformation"></activity>
-=======
-        <activity
-            android:name=".type_set_activity">
-        </activity>
-        <activity
-            android:name=".event_start_activity">
-        </activity>
-        <activity
-            android:name=".time_set_activity">
-        </activity>
->>>>>>> 1bea59cb90122b6e2e759f3f8e820205182cb5df
+        <activity android:name=".PersonalInformation" />
+        =======
+        <activity android:name=".type_set_activity"></activity>
+        <activity android:name=".event_start_activity"></activity>
+        <activity android:name=".time_set_activity"></activity>
+        >>>>>>> 1bea59cb90122b6e2e759f3f8e820205182cb5df
+        <activity android:name=".PresonalInformationHaveLogin"></activity>
     </application>
 
 </manifest>

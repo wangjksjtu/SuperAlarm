@@ -8,32 +8,22 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class PersonalInformation extends AppCompatActivity {
+public class PresonalInformationHaveLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_personal_information);
+        setContentView(R.layout.activity_presonal_information_have_login);
+
 
         ImageButton btn_close = (ImageButton)findViewById(R.id.imageButton_close);
         btn_close.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Intent intent = new Intent();
-//                intent.setClass(PersonalInformation.this,MainActivity.class);
+//                intent.setClass(PresonalInformationHaveLogin.this,MainActivity.class);
 //                startActivity(intent);
-                finish();
-            }
-        });
-
-        Button btn_login = (Button)findViewById(R.id.btn_login);
-        btn_login.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(PersonalInformation.this,WelcomeActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

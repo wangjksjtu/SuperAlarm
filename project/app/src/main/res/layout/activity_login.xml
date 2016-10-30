@@ -4,10 +4,10 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_zero_margin"
+    android:paddingLeft="@dimen/activity_zero_margin"
+    android:paddingRight="@dimen/activity_zero_margin"
+    android:paddingTop="@dimen/activity_zero_margin"
     tools:context="superalarm.firsttry.LoginActivity">
 
     <TextView
@@ -27,29 +27,6 @@
         android:textSize="30sp"
         android:textColor="@android:color/holo_blue_dark"
         android:layout_marginTop="220dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="邮箱"
-        android:textSize="30sp"
-        android:textColor="@android:color/holo_blue_dark"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="28dp" />
-
-    <Button
-        android:id="@+id/ToRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="确认 注册"
-        android:background="?attr/colorControlHighlight"
-        android:textSize="30sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="61dp"
-        android:textColor="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/InputEmail"
@@ -91,5 +68,24 @@
         android:layout_below="@+id/textView6"
         android:layout_marginTop="129dp"
         android:layout_marginStart="20dp"/>
+
+    <Button
+        android:id="@+id/ToRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确认 注册"
+        android:background="?attr/colorControlHighlight"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="邮箱"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
