@@ -63,6 +63,10 @@ public class event_start_activity extends AppCompatActivity {
                     Intent intent = new Intent(event_start_activity.this, time_set_activity.class);
                     startActivity(intent);
                 }
+                else if ( annoyMode.getCheckedRadioButtonId() == annoyFrequent.getId() ) {
+                    Intent intent = new Intent(event_start_activity.this, time_frequency_activity.class);
+                    startActivity(intent);
+                }
             }
         });
         btCancelEvent = (Button)findViewById(R.id.buttonCancelEvent);

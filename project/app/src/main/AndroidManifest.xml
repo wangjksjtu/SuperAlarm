@@ -38,6 +38,7 @@
         <activity android:name=".type_set_activity"></activity>
         <activity android:name=".event_start_activity"></activity>
         <activity android:name=".time_set_activity"></activity>
+        <activity android:name=".time_frequency_activity"></activity>
         >>>>>>> 1bea59cb90122b6e2e759f3f8e820205182cb5df
         <activity android:name=".PresonalInformationHaveLogin"></activity>
     </application>

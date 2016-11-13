@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_zero_margin"
+    android:paddingLeft="@dimen/activity_zero_margin"
+    android:paddingRight="@dimen/activity_zero_margin"
+    android:paddingTop="@dimen/activity_zero_margin"
+    tools:context="superalarm.firsttry.time_frequency_activity">
+
+    <TextView
+        android:id="@+id/textTimeTitle_f"
+        android:text="设置你的周期提醒时间吧......"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        android:textColor="#036197"
+        />
+
+
+    <Spinner
+        android:id="@+id/spinnerHour_f"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTimeTitle_f"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerMinute_f"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTimeTitle_f"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="0dp"
+        />
+
+    <TextView
+        android:id="@+id/punctuation_f"
+        android:text="："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@id/spinnerHour_f"
+        android:textSize="70sp"
+        />
+
+
+    <TextView
+        android:id="@+id/textTimeMode"
+        android:text="请选择周期提醒模式："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerHour_f"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="-15dp"
+        />
+
+    <RadioGroup
+        android:id="@+id/RadioGroupFrequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/RadioButtonFrequencyWeek"
+        android:layout_below="@+id/textTimeMode"
+        >
+
+        <RadioButton
+            android:id="@+id/RadioButtonFrequencyDay"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="每天..."
+            android:checked="true"
+            android:layout_below="@+id/textTimeMode"
+        />
+
+        <RadioButton
+            android:id="@+id/RadioButtonFrequencyWeek"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="每周..."
+            android:layout_below="@+id/textTimeMode"
+            android:layout_toEndOf="@+id/RadioButtonFrequencyDay"
+        />
+
+        <RadioButton
+            android:id="@+id/RadioButtonFrequencyMonth"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="每月..."
+            android:layout_below="@+id/textTimeMode"
+            android:layout_toEndOf="@+id/RadioButtonFrequencyWeek"
+        />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+
+        <Button
+            android:id="@+id/buttonCancelTime_f"
+            android:text="@string/cancel"
+            tools:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="#036197"
+            tools:text="@android:string/no" />
+        <Button
+            android:id="@+id/buttonOkTime_f"
+            android:text="@string/ok"
+            tools:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="#e08ddad4"
+            tools:text="@android:string/VideoView_error_button" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
