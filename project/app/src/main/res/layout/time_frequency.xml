@@ -72,6 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:checkedButton="@+id/RadioButtonFrequencyWeek"
         android:layout_below="@+id/textTimeMode"
         >
@@ -82,8 +84,7 @@
             android:layout_width="wrap_content"
             android:text="每天..."
             android:checked="true"
-            android:layout_below="@+id/textTimeMode"
-        />
+            android:layout_below="@+id/textTimeMode" />
 
         <RadioButton
             android:id="@+id/RadioButtonFrequencyWeek"
@@ -91,8 +92,7 @@
             android:layout_width="wrap_content"
             android:text="每周..."
             android:layout_below="@+id/textTimeMode"
-            android:layout_toEndOf="@+id/RadioButtonFrequencyDay"
-        />
+            android:layout_toEndOf="@+id/RadioButtonFrequencyDay" />
 
         <RadioButton
             android:id="@+id/RadioButtonFrequencyMonth"
@@ -100,17 +100,17 @@
             android:layout_width="wrap_content"
             android:text="每月..."
             android:layout_below="@+id/textTimeMode"
-            android:layout_toEndOf="@+id/RadioButtonFrequencyWeek"
-        />
+            android:layout_toEndOf="@+id/RadioButtonFrequencyWeek" />
 
     </RadioGroup>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
-
 
         <Button
             android:id="@+id/buttonCancelTime_f"
@@ -122,6 +122,7 @@
             android:clickable="true"
             android:background="#036197"
             tools:text="@android:string/no" />
+
         <Button
             android:id="@+id/buttonOkTime_f"
             android:text="@string/ok"
@@ -134,6 +135,79 @@
             tools:text="@android:string/VideoView_error_button" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_tue"
+        android:text="Tue"
+        android:background="@drawable/btn_week"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/RadioGroupFrequency"
+        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/button_mon"
+        android:text="Mon"
+        android:background="@drawable/btn_week"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignBottom="@id/button_tue"
+        android:layout_toStartOf="@id/button_tue"
+        android:layout_marginEnd="40dp"/>
+
+    <Button
+        android:id="@+id/button_wed"
+        android:text="Wed"
+        android:background="@drawable/btn_week"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignBottom="@id/button_tue"
+        android:layout_toEndOf="@id/button_tue"
+        android:layout_marginStart="40dp"/>
+
+    <Button
+        android:id="@+id/button_thu"
+        android:text="Thu"
+        android:background="@drawable/btn_week"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/button_tue"
+        android:layout_marginTop="15dp"
+        android:layout_toStartOf="@id/button_mon"
+        android:layout_marginEnd="-10dp"  />
+
+    <Button
+        android:id="@+id/button_fri"
+        android:text="Fri"
+        android:background="@drawable/btn_week"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/button_tue"
+        android:layout_marginTop="15dp"
+        android:layout_toStartOf="@id/button_tue"
+        android:layout_marginEnd="-10dp" />
+
+    <Button
+        android:id="@+id/button_sat"
+        android:text="Sat"
+        android:background="@drawable/btn_week"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/button_tue"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@id/button_tue"
+        android:layout_marginStart="-10dp"   />
+
+    <Button
+        android:id="@+id/button_sun"
+        android:text="Sun"
+        android:background="@drawable/btn_week"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/button_tue"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@id/button_wed"
+        android:layout_marginStart="-10dp"  />
 
 
 </RelativeLayout>

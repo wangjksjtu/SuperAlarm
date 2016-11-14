@@ -19,7 +19,7 @@ public class type_set_activity extends AppCompatActivity {
         setContentView(R.layout.type_setter);
         instance = this;
 
-        bt1 = (Button) findViewById(R.id.button1);
+        bt1 = (Button) findViewById(R.id.button_type_1);
         bt1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,7 +30,7 @@ public class type_set_activity extends AppCompatActivity {
             }
         });
 
-        bt2 = (Button) findViewById(R.id.button2);
+        bt2 = (Button) findViewById(R.id.button_type_2);
         bt2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +41,7 @@ public class type_set_activity extends AppCompatActivity {
             }
         });
 
-        bt3 = (Button) findViewById(R.id.button3);
+        bt3 = (Button) findViewById(R.id.button_type_3);
         bt3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +52,7 @@ public class type_set_activity extends AppCompatActivity {
             }
         });
 
-        bt4 = (Button) findViewById(R.id.button4);
+        bt4 = (Button) findViewById(R.id.button_type_4);
         bt4.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +63,7 @@ public class type_set_activity extends AppCompatActivity {
             }
         });
 
-        bt5 = (Button) findViewById(R.id.button5);
+        bt5 = (Button) findViewById(R.id.button_type_5);
         bt5.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public class type_set_activity extends AppCompatActivity {
             }
         });
 
-        bt6 = (Button) findViewById(R.id.button6);
+        bt6 = (Button) findViewById(R.id.button_type_6);
         bt6.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +85,7 @@ public class type_set_activity extends AppCompatActivity {
             }
         });
 
-        bt7 = (Button) findViewById(R.id.button7);
+        bt7 = (Button) findViewById(R.id.button_type_7);
         bt7.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +96,7 @@ public class type_set_activity extends AppCompatActivity {
             }
         });
 
-        bt8 = (Button) findViewById(R.id.button8);
+        bt8 = (Button) findViewById(R.id.button_type_8);
         bt8.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +107,7 @@ public class type_set_activity extends AppCompatActivity {
             }
         });
 
-        Button bt9 = (Button)findViewById(R.id.button9);
+        Button bt9 = (Button)findViewById(R.id.button_type_9);
         bt9.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
