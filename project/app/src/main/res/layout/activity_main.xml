@@ -12,10 +12,18 @@
     android:background="#ffffffff"
     tools:context="superalarm.firsttry.MainActivity">
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentStart="true"
+        android:id="@+id/list"
+        android:layout_above="@+id/imageButton_group" />
+
     <ImageView
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         app:srcCompat="@drawable/apic7209"
         android:id="@+id/imageView2"
         tools:ignore="ContentDescription,RtlHardcoded"
@@ -24,16 +32,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <ImageView
-        android:scaleType="fitXY"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:srcCompat="@drawable/background_top"
-        android:id="@+id/imageView4"
-        android:layout_below="@+id/textClock4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        tools:ignore="ContentDescription,RtlHardcoded" />
+    <!--<ImageView-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--app:srcCompat="@drawable/background_top"-->
+        <!--android:id="@+id/imageView4"-->
+        <!--android:layout_below="@+id/textClock4"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--tools:ignore="ContentDescription,RtlHardcoded" />-->
 
     <ImageView
         android:scaleType="fitXY"
@@ -100,7 +108,7 @@
         tools:ignore="NewApi,RelativeOverlap,SpUsage,UnusedAttribute"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#ffffffff"/>
+        android:textColor="#ffffff"/>
 
     <TextClock
         android:layout_width="wrap_content"
@@ -114,5 +122,6 @@
         tools:ignore="NewApi,RelativeOverlap,SpUsage,UnusedAttribute"
         android:layout_below="@+id/textClock3"
         android:layout_centerHorizontal="true"
-        android:textColor="#ffffffff"/>
+        android:textColor="#ffffff"/>
+
 </RelativeLayout>
