@@ -46,7 +46,13 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,Object>>();/*在数组中存放数据*/
         for (int i = 0;i<=20;i++){
             HashMap<String,Object> map = new HashMap<String,Object>();
-            map.put("ItemImage",R.drawable.btn_add_press);
+            switch (i%5){
+                case 0:map.put("ItemImage",R.drawable.communication);break;
+                case 1:map.put("ItemImage",R.drawable.entertainment);break;
+                case 2:map.put("ItemImage",R.drawable.study);break;
+                case 3:map.put("ItemImage",R.drawable.exercise);break;
+                default:map.put("ItemImage",R.drawable.food);
+            }
             map.put("ItemTitle","第"+i+"行");
             map.put("ItemText","这是第"+i+"行");
             listItem.add(map);

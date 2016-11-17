@@ -17,16 +17,14 @@ public class Detail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_detail);
 
         Intent intent = getIntent();
         String data = intent.getStringExtra("string_key");
 
-        TextView title = (TextView)findViewById(R.id.textView2);
         TextView info = (TextView)findViewById(R.id.textView4);
 
-        title.setText(data);
+        setTitle(data);
         info.setText(data+data);
 
         ImageButton btn_revert = (ImageButton)findViewById(R.id.imageButton_revert);
