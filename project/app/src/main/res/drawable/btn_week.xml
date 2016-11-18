@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <corners android:radius="30dp"/>
+            <solid android:color="@color/black_overlay"/>
+        </shape>
+    </item>
+
+    <item android:bottom="7dp" android:left="7dp" android:right="7dp" android:top="7dp">
+        <shape android:shape="oval">
+            <corners android:radius="30dp"/>
+            <solid android:color="@color/grey" />
+        </shape>
+    </item>
+</layer-list>

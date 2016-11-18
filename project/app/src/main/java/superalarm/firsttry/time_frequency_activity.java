@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
+
+import static android.widget.Toast.makeText;
+
 
 public class time_frequency_activity extends AppCompatActivity {
 
@@ -21,7 +24,8 @@ public class time_frequency_activity extends AppCompatActivity {
     private Spinner  hourSpinner_f, minuteSpinner_f;
     private Button btCancelTime_f, btOkTime_f;
     private RadioGroup frequencyMode;
-    private RadioButton frequnecyDay, frequnecyWeek ,frequnecyMonth;
+    private Button[] Btn_week = new Button[7];
+    private boolean[] week_btn_pressed = {false,false,false,false,false,false,false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,7 @@ public class time_frequency_activity extends AppCompatActivity {
         //两个下拉表的内部选项数据
         List<String> hour_list_f = new ArrayList<String>();
         List<String> minute_list_f = new ArrayList<String>();
-        int i;
+        int i,tag;
         for (i = 0;i  < 10; i++){
             hour_list_f.add("0"+ i);
             minute_list_f.add("0"+ i);
@@ -62,11 +66,50 @@ public class time_frequency_activity extends AppCompatActivity {
         minuteSpinner_f.setAdapter(arr_adapter_minute_f);
 
 
-        //单选按钮的定义
+        //提醒频率按钮的定义
         frequencyMode = (RadioGroup) findViewById(R.id.RadioGroupFrequency);
-        frequnecyDay = (RadioButton) findViewById(R.id.RadioButtonFrequencyDay);
-        frequnecyWeek = (RadioButton) findViewById(R.id.RadioButtonFrequencyWeek);
-        frequnecyMonth = (RadioButton) findViewById(R.id.RadioButtonFrequencyMonth);
+
+        //提醒频率监听器
+        frequencyMode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int radioButtonId = group.getCheckedRadioButtonId();
+                if (radioButtonId == R.id.RadioButtonFrequencyWeek){
+                    for (int j = 0; j < 7; j++)  {
+                        Btn_week[j].setVisibility(View.VISIBLE);
+                    }
+                }
+                else if (radioButtonId == R.id.RadioButtonFrequencyDay){
+                    for (int j = 0; j < 7; j++)  {
+                        Btn_week[j].setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
+        });
+
+        //日期按钮的定义;
+        int[] week_btn_list = {R.id.button_mon,R.id.button_tue,R.id.button_wed,R.id.button_thu,
+                                        R.id.button_fri,R.id.button_sat,R.id.button_sun};
+        for (tag = 0; tag < 7; tag++){
+            Btn_week[tag] = (Button)findViewById(week_btn_list[tag]);
+            Btn_week[tag].setVisibility(View.INVISIBLE);
+            Btn_week[tag].setTag(tag);
+            Btn_week[tag].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int tag = (Integer) v.getTag();
+                    if (week_btn_pressed[tag]) {
+                        Btn_week[tag].setBackgroundResource(R.drawable.btn_week);
+                        week_btn_pressed[tag] = false;
+                    }
+                    else{
+                        Btn_week[tag].setBackgroundResource(R.drawable.btn_week_selected);
+                        week_btn_pressed[tag] = true;
+                    }
+                }
+            });
+        }
+
 
         //OK按钮和CANCEL按钮的链接
         btCancelTime_f = (Button)findViewById(R.id.buttonCancelTime_f);
