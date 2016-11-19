@@ -1,21 +1,15 @@
 package superalarm.firsttry;
 
-import android.app.ListActivity;
+import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -24,9 +18,9 @@ import android.widget.TextClock;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private TextClock hTextClock;
     private TextClock dTextClock;
     private boolean have_login;
-    private int mId = 0;
     private ListView lv;
 
     @Override
@@ -68,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
                 Intent intent = new Intent(MainActivity.this,Detail.class);
-                Bundle bundle = new Bundle();
                 intent.putExtra("string_key","0"+arg2);
                 startActivity(intent);
             }
@@ -112,52 +104,82 @@ public class MainActivity extends AppCompatActivity {
 //                finish();
             }
         });
-        clearNotification();
+
+        int y = 2016, m = 10, d = 19, h = 9, min = 38;
+        int Id = 0;
+        startRemind(y, m, d, h, min, Id + 1);
+        startRemind(y, m, d, h, min + 4, Id + 2);
+        startRemind(y, m, d, h, min + 6, Id + 3);
     }
 
-    private void showNotification() {
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.clock1)
-                        .setContentTitle("SuperAlarm notification")
-                        .setContentText("Hello World!");
-        // Creates an explicit intent for MainActivity
-        Intent resultIntent = new Intent(this, MainActivity.class);
-        // The stack builder object will contain an artificial back stack for the started Activity.
-        // It ensures that navigating backward from the Activity leads out of your application to the Home screen.
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        // Adds the back stack for the Intent (but not the Intent itself)
-        stackBuilder.addParentStack(MainActivity.class);
-        // Adds the Intent that starts the Activity to the top of the stack
-        stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        mBuilder.setContentIntent(resultPendingIntent);
-        NotificationManager mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        // mId allows are used to update the notification later on.
-        mNotificationManager.notify(mId, mBuilder.build());
+   private void startRemind(int year, int month, int day, int hour, int minute, int Id) {
+//    private void startRemind() {
+       Calendar mCalendar = Calendar.getInstance();
+       mCalendar.setTimeInMillis(System.currentTimeMillis());
+
+       //获取当前毫秒值
+       long systemTime = System.currentTimeMillis();
+
+       //设置日历的时间，让日历的年月日和当前同步
+       mCalendar.setTimeInMillis(System.currentTimeMillis());
+       //时区设置
+       mCalendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+       mCalendar.set(Calendar.YEAR, year);
+       mCalendar.set(Calendar.MONTH, month);
+       mCalendar.set(Calendar.DAY_OF_MONTH, day);
+       mCalendar.set(Calendar.HOUR_OF_DAY, hour);
+       mCalendar.set(Calendar.MINUTE, minute);
+       mCalendar.set(Calendar.SECOND, 0);
+       mCalendar.set(Calendar.MILLISECOND, 0);
+
+       long selectTime = mCalendar.getTimeInMillis();
+
+       if (systemTime > selectTime) {
+           Toast.makeText(MainActivity.this, "This alarm time is expired", Toast.LENGTH_LONG).show();
+           return;
+       }
+
+        //AlarmReceiver.class为广播接受者
+       Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+       intent.putExtra("Id",Id);
+       PendingIntent pi = PendingIntent.getBroadcast(
+               MainActivity.this, Id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+       //得到AlarmManager实例
+       AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+       String str = String.valueOf(year) + " " + String.valueOf(month) + String.valueOf(day) + " "
+               + String.valueOf(hour) + String.valueOf(minute);
+       Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
+       am.setExact(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pi);
     }
 
-    private void clearNotification(){
+    private void stopRemind(int Id){
+
+        Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+        intent.putExtra("Id",Id);
+        PendingIntent pi = PendingIntent.getBroadcast(MainActivity.this, Id,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+        //取消警报
+        am.cancel(pi);
+        Toast.makeText(this, "关闭了提醒", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void clearNotification(int nId){
         NotificationManager notificationManager = (NotificationManager) this
                 .getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.cancel(0);
+        notificationManager.cancel(nId);
 
     }
 
     @Override
     protected void onStop() {
-        showNotification();
         super.onStop();
     }
 
     @Override
     protected void onStart() {
-        clearNotification();
+        //clearNotification(intent.getIntExtra("Id", 0));
         super.onStart();
     }
 }
