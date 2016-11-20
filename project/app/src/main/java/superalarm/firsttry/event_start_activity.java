@@ -28,13 +28,23 @@ public class event_start_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        boolean key;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_starter);
         instance = this;
 
         //intent接收事项类型
+        String eventType;
         Intent intent = getIntent();
-        String eventType = intent.getStringExtra("typeConvey");
+        key = intent.getBooleanExtra("key",false);
+        if (!key) {
+            eventType = intent.getStringExtra("typeConvey");
+        }
+        else {
+            eventType = intent.getStringExtra("value");
+        }
         typeTitle = (TextView) findViewById(R.id.textTitleMid);
         typeTitle.setText(eventType);
 
