@@ -90,7 +90,10 @@ public class MainActivity extends AppCompatActivity {
         btn_group.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"No Service",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,JsonActivity.class);
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this,"No Service",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -110,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         startRemind(y, m, d, h, min, Id + 1);
         startRemind(y, m, d, h, min + 4, Id + 2);
         startRemind(y, m, d, h, min + 6, Id + 3);
+
     }
 
    private void startRemind(int year, int month, int day, int hour, int minute, int Id) {
