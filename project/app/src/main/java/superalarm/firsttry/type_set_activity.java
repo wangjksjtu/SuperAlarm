@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 public class type_set_activity extends AppCompatActivity {
 
     public static type_set_activity instance = null;
-    private Button bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9;
+    private Button[] bt_type_list = new Button[9];
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,101 +21,28 @@ public class type_set_activity extends AppCompatActivity {
         setContentView(R.layout.type_setter);
         instance = this;
 
-        bt1 = (Button) findViewById(R.id.button_type_1);
-        bt1.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
-                intent.putExtra("typeConvey",bt1.getText());
-                startActivity(intent);
-//                type_set_activity.this.finish();
-            }
-        });
+        int tag;
+        int[] type_btn_list = {R.id.button_type_1,R.id.button_type_2,R.id.button_type_3,
+                R.id.button_type_4,R.id.button_type_5,R.id.button_type_6,
+                R.id.button_type_7,R.id.button_type_8,R.id.button_type_9};
+        for (tag = 0; tag < 8; tag++) {
+            bt_type_list[tag] = (Button) findViewById(type_btn_list[tag]);
+            bt_type_list[tag].setTag(tag);
+            bt_type_list[tag].setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int tag = (Integer) v.getTag();
+                    Intent intent_send = new Intent(type_set_activity.this, event_start_activity.class);
+                    intent_send.putExtra("typeConvey",bt_type_list[tag].getText());
+                    startActivity(intent_send);
+                }
+            });
+        }
 
-        bt2 = (Button) findViewById(R.id.button_type_2);
-        bt2.setOnClickListener(new OnClickListener() {
+        bt_type_list[8] = (Button)findViewById(R.id.button_type_9);
+        bt_type_list[8] .setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
-                intent.putExtra("typeConvey",bt2.getText());
-                startActivity(intent);
-//                type_set_activity.this.finish();
-            }
-        });
-
-        bt3 = (Button) findViewById(R.id.button_type_3);
-        bt3.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
-                intent.putExtra("typeConvey",bt3.getText());
-                startActivity(intent);
-//                type_set_activity.this.finish();
-            }
-        });
-
-        bt4 = (Button) findViewById(R.id.button_type_4);
-        bt4.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
-                intent.putExtra("typeConvey",bt4.getText());
-                startActivity(intent);
-//                type_set_activity.this.finish();
-            }
-        });
-
-        bt5 = (Button) findViewById(R.id.button_type_5);
-        bt5.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
-                intent.putExtra("typeConvey",bt5.getText());
-                startActivity(intent);
-//                type_set_activity.this.finish();
-            }
-        });
-
-        bt6 = (Button) findViewById(R.id.button_type_6);
-        bt6.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
-                intent.putExtra("typeConvey",bt6.getText());
-                startActivity(intent);
-//                type_set_activity.this.finish();
-            }
-        });
-
-        bt7 = (Button) findViewById(R.id.button_type_7);
-        bt7.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
-                intent.putExtra("typeConvey",bt7.getText());
-                startActivity(intent);
-//                type_set_activity.this.finish();
-            }
-        });
-
-        bt8 = (Button) findViewById(R.id.button_type_8);
-        bt8.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(type_set_activity.this, event_start_activity.class);
-                intent.putExtra("typeConvey",bt8.getText());
-                startActivity(intent);
-//                type_set_activity.this.finish();
-            }
-        });
-
-        Button bt9 = (Button)findViewById(R.id.button_type_9);
-        bt9.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setClass(type_set_activity.this,MainActivity.class);
-//                startActivity(intent);
                 type_set_activity.this.finish();
             }
         });
