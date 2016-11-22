@@ -53,7 +53,11 @@
         <activity android:name=".time_frequency_activity" />
         >>>>>>> 1bea59cb90122b6e2e759f3f8e820205182cb5df
         <activity android:name=".PresonalInformationHaveLogin" />
-        <activity android:name=".GroupActivity"></activity>
+        <activity android:name=".GroupActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

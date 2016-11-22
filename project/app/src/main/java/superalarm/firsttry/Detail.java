@@ -1,5 +1,6 @@
 package superalarm.firsttry;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
@@ -10,10 +11,12 @@ import android.view.View.OnClickListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
 import basic_class.ItemManager;
+import basic_class.NotExistException;
 import basic_class.RepeatedAddtionException;
 
 
@@ -28,19 +31,7 @@ public class Detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        try {
-            items.write();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            items.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (RepeatedAddtionException e) {
-            e.printStackTrace();
-        }
+        items.read(Detail.this);
 
         Intent intent = getIntent();
         final int data = intent.getIntExtra("num",-1);
@@ -60,6 +51,12 @@ public class Detail extends AppCompatActivity {
         btn_delete.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    items.delete(items.itemArr.get(data));
+                    items.write(Detail.this);
+                } catch (NotExistException e) {
+                    e.printStackTrace();
+                }
                 MainActivity.instance.finish();
                 Intent intent_jump = new Intent(Detail.this,MainActivity.class);
                 startActivity(intent_jump);

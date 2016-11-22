@@ -36,7 +36,6 @@ public class event_start_activity extends AppCompatActivity {
         instance = this;
 
         //intent接收事项类型
-<<<<<<< HEAD
         String eventType;
         Intent intent = getIntent();
         key = intent.getBooleanExtra("key",false);
@@ -46,10 +45,8 @@ public class event_start_activity extends AppCompatActivity {
         else {
             eventType = intent.getStringExtra("value");
         }
-=======
         Intent intent_receive = getIntent();
-        String eventType = intent_receive.getStringExtra("typeConvey");
->>>>>>> 73644653c23fbe4bbd8674d37e537e56858d54ca
+        eventType = intent_receive.getStringExtra("typeConvey");
         typeTitle = (TextView) findViewById(R.id.textTitleMid);
         typeTitle.setText(eventType);
 

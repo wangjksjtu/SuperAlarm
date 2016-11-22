@@ -14,6 +14,10 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
+import basic_class.Item;
+import basic_class.ItemManager;
+import basic_class.RepeatedAddtionException;
+
 
 public class time_set_activity extends AppCompatActivity {
 
@@ -198,6 +202,24 @@ public class time_set_activity extends AppCompatActivity {
         btOkTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //创建事项
+                Item item = new Item();
+                item.setClassTitle(eventData[1]);
+                item.setContent(eventData[2]);
+                item.setDeadline(getDeadline());
+                item.setTitle(eventData[0]);
+                item.setImportance((int)eventRating);
+
+                ItemManager list = new ItemManager();
+                list.read(time_set_activity.this);
+                try {
+                    list.add(item);
+                } catch (RepeatedAddtionException e) {
+                    e.printStackTrace();
+                }
+                list.sortByDeadline();
+                list.write(time_set_activity.this);
+
                 MainActivity.instance.finish();
                 Intent intent = new Intent(time_set_activity.this,MainActivity.class);
                 startActivity(intent);

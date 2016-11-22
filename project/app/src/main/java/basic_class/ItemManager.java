@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,21 +12,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-class NotExistException extends Exception {
-    public NotExistException() {
-        super("The items isn't existed!");
-    }
-}
-
 public class ItemManager {
-<<<<<<< HEAD
+
     public ArrayList<Item> itemArr;
     public int length;
-=======
-    private ArrayList<Item> itemArr;
-    private int length;
 
->>>>>>> 73644653c23fbe4bbd8674d37e537e56858d54ca
     public ItemManager() {
          itemArr = new ArrayList();
          length = 0;
@@ -44,8 +35,7 @@ public class ItemManager {
         }
         return null;
     }
-<<<<<<< HEAD
-=======
+
     public int getLength() {
         return length;
     }
@@ -54,7 +44,6 @@ public class ItemManager {
         return itemArr;
     }
 
->>>>>>> 73644653c23fbe4bbd8674d37e537e56858d54ca
     public void add(Item item) throws RepeatedAddtionException {   //whether I should set this method private?
         if (isExist(item)) throw new RepeatedAddtionException();
         itemArr.add(item);
@@ -75,7 +64,7 @@ public class ItemManager {
     void modify(Item item, String t, String d, int i) throws NotExistException {
         this.modify(item, t, d, i, "");
     }
-    void sortByDeadline() {                  //It can be improved in algorithm.
+    public void sortByDeadline() {                  //It can be improved in algorithm.
         for (int i = 0; i < length - 1; ++i) {       //** I will add private after test.
             boolean flag = true;
             for (int j = 1; j < length - i; ++j) {
@@ -90,7 +79,7 @@ public class ItemManager {
             if (flag) break;
         }
     }
-    void sortByImportance() {             //** I will add private after test.
+    public void sortByImportance() {             //** I will add private after test.
         for (int i = 0; i < length - 1; ++i) {
             boolean flag = true;
             for (int j = 1; j < length - i; ++j) {
@@ -105,12 +94,10 @@ public class ItemManager {
             if (flag) break;
         }
     }
-<<<<<<< HEAD
     public void write() throws IOException {
         File newfile = new File("./Data/items.txt");
         newfile.delete();
-        newfile.createNewFile();
-=======
+        newfile.createNewFile();}
     /* public void write() throws IOException {
         File deletefile = new File("items.txt");
         deletefile.delete();
