@@ -11,7 +11,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.TextView;
 
+import java.io.IOException;
+
+import basic_class.ItemManager;
+import basic_class.RepeatedAddtionException;
+
+
+
 public class Detail extends AppCompatActivity {
+
+    private ItemManager items = new ItemManager();
 
 
     @Override
@@ -19,14 +28,33 @@ public class Detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        try {
+            items.write();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            items.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (RepeatedAddtionException e) {
+            e.printStackTrace();
+        }
+
         Intent intent = getIntent();
-        final String data = intent.getStringExtra("string_key");
+        final int data = intent.getIntExtra("num",-1);
 
         TextView info = (TextView)findViewById(R.id.textView4);
         TextView time = (TextView)findViewById(R.id.textView5);
 
-        setTitle(data);
-        info.setText(data+data);
+        String title = items.itemArr.get(data).title;
+        String content = items.itemArr.get(data).content;
+        String deadline = items.itemArr.get(data).deadline;
+
+        setTitle(title);
+        info.setText(content);
+        time.setText(deadline);
 
         Button btn_delete = (Button)findViewById(R.id.button);
         btn_delete.setOnClickListener(new Button.OnClickListener() {

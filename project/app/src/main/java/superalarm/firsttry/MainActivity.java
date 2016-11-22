@@ -3,6 +3,7 @@ package superalarm.firsttry;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -17,10 +18,16 @@ import android.widget.SimpleAdapter;
 import android.widget.TextClock;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TimeZone;
+
+import basic_class.Item;
+import basic_class.ItemManager;
+import basic_class.RepeatedAddtionException;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,15 +36,37 @@ public class MainActivity extends AppCompatActivity {
     private TextClock dTextClock;
     private boolean have_login;
     private ListView lv;
+    private ItemManager items1 = new ItemManager();
+    private ItemManager items2 = new ItemManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Item it1 = new Item("Study","study1","201610022345",1);
+        Item it2 = new Item("Study","study2","201610023345",2);
+        try {
+            items1.add(it1);
+            items1.add(it2);
+            items1.write();
+        } catch (RepeatedAddtionException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            items2.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (RepeatedAddtionException e) {
+            e.printStackTrace();
+        }
+
         lv = (ListView)findViewById(R.id.list);
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,Object>>();/*在数组中存放数据*/
-        for (int i = 0;i<=20;i++){
+        for (int i = 0;i<items2.length;i++){
             HashMap<String,Object> map = new HashMap<String,Object>();
             switch (i%5){
                 case 0:map.put("ItemImage",R.drawable.communication);break;
@@ -46,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 case 3:map.put("ItemImage",R.drawable.exercise);break;
                 default:map.put("ItemImage",R.drawable.food);
             }
-            map.put("ItemTitle","第"+i+"行");
-            map.put("ItemText","这是第"+i+"行");
+            map.put("ItemTitle", items2.itemArr.get(i).title);
+            map.put("ItemText", items2.itemArr.get(i).deadline);
             listItem.add(map);
         }
 
@@ -61,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
                 Intent intent = new Intent(MainActivity.this,Detail.class);
-                intent.putExtra("string_key","0"+arg2);
+                intent.putExtra("num",arg2);
                 startActivity(intent);
             }
         });

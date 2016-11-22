@@ -3,17 +3,6 @@ package basic_class;
 import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
-        
-/**
- * date:2016-10-02
- * @author wangjksjtu
- */
-
-class RepeatedAddtionException extends Exception {
-    public RepeatedAddtionException() {
-        super("The items has existed!");
-    }
-} 
 
 class NotExistException extends Exception {
     public NotExistException() {
@@ -22,9 +11,9 @@ class NotExistException extends Exception {
 }
 
 public class ItemManager {
-    private ArrayList<Item> itemArr;
-    private int length;
-    ItemManager() {
+    public ArrayList<Item> itemArr;
+    public int length;
+    public ItemManager() {
          itemArr = new ArrayList();
          length = 0;
     }
@@ -42,12 +31,12 @@ public class ItemManager {
         }
         return null;
     }
-    void add(Item item) throws RepeatedAddtionException {   //whether I should set this method private?
+    public void add(Item item) throws RepeatedAddtionException {   //whether I should set this method private?
         if (isExist(item)) throw new RepeatedAddtionException();
         itemArr.add(item);
         ++length;
     }
-    void delete(Item item) throws NotExistException {   //whether I should set this method private?
+    public void delete(Item item) throws NotExistException {   //whether I should set this method private?
         if (!isExist(item)) throw new NotExistException();
         itemArr.remove(item);
         --length;
@@ -92,7 +81,7 @@ public class ItemManager {
             if (flag) break;
         }
     }
-    void write() throws IOException {
+    public void write() throws IOException {
         File newfile = new File("./Data/items.txt");
         newfile.delete();
         newfile.createNewFile();

@@ -12,10 +12,10 @@ import java.io.IOException;
 
 public class Item {
     private String classTitle;
-    private String title;
-    private String deadline;
+    public String title;
+    public String deadline;
     private int importance; 
-    private String content;
+    public String content;
     public Item(String cl,String t, String d, int i, String c) {
        classTitle=cl; title = t; deadline = d; importance = i; content = c;
     }
