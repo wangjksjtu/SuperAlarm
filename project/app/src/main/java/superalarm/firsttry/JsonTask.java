@@ -21,6 +21,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import basic_class.RepeatedAddtionException;
+
 /**
  * Created by wangjksjtu on 2016/11/19.
  */
@@ -46,8 +48,7 @@ public class JsonTask extends AsyncTask<String, String, String>{
                     buffer.append(line);
                 }
                 JsonParser jsp = new JsonParser(buffer.toString());
-                String str = jsp.JsonParserItem();
-                return str;
+                jsp.JsonParserItem();
             }
             if (params[1] == "POST") {
                 connection.setConnectTimeout(2000);
@@ -72,13 +73,6 @@ public class JsonTask extends AsyncTask<String, String, String>{
 
                 connection.connect();
                 //connection.getOutputStream().write(para.getBytes());
-                if (connection.getResponseCode() / 100 == 2) {
-                    System.out.println("服务器已经收到表单数据！");
-                    return "success";
-                } else {
-                    System.out.println("请求失败！");
-                    return "failure";
-                }
 
             }
             if (params[1] == "DELETE") {
@@ -87,11 +81,7 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 final String basicAuth= "Basic " + Base64.encodeToString("wangjk:wjk19711025wyq".getBytes(), Base64.NO_WRAP);
                 connection.setRequestProperty ("Authorization", basicAuth);
                 connection.connect();
-                if (connection.getResponseCode() / 100 == 2) {
-                    return "success";
-                } else {
-                    return "failure";
-                }
+
             }
             if (params[1] == "PUT") {
                 connection.setRequestProperty("Content-Type", "application/json");
@@ -108,11 +98,12 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 osw.flush();
                 osw.close();
                 connection.connect();
-                if (connection.getResponseCode() / 100 == 2) {
-                    return "success";
-                } else {
-                    return "failure";
-                }
+            }
+
+            if (connection.getResponseCode() / 100 == 2) {
+                return "success";
+            } else {
+                return "failure";
             }
 
         } catch (MalformedURLException e) {
@@ -120,6 +111,8 @@ public class JsonTask extends AsyncTask<String, String, String>{
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (RepeatedAddtionException e) {
             e.printStackTrace();
         } finally {
             if (connection != null) {

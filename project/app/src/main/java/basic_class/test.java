@@ -32,16 +32,16 @@ public class test {
            Item it6 = new Item("Food","food1","201611023345",1,"banana!");
            itmanager.add(it4); itmanager.add(it5); itmanager.add(it6);
            itmanager.sortByDeadline();
-           itmanager.write();
-           System.out.printf("___________________\n");
-           itmanager2.read();
-           System.out.printf(itmanager2.display());
+           //itmanager.write();
+           //System.out.printf("___________________\n");
+           //itmanager2.read();
+           //System.out.printf(itmanager2.display());
            System.out.printf("___________________\n");
            System.out.printf("\n");
            System.out.printf(itmanager.display());
            System.out.printf("\n");
            itmanager.sortByImportance();
-           itmanager.write();
+           //itmanager.write();
            System.out.printf(itmanager.display());
        } catch (RepeatedAddtionException ex) {
            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);

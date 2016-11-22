@@ -22,6 +22,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TimeZone;
 
+import basic_class.Item;
+import basic_class.ItemManager;
+
 public class MainActivity extends AppCompatActivity {
 
     public  static MainActivity instance = null;
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         lv = (ListView)findViewById(R.id.list);
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,Object>>();/*在数组中存放数据*/
-        for (int i = 0;i<=20;i++){
+        /*for (int i = 0;i<=20;i++){
             HashMap<String,Object> map = new HashMap<String,Object>();
             switch (i%5){
                 case 0:map.put("ItemImage",R.drawable.communication);break;
@@ -49,24 +52,9 @@ public class MainActivity extends AppCompatActivity {
             map.put("ItemTitle","第"+i+"行");
             map.put("ItemText","这是第"+i+"行");
             listItem.add(map);
-        }
+        } */
 
-        SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this,listItem,R.layout.listitem,
-                new String[]{"ItemImage","ItemTitle","ItemText"},new int[]{R.id.ItemImage,R.id.ItemTitle,R.id.ItemText});
-        lv.setAdapter(mSimpleAdaptr);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                   long arg3) {
-                Intent intent = new Intent(MainActivity.this,Detail.class);
-                intent.putExtra("string_key","0"+arg2);
-                startActivity(intent);
-            }
-        });
-
-        instance = this;
+        makeItemList();
 
         hTextClock = (TextClock)findViewById(R.id.textClock3);
         dTextClock = (TextClock)findViewById(R.id.textClock4);
@@ -176,6 +164,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void makeItemList() {
+        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,Object>>();/*在数组中存放数据*/
+        ItemManager itemManager = new ItemManager();
+        itemManager.read(this);
+        itemManager.write(this);
+        ArrayList<Item> itemArrayList = itemManager.getItemArr();
+        for (int i = 0; i < itemManager.getLength(); ++i) {
+            final String title = itemArrayList.get(i).getTitle();
+            final String text = itemArrayList.get(i).getDeadline();
+            HashMap<String,Object> map = new HashMap<String,Object>();
+            map.put("ItemImage",R.drawable.exercise);
+            map.put("ItemTitle", title);
+            map.put("ItemText", text);
+            listItem.add(map);
+        }
+
+        SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this,listItem,R.layout.listitem,
+                new String[]{"ItemImage","ItemTitle","ItemText"},new int[]{R.id.ItemImage,R.id.ItemTitle,R.id.ItemText});
+        lv.setAdapter(mSimpleAdaptr);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                Intent intent = new Intent(MainActivity.this,Detail.class);
+                intent.putExtra("string_key","0"+arg2);
+                startActivity(intent);
+            }
+        });
+
+        instance = this;
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -185,5 +207,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         //clearNotification(intent.getIntExtra("Id", 0));
         super.onStart();
+    }
+
+    @Override
+    protected void onRestart() {
+        makeItemList();
     }
 }
