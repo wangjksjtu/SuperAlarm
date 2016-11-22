@@ -26,6 +26,8 @@ public class time_frequency_activity extends AppCompatActivity {
     private RadioGroup frequencyMode;
     private Button[] Btn_week = new Button[7];
     private boolean[] week_btn_pressed = {false,false,false,false,false,false,false};
+    private String[] eventData = new String[3];
+    private float eventRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,12 @@ public class time_frequency_activity extends AppCompatActivity {
         setContentView(R.layout.time_frequency);
         instance = this;
 
+        //intent接收事项类型
+        Intent intent_receive = getIntent();
+        eventData[0] = intent_receive.getStringExtra("eventName");
+        eventData[1] = intent_receive.getStringExtra("eventType");
+        eventData[2] = intent_receive.getStringExtra("eventDetail");
+        eventRating = intent_receive.getFloatExtra("eventRating",-1f);
 
         //时间属性下拉表Spinner变量
         hourSpinner_f = (Spinner) findViewById(R.id.spinnerHour_f);
@@ -124,15 +132,27 @@ public class time_frequency_activity extends AppCompatActivity {
         btOkTime_f.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.instance.finish();
-                Intent intent = new Intent(time_frequency_activity.this,MainActivity.class);
-                startActivity(intent);
-                time_frequency_activity.this.finish();
-                type_set_activity.instance.finish();
-                event_start_activity.instance.finish();
+                if (okCheck()) {
+                    MainActivity.instance.finish();
+                    Intent intent = new Intent(time_frequency_activity.this, MainActivity.class);
+                    startActivity(intent);
+                    time_frequency_activity.this.finish();
+                    type_set_activity.instance.finish();
+                    event_start_activity.instance.finish();
+                }
             }
         });
 
+    }
+    private boolean okCheck(){
+        int radioButtonId = frequencyMode.getCheckedRadioButtonId(),k;
+        if (radioButtonId == R.id.RadioButtonFrequencyWeek){
+            for (k = 0;k < 7; k++){
+                if (week_btn_pressed[k]){break;}
+            }
+            if (k == 7) {return false;}
+        }
+        return true;
     }
 
     public String getDeadline() {
@@ -141,5 +161,23 @@ public class time_frequency_activity extends AppCompatActivity {
         return (hourData_f + ":" + minuteData_f);
     }
 
+    public String getCircleType() {
+        int radioButtonId = frequencyMode.getCheckedRadioButtonId();
+        if (radioButtonId == R.id.RadioButtonFrequencyDay) {return "0";}
+        else if (radioButtonId == R.id.RadioButtonFrequencyWeek) {return "1";}
+        else  {return "2";}
+    }
 
+    public String getWeekDetails() {
+        String feedback = "";
+        for (int k = 0; k < 7 ; k++){
+            if (week_btn_pressed[k] ){feedback += (k + 1);}
+        }
+        return feedback;
+    }
+
+    public String getEventName() {return eventData[0];}
+    public String getEventType() {return eventData[1];}
+    public String getEventDetail() {return eventData[2];}
+    public float getRating() {return eventRating;}
 }

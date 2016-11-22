@@ -1,5 +1,9 @@
 package basic_class;
-import java.io.*;
+
+import android.os.Environment;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**date 10.23 
@@ -21,16 +25,16 @@ public class Item {
     }
     public Item(String cl,String t, String d, int i) {this(cl,t,d,i,"");}
     public Item(){this("","","",1,"");}
-    String getClassTitle(){return classTitle;}
-    String getTitle() {return title;}
-    String getDeadline() {return deadline;}
-    int getImportance() {return importance;}
-    String getContent() {return content;}
-    void setClassTitle(String cl){classTitle =cl; }
-    void setTitle(String t) {title = t;}
-    void setDeadline(String d) {deadline = d;}
-    void setImportance(int i) {importance = i;}
-    void setContent(String c) {content = c;}
+    public String getClassTitle(){return classTitle;}
+    public String getTitle() {return title;}
+    public String getDeadline() {return deadline;}
+    public int getImportance() {return importance;}
+    public String getContent() {return content;}
+    public void setClassTitle(String cl){classTitle =cl; }
+    public void setTitle(String t) {title = t;}
+    public void setDeadline(String d) {deadline = d;}
+    public void setImportance(int i) {importance = i;}
+    public void setContent(String c) {content = c;}
     boolean equals(Item it) {
         if (this == it) return true;
         if (it == null) return false;
@@ -47,13 +51,15 @@ public class Item {
     
     //xieRu
     public void write ()throws IOException {
-        String path;
-        String fileName;
-        path="Data";
-        fileName=path+"/" + "items.txt";
-        File filePath=new File(path);
-        if (!filePath.exists()){filePath.mkdir();}
-        FileWriter fw =new FileWriter(fileName,true);
+        //String path;
+        //String fileName;
+        //path="data";
+        //fileName=path+"/" + "items.txt";
+        //File filePath=new File(path);
+        //if (!filePath.exists()){filePath.mkdir();}
+        File filePath = Environment.getExternalStorageDirectory();
+        //fileName = "/data/data/packagename/items.txt";
+        FileWriter fw =new FileWriter(filePath,true);
         fw.write(classTitle+"\r\n");
         fw.write(title+"\r\n");
         fw.write(deadline+"\r\n");
