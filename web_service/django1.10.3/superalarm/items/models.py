@@ -31,7 +31,7 @@ class ItemOfGroup(models.Model):
 	module = models.CharField(max_length=50)
 	content = models.TextField(blank=True, default='')
 	owner = models.ForeignKey('auth.User', related_name='itemofgroupowner', on_delete=models.CASCADE)
-	groupname = models.ForeignKey('Group', related_name='itemofgroupgroupname', on_delete=models.CASCADE)
+	group = models.ForeignKey('Group', related_name='itemofgroupgroupname', on_delete=models.CASCADE)
 
 	def __str__(self): 
-		return self.groupname + '-' + title + ' id:' + str(self.id) + ')'
+		return self.title + '(id:' + str(self.id) + ')'

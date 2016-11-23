@@ -16,14 +16,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
 	owner = serializers.ReadOnlyField(source='owner.username')
-
+        
 	class Meta:
 		model = Group
-		fields = ('url', 'id', 'owner', 'groupname', 'limit', 'item')
+		fields = ('url', 'id', 'owner', 'groupname', 'limit', 'member', 'item')
 
 class ItemOfGroupSerializer(serializers.HyperlinkedModelSerializer):
-	owner = serializers.ReadOnlyField(source='owner.groupname')
+	owner = serializers.ReadOnlyField(source='user.username')
+        group = serializers.ReadOnlyField(source='group.groupname')
 	class Meta:
 		model = ItemOfGroup
-		fields = ('url', 'id', 'groupname', 'owner', 'title', 'deadline', 'module', 'content', 'created')
+		fields = ('url', 'id', 'group', 'owner', 'title', 'deadline', 'module', 'content', 'created')
 	
