@@ -3,8 +3,6 @@ package superalarm.firsttry;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ClipData;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -25,7 +23,6 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -33,8 +30,6 @@ import java.util.TimeZone;
 
 import basic_class.Item;
 import basic_class.ItemManager;
-import basic_class.RepeatedAddtionException;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -150,11 +145,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        int y = 2016, m = 10, d = 19, h = 9, min = 38;
+/*        int y = 2016, m = 10, d = 19, h = 9, min = 38;
         int Id = 0;
         startRemind(y, m, d, h, min, Id + 1);
         startRemind(y, m, d, h, min + 4, Id + 2);
-        startRemind(y, m, d, h, min + 6, Id + 3);
+        startRemind(y, m, d, h, min + 6, Id + 3);*/
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -174,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         //时区设置
         mCalendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         mCalendar.set(Calendar.YEAR, year);
-        mCalendar.set(Calendar.MONTH, month);
+        mCalendar.set(Calendar.MONTH, month - 1);
         mCalendar.set(Calendar.DAY_OF_MONTH, day);
         mCalendar.set(Calendar.HOUR_OF_DAY, hour);
         mCalendar.set(Calendar.MINUTE, minute);
@@ -184,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         long selectTime = mCalendar.getTimeInMillis();
 
         if (systemTime > selectTime) {
-            Toast.makeText(MainActivity.this, "This alarm time is expired", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, "This alarm time is expired", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -195,24 +190,22 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this, Id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         //得到AlarmManager实例
         AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-        String str = String.valueOf(year) + " " + String.valueOf(month) + String.valueOf(day) + " "
-                + String.valueOf(hour) + String.valueOf(minute);
-        Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
+        //String str = String.valueOf(year) + "年" + String.valueOf(month) + "月" +  String.valueOf(day) + "日"
+        //        + String.valueOf(hour) + "点" + String.valueOf(minute) + "分";
+        //Toast.makeText(MainActivity.this, "闹钟时间："+str, Toast.LENGTH_LONG).show();
         am.setExact(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pi);
     }
 
-    private void stopRemind(int Id) {
-
+    /*private void stopRemind(int Id) {
         Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
         intent.putExtra("Id", Id);
         PendingIntent pi = PendingIntent.getBroadcast(MainActivity.this, Id,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
         //取消警报
+        Toast.makeText(this, "关闭闹钟", Toast.LENGTH_SHORT).show();
         am.cancel(pi);
-        Toast.makeText(this, "关闭了提醒", Toast.LENGTH_SHORT).show();
-
-    }
+    } */
 
     private void clearNotification(int nId) {
         NotificationManager notificationManager = (NotificationManager) this
@@ -227,28 +220,42 @@ public class MainActivity extends AppCompatActivity {
         itemManager.read(this);
         itemManager.write(this);
         ArrayList<Item> itemArrayList = itemManager.getItemArr();
+        if (itemManager.getLength() != 0) {
+            Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
+        }
         for (int i = 0; i < itemManager.getLength(); ++i) {
             final String title = itemArrayList.get(i).getTitle();
-            final String text = itemArrayList.get(i).getDeadline();
+            final String deadline = itemArrayList.get(i).getDeadline();
+            final String module = itemArrayList.get(i).getClassTitle();
+            int y , m , d , h, min;
+            y = Integer.valueOf(deadline.substring(0,4));
+            m = Integer.valueOf(deadline.substring(5,7));
+            d = Integer.valueOf(deadline.substring(8,10));
+            h = Integer.valueOf(deadline.substring(11,13));
+            min = Integer.valueOf(deadline.substring(14,16));
             HashMap<String, Object> map = new HashMap<String, Object>();
-            switch (i % 5) {
-                case 0:
+            startRemind(y, m, d, h, min, i);
+            switch (module) {
+                case "社交":
                     map.put("ItemImage", R.drawable.communication);
                     break;
-                case 1:
+                case "娱乐":
                     map.put("ItemImage", R.drawable.entertainment);
                     break;
-                case 2:
+                case "学习":
                     map.put("ItemImage", R.drawable.study);
                     break;
-                case 3:
+                case "运动":
                     map.put("ItemImage", R.drawable.exercise);
                     break;
-                default:
+                case "餐饮":
                     map.put("ItemImage", R.drawable.food);
+                    break;
+                default:
+                    map.put("ItemImage", R.drawable.clock1);
             }
             map.put("ItemTitle", title);
-            map.put("ItemText", text);
+            map.put("ItemText", deadline);
             listItem.add(map);
         }
 

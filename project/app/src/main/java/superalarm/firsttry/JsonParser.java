@@ -35,12 +35,6 @@ public class JsonParser {
             item.setContent( finalObject.getString("content"));
             itemManager.add(item);
             itemManager.write(MainActivity.instance);
-            /*String title = finalObject.getString("title");
-            String deadline = finalObject.getString("deadline");
-            String module = finalObject.getString("module");
-            String content = finalObject.getString("content");
-            finalBufferData.append(title + "|||" + deadline + "|||" + module
-            + "|||" + content +"\n");*/
         }
     }
 
@@ -56,8 +50,8 @@ public class JsonParser {
             String deadline = finalObject.getString("deadline");
             String module = finalObject.getString("module");
             String content = finalObject.getString("content");
-            finalBufferData.append(title + "|||" + deadline + "|||" + module
-                    + "|||" + content +"\n");
+            finalBufferData.append(title + "|" + deadline + "|" + module
+                    + "|" + content +"\n");
         }
         return finalBufferData.toString();
     }

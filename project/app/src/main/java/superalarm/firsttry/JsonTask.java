@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Pair;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -21,6 +23,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import basic_class.JsonItem;
 import basic_class.RepeatedAddtionException;
 
 /**
@@ -50,6 +53,7 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 JsonParser jsp = new JsonParser(buffer.toString());
                 jsp.JsonParserItem();
             }
+
             if (params[1] == "POST") {
                 connection.setConnectTimeout(2000);
                 connection.setReadTimeout(5000);
@@ -57,47 +61,82 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 connection.setRequestProperty("contentType","application/x-www-form-urlencoded");
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
-                String username = "hello10";
-                String password = "password";
-                List<Pair<String, String>> arrlist = new ArrayList<>();
-                arrlist.add(new Pair<>("username", username));
-                arrlist.add(new Pair<>("password", password));
-
-                OutputStream os = connection.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                writer.write(getQuery(arrlist));
-                writer.flush();
-                writer.close();
-                os.close();
-
-                connection.connect();
-                //connection.getOutputStream().write(para.getBytes());
-
+                if (params[2] == "User") {
+                    String username = params[3];
+                    String password = params[4];
+                    List<Pair<String, String>> arrlist = new ArrayList<>();
+                    arrlist.add(new Pair<>("username", username));
+                    arrlist.add(new Pair<>("password", password));
+                    OutputStream os = connection.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(getQuery(arrlist));
+                    writer.flush();
+                    writer.close();
+                    os.close();
+                    connection.connect();
+                }
+                if (params[2] == "Item") {
+                    final String basicAuth= "Basic " + Base64.encodeToString(
+                            (params[3]+":"+params[4]).getBytes(), Base64.NO_WRAP);
+                    connection.setRequestProperty ("Authorization", basicAuth);
+                    String module = params[5];
+                    String title = params[6];
+                    String deadline = params[7];
+                    String importance = params[8];
+                    String content = params[9];
+                    List<Pair<String, String>> arrlist = new ArrayList<>();
+                    arrlist.add(new Pair<>("title", title));
+                    arrlist.add(new Pair<>("deadline",deadline));
+                    arrlist.add(new Pair<>("module",module));
+                    //arrlist.add(new Pair<>("importance",importance));
+                    arrlist.add(new Pair<>("content",content));
+                    OutputStream os = connection.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(getQuery(arrlist));
+                    writer.flush();
+                    writer.close();
+                    os.close();
+                    connection.connect();
+                }
             }
+
             if (params[1] == "DELETE") {
                 connection.setRequestMethod("DELETE");
                 connection.setRequestProperty("contentType","application/x-www-form-urlencoded");
-                final String basicAuth= "Basic " + Base64.encodeToString("wangjk:wjk19711025wyq".getBytes(), Base64.NO_WRAP);
+                final String basicAuth= "Basic " + Base64.encodeToString(
+                        (params[2]+":"+params[3]).getBytes(), Base64.NO_WRAP);
                 connection.setRequestProperty ("Authorization", basicAuth);
                 connection.connect();
 
             }
+
             if (params[1] == "PUT") {
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setRequestProperty("Accept", "application/json");
                 connection.setRequestMethod("PUT");
                 connection.setDoOutput(true);
-                final String basicAuth= "Basic " + Base64.encodeToString("wangjk:wjk19711025wyq".getBytes(), Base64.NO_WRAP);
+                final String basicAuth= "Basic " + Base64.encodeToString((params[3]+":"+params[4]).getBytes(),
+                        Base64.NO_WRAP);
                 connection.setRequestProperty ("Authorization", basicAuth);
-                String data = "{\"title\":\"2000meters\",\"deadline\":\"2016-11-23-22-52-27\", \"module\":\"Sports\", " +
-                        "\"content\":\"I want to do exercise again\"}";
-
                 OutputStreamWriter osw = new OutputStreamWriter(connection.getOutputStream());
-                osw.write(data);
-                osw.flush();
-                osw.close();
-                connection.connect();
+
+                if (params[2] == "Item") {
+                    int id = Integer.parseInt(params[10]);
+                    String module = params[5];
+                    String title = params[6];
+                    String deadline = params[7];
+                    int importance = Integer.parseInt(params[8]);
+                    String content = params[9];
+                    JsonItem item = new JsonItem(id, module, title, deadline, importance, content);
+                    Gson gson = new Gson();
+                    String data = gson.toJson(item);
+                    osw.write(data);
+                    osw.flush();
+                    osw.close();
+                    connection.connect();
+                }
             }
 
             if (connection.getResponseCode() / 100 == 2) {

@@ -15,16 +15,26 @@ import java.io.IOException;
  */
 
 public class Item {
+    private int Id;
     private String classTitle;
-    public String title;
-    public String deadline;
+    private String title;
+    private String deadline;
     private int importance; 
-    public String content;
-    public Item(String cl,String t, String d, int i, String c) {
-       classTitle=cl; title = t; deadline = d; importance = i; content = c;
+    private String content;
+    private Item(int id, String cl,String t, String d, int i, String c) {
+       Id = id; classTitle=cl; title = t; deadline = d; importance = i; content = c;
     }
-    public Item(String cl,String t, String d, int i) {this(cl,t,d,i,"");}
-    public Item(){this("","","",1,"");}
+    public Item(String cl, String t, String d, int i) {this(0, cl,t,d,i,"");}
+    public Item(String cl, String t, String d, int i, String c) {this(0, cl,t,d,i,c);;}
+    public Item(){this(0, "","","",1,"");}
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
     public String getClassTitle(){return classTitle;}
     public String getTitle() {return title;}
     public String getDeadline() {return deadline;}

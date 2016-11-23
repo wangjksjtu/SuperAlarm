@@ -1,23 +1,15 @@
 package superalarm.firsttry;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.app.Activity;
-import android.content.Intent;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
 
 import basic_class.ItemManager;
 import basic_class.NotExistException;
-import basic_class.RepeatedAddtionException;
 
 
 
@@ -39,9 +31,9 @@ public class Detail extends AppCompatActivity {
         TextView info = (TextView)findViewById(R.id.textView4);
         TextView time = (TextView)findViewById(R.id.textView5);
 
-        String title = items.itemArr.get(data).title;
-        String content = items.itemArr.get(data).content;
-        String deadline = items.itemArr.get(data).deadline;
+        String title = items.itemArr.get(data).getTitle();
+        String content = items.itemArr.get(data).getContent();
+        String deadline = items.itemArr.get(data).getDeadline();
 
         setTitle(title);
         info.setText(content);

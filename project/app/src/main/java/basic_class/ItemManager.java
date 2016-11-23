@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -94,18 +93,6 @@ public class ItemManager {
             if (flag) break;
         }
     }
-    public void write() throws IOException {
-        File newfile = new File("./Data/items.txt");
-        newfile.delete();
-        newfile.createNewFile();}
-    /* public void write() throws IOException {
-        File deletefile = new File("items.txt");
-        deletefile.delete();
->>>>>>> 73644653c23fbe4bbd8674d37e537e56858d54ca
-        for (int i = 0; i < length; ++i) {
-            itemArr.get(i).write();
-        }
-    } */
 
     public void write(Context context) {
         try {

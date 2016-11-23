@@ -1,18 +1,17 @@
 package superalarm.firsttry;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import java.util.ArrayList;
-import java.util.List;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import basic_class.Item;
 import basic_class.ItemManager;
@@ -221,7 +220,7 @@ public class time_set_activity extends AppCompatActivity {
                 list.write(time_set_activity.this);
 
                 MainActivity.instance.finish();
-                Intent intent = new Intent(time_set_activity.this,MainActivity.class);
+                Intent intent = new Intent(time_set_activity.this, MainActivity.class);
                 startActivity(intent);
                 time_set_activity.this.finish();
                 type_set_activity.instance.finish();
