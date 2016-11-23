@@ -5,10 +5,10 @@
     android:id="@+id/activity_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
     tools:context="superalarm.firsttry.Detail"
     android:background="#ffffff">
 
@@ -73,5 +73,16 @@
         android:id="@+id/textView5"
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="删除事项"
+        android:textColor="#ffffff"
+        android:textSize="40dp"
+        android:background="#cc0000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button" />
 
 </RelativeLayout>

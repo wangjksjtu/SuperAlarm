@@ -1,7 +1,10 @@
-package basic;
+package basic_class;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+
 import static java.lang.Math.random;
-import java.io.*;
 /**date 2016-10-25
  * @yanglinbo
  */
@@ -88,14 +91,14 @@ public class UserManager {
         }
         throw new NotExistException2();
     }
-    public User register(String mail, String pw, String name, int age, String sex)
+    public User register(String mail, String pw, String name, int age, String gender)
             throws UsedMailException, TooShortPasswordException, TooLongPasswordException {
         if (validMail(mail) && validPassword(pw)) {
             User user = new User(mail,pw);
             user.setAge(age);
             user.setPassword(pw);
             user.setName(name);
-            user.setSex(sex);
+            user.setGender(gender);
             sendVerfictionCode(user, mail);
             return user;
         }
@@ -139,7 +142,7 @@ public class UserManager {
         for (int i = 0; i < userArr.size(); ++i) {
             s = s + userArr.get(i).getMail() + "\t" + userArr.get(i).getPassword() + "\t"
                     + userArr.get(i).getName() + "\t" + userArr.get(i).getAge() + 
-                    "\t" + userArr.get(i).getSex() + "\n";
+                    "\t" + userArr.get(i).getgender() + "\n";
         }
         for (int i = 0; i < mailArr.size(); ++i) {
             System.out.printf(mailArr.get(i) + "\t");

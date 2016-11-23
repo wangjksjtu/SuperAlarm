@@ -28,15 +28,28 @@ public class event_start_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        boolean key;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_starter);
         instance = this;
 
         //intent接收事项类型
+        String eventType;
         Intent intent = getIntent();
-        String eventType = intent.getStringExtra("typeConvey");
+        key = intent.getBooleanExtra("key",false);
+        if (!key) {
+            eventType = intent.getStringExtra("typeConvey");
+        }
+        else {
+            eventType = intent.getStringExtra("value");
+        }
+        Intent intent_receive = getIntent();
+        eventType = intent_receive.getStringExtra("typeConvey");
         typeTitle = (TextView) findViewById(R.id.textTitleMid);
         typeTitle.setText(eventType);
+
 
         //赋值项目名称、重要性、备注组件
         textEventName = (EditText)findViewById(R.id.textFillName);
@@ -60,8 +73,12 @@ public class event_start_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if ( annoyMode.getCheckedRadioButtonId() == annoySingle.getId() ) {
-                    Intent intent = new Intent(event_start_activity.this, time_set_activity.class);
-                    startActivity(intent);
+                    Intent intent_send = new Intent(event_start_activity.this, time_set_activity.class);
+                    intent_send.putExtra("eventName",textEventName.getText().toString());
+                    intent_send.putExtra("eventDetail",textEventDetails.getText().toString());
+                    intent_send.putExtra("eventType",typeTitle.getText().toString());
+                    intent_send.putExtra("eventRating",ratingBar.getRating());
+                    startActivity(intent_send);
                 }
                 else if ( annoyMode.getCheckedRadioButtonId() == annoyFrequent.getId() ) {
                     Intent intent = new Intent(event_start_activity.this, time_frequency_activity.class);
@@ -80,23 +97,5 @@ public class event_start_activity extends AppCompatActivity {
         });
     }
 
-    //获取项目名称
-    public String getEventName() {
-        return textEventName.getText().toString();
-    }
 
-    //获取项目细节
-    public String getEventDetails() {
-        return textEventDetails.getText().toString();
-    }
-
-    //获取项目重要性
-    public float getEventImporatnce() {
-        return ratingBar.getRating();
-    }
-
-    //获取项目
-    public String getEventType() {
-        return typeTitle.getText().toString();
-    }
 }

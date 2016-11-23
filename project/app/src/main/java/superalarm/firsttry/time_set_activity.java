@@ -1,31 +1,43 @@
 package superalarm.firsttry;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import java.util.ArrayList;
-import java.util.List;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import basic_class.Item;
+import basic_class.ItemManager;
+import basic_class.RepeatedAddtionException;
+
 
 public class time_set_activity extends AppCompatActivity {
 
     public static time_set_activity instance = null;
     private Spinner yearSpinner, monthSpinner, daySpinner, hourSpinner, minuteSpinner;
-    private Spinner timeAhead1, timeAhead2, timeAhead3, timeAhead4, timeAhead5;
+    private Spinner[] timeAhead = new Spinner[5];
     private Button btCancelTime, btOkTime;
-
+    private String[] eventData = new String[3];
+    private float eventRating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_setter);
         instance = this;
 
+        //intent接收事项类型
+        Intent intent_receive = getIntent();
+        eventData[0] = intent_receive.getStringExtra("eventName");
+        eventData[1] = intent_receive.getStringExtra("eventType");
+        eventData[2] = intent_receive.getStringExtra("eventDetail");
+        eventRating = intent_receive.getFloatExtra("eventRating",-1f);
 
         //时间属性下拉表Spinner变量
         yearSpinner = (Spinner) findViewById(R.id.spinnerYear);
@@ -45,10 +57,12 @@ public class time_set_activity extends AppCompatActivity {
             year_list.add(i+"年");
         }
         for (i = 1;i  < 13; i++){
-            month_list.add(i+"月");
+            if (i < 10){ month_list.add("0" + i + "月");}
+            else {month_list.add(i + "月");}
         }
         for (i = 1;i  < 32; i++){
-            day_list.add(i+"日");
+            if (i < 10){ day_list.add("0" + i + "日");}
+            else {day_list.add(i + "日");}
         }
         for (i = 0;i  < 10; i++){
             hour_list.add("0"+ i);
@@ -83,27 +97,22 @@ public class time_set_activity extends AppCompatActivity {
         minuteSpinner.setAdapter(arr_adapter_minute);
 
         //5个提前量Spinner的定义，2345初始不可见
-        timeAhead1 = (Spinner) findViewById(R.id.spinnerAd1);
-        timeAhead2 = (Spinner) findViewById(R.id.spinnerAd2);
-        timeAhead3 = (Spinner) findViewById(R.id.spinnerAd3);
-        timeAhead4 = (Spinner) findViewById(R.id.spinnerAd4);
-        timeAhead5 = (Spinner) findViewById(R.id.spinnerAd5);
-        timeAhead2.setVisibility(View.INVISIBLE);
-        timeAhead3.setVisibility(View.INVISIBLE);
-        timeAhead4.setVisibility(View.INVISIBLE);
-        timeAhead5.setVisibility(View.INVISIBLE);
-        String tmpTH = timeAhead1.getSelectedItem().toString();
-        int test = tmpTH.compareTo("None");
-        System.out.println(test);
+        int[] Ahead_id_list = {R.id.spinnerAd1,R.id.spinnerAd2,R.id.spinnerAd3,R.id.spinnerAd4,R.id.spinnerAd5};
+        for (i = 0;i < 5;i++){
+            timeAhead[i] = (Spinner) findViewById(Ahead_id_list[i]);
+        }
+        for (i = 1;i < 5;i++){
+            timeAhead[i].setVisibility(View.INVISIBLE);
+        }
 
 
         //提前量spinner的选择事件处理
-        timeAhead1.setOnItemSelectedListener(new OnItemSelectedListener() {
+        timeAhead[0].setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tmpTH = timeAhead1.getSelectedItem().toString();
+                String tmpTH = timeAhead[0].getSelectedItem().toString();
                 if (tmpTH.compareTo("None") != 0){
-                    timeAhead2.setVisibility(View.VISIBLE);
+                    timeAhead[1].setVisibility(View.VISIBLE);
                 }
             }
             public void  onNothingSelected(AdapterView<?> arg0) {
@@ -111,18 +120,18 @@ public class time_set_activity extends AppCompatActivity {
             }
         });
 
-        timeAhead2.setOnItemSelectedListener(new OnItemSelectedListener() {
+        timeAhead[1].setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tmpTH = timeAhead2.getSelectedItem().toString();
+                String tmpTH = timeAhead[1].getSelectedItem().toString();
                 if (tmpTH.compareTo("None") != 0){
-                    timeAhead3.setVisibility(View.VISIBLE);
+                    timeAhead[2].setVisibility(View.VISIBLE);
                 }
                 else {
-                    timeAhead2.setVisibility(View.INVISIBLE);
-                    timeAhead3.setVisibility(View.INVISIBLE);
-                    timeAhead4.setVisibility(View.INVISIBLE);
-                    timeAhead5.setVisibility(View.INVISIBLE);
+                    timeAhead[1].setVisibility(View.INVISIBLE);
+                    timeAhead[2].setVisibility(View.INVISIBLE);
+                    timeAhead[3].setVisibility(View.INVISIBLE);
+                    timeAhead[4].setVisibility(View.INVISIBLE);
                 }
             }
             public void  onNothingSelected(AdapterView<?> arg0) {
@@ -130,17 +139,17 @@ public class time_set_activity extends AppCompatActivity {
             }
         });
 
-        timeAhead3.setOnItemSelectedListener(new OnItemSelectedListener() {
+        timeAhead[2].setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tmpTH = timeAhead3.getSelectedItem().toString();
+                String tmpTH = timeAhead[2].getSelectedItem().toString();
                 if (tmpTH.compareTo("None") != 0){
-                    timeAhead4.setVisibility(View.VISIBLE);
+                    timeAhead[3].setVisibility(View.VISIBLE);
                 }
                 else {
-                    timeAhead3.setVisibility(View.INVISIBLE);
-                    timeAhead4.setVisibility(View.INVISIBLE);
-                    timeAhead5.setVisibility(View.INVISIBLE);
+                    timeAhead[2].setVisibility(View.INVISIBLE);
+                    timeAhead[3].setVisibility(View.INVISIBLE);
+                    timeAhead[4].setVisibility(View.INVISIBLE);
                 }
             }
             public void  onNothingSelected(AdapterView<?> arg0) {
@@ -148,16 +157,16 @@ public class time_set_activity extends AppCompatActivity {
             }
         });
 
-        timeAhead4.setOnItemSelectedListener(new OnItemSelectedListener() {
+        timeAhead[3].setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tmpTH = timeAhead4.getSelectedItem().toString();
+                String tmpTH = timeAhead[3].getSelectedItem().toString();
                 if (tmpTH.compareTo("None") != 0){
-                    timeAhead5.setVisibility(View.VISIBLE);
+                    timeAhead[4].setVisibility(View.VISIBLE);
                 }
                 else {
-                    timeAhead4.setVisibility(View.INVISIBLE);
-                    timeAhead5.setVisibility(View.INVISIBLE);
+                    timeAhead[3].setVisibility(View.INVISIBLE);
+                    timeAhead[4].setVisibility(View.INVISIBLE);
                 }
             }
             public void  onNothingSelected(AdapterView<?> arg0) {
@@ -165,12 +174,12 @@ public class time_set_activity extends AppCompatActivity {
             }
         });
 
-        timeAhead5.setOnItemSelectedListener(new OnItemSelectedListener() {
+        timeAhead[4].setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tmpTH = timeAhead5.getSelectedItem().toString();
+                String tmpTH = timeAhead[4].getSelectedItem().toString();
                 if (tmpTH.compareTo("None") == 0){
-                    timeAhead5.setVisibility(View.INVISIBLE);
+                    timeAhead[4].setVisibility(View.INVISIBLE);
                 }
             }
             public void  onNothingSelected(AdapterView<?> arg0) {
@@ -184,8 +193,6 @@ public class time_set_activity extends AppCompatActivity {
         btCancelTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(time_set_activity.this,event_start_activity.class);
-//                startActivity(intent);
                 time_set_activity.this.finish();
             }
         });
@@ -194,8 +201,26 @@ public class time_set_activity extends AppCompatActivity {
         btOkTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //创建事项
+                Item item = new Item();
+                item.setClassTitle(eventData[1]);
+                item.setContent(eventData[2]);
+                item.setDeadline(getDeadline());
+                item.setTitle(eventData[0]);
+                item.setImportance((int)eventRating);
+
+                ItemManager list = new ItemManager();
+                list.read(time_set_activity.this);
+                try {
+                    list.add(item);
+                } catch (RepeatedAddtionException e) {
+                    e.printStackTrace();
+                }
+                list.sortByDeadline();
+                list.write(time_set_activity.this);
+
                 MainActivity.instance.finish();
-                Intent intent = new Intent(time_set_activity.this,MainActivity.class);
+                Intent intent = new Intent(time_set_activity.this, MainActivity.class);
                 startActivity(intent);
                 time_set_activity.this.finish();
                 type_set_activity.instance.finish();
@@ -205,12 +230,44 @@ public class time_set_activity extends AppCompatActivity {
     }
 
     public String getDeadline() {
-        String yearData = (String)yearSpinner.getSelectedItem();
-        String monthData = (String)monthSpinner.getSelectedItem();
-        String dayData = (String)daySpinner.getSelectedItem();
+        String yearData = ((String)yearSpinner.getSelectedItem()).substring(0,4);
+        String monthData = ((String)monthSpinner.getSelectedItem()).substring(0,2);
+        String dayData = ((String)daySpinner.getSelectedItem()).substring(0,2);
         String hourData = (String)hourSpinner.getSelectedItem();
         String minuteData = (String)minuteSpinner.getSelectedItem();
         return (yearData + ":" + monthData + ":" + dayData + ":"  + hourData + ":" + minuteData);
     }
+
+    public String AheadConvert() {
+        String[] AheadData = new String[5];
+        String feedback = "";
+        String[] AheadChoices = {"None", "准时", "提前 2 分钟", "提前 5 分钟",
+        "提前 10 分钟", "提前 15 分钟", "提前 30 分钟", "提前 1 小时", "提前 2 小时", "提前 5 小时",
+        "提前 24 小时", "提前 2 天", "提前 5 天", "提前 30 天"};
+        String[] AheadConvertChoices = {"x", "0,m", "2,m", "5,m",
+                "10,m", "15,m", "30,m", "1,h", "2,h", "5,h",
+                "1,d", "2,d", "5,d", "30,d"};
+        int i,j;
+        for (i = 0; i < 5; i++){
+            AheadData[i] = timeAhead[i].getSelectedItem().toString();
+        }//读取选项
+        i = 0;
+        while (AheadData[i].compareTo("None") != 0 && i < 5 ){
+            for (j = 0; j < 12 ; j++){
+                if (AheadData[i].compareTo(AheadChoices[j]) == 0){break;}
+            }
+            if (feedback.compareTo("") == 0){feedback += AheadConvertChoices[j];}
+            else {feedback = feedback + ":" + AheadConvertChoices[j];}
+            i++;
+        }//改写选项
+        if (feedback.compareTo("") == 0) {feedback = "0,m";}//Default为准时
+        return feedback;
+    }
+
+    public String getEventName() {return eventData[0];}
+    public String getEventType() {return eventData[1];}
+    public String getEventDetail() {return eventData[2];}
+    public float getRating() {return eventRating;}
+
 
 }

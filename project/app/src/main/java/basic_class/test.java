@@ -1,4 +1,4 @@
-package basic;
+package basic_class;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -11,31 +11,37 @@ import java.util.logging.Logger;
 public class test {
    public static void main(String []args) throws UsedMailException, IOException {
        //Test the Item.java
-       Item it1 = new Item("Study","study1","20161002234523",1);
-       Item it2 = new Item("Study","study2","20161002334523",2);
+       Item it1 = new Item("Study","study1","201610022345",1);
+       Item it2 = new Item("Study","study2","201610023345",2);
        Item it3 = new Item();
        it3.copy(it2);
        System.out.println(it3.equals(it2));
        System.out.println(it3.equals(it1));
        // Test the ItemManager.java
        ItemManager itmanager = new ItemManager();
+       ItemManager itmanager2 = new ItemManager();
        try {
            itmanager.add(it1);
            itmanager.add(it2);
            //itmanager.add(it3);
            itmanager.delete(it1);
            //itmanager.delete(it1);
-           itmanager.modify(it2, "Study","20151002334523",3,"have a try!");
-           Item it4 = new Item("Exercise","exercise1","20151002347523",4,"I am happy!");
-           Item it5 = new Item("Play","play1","20161002334523",2,"Have a good time!");
-           Item it6 = new Item("Food","food1","20161102334523",1,"banana!");
+           itmanager.modify(it2, "Study","201510023345",3,"have a try!");
+           Item it4 = new Item("Exercise","exercise1","201510023475",4,"I am happy!");
+           Item it5 = new Item("Play","play1","201610023345",2,"Have a good time!");
+           Item it6 = new Item("Food","food1","201611023345",1,"banana!");
            itmanager.add(it4); itmanager.add(it5); itmanager.add(it6);
            itmanager.sortByDeadline();
-           itmanager.write();
+           //itmanager.write();
+           //System.out.printf("___________________\n");
+           //itmanager2.read();
+           //System.out.printf(itmanager2.display());
+           System.out.printf("___________________\n");
+           System.out.printf("\n");
            System.out.printf(itmanager.display());
            System.out.printf("\n");
            itmanager.sortByImportance();
-           itmanager.write();
+           //itmanager.write();
            System.out.printf(itmanager.display());
        } catch (RepeatedAddtionException ex) {
            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
@@ -47,7 +53,7 @@ public class test {
        User user1 = new User();
        User user2 = new User("555555@qq.com", "password");
        user1.setAll("123456@qq.com", "password","wang",10,"male");
-       user2.setName("shi"); user2.setAge(9); user2.setSex("female");
+       user2.setName("shi"); user2.setAge(9); user2.setGender("female");
        User user3 = new User("123456@qq.com","password","jing",10,"male");
        User user4 = new User();
        User user5 = new User();
