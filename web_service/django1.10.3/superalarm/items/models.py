@@ -11,7 +11,7 @@ class Item(models.Model):
 	content = models.TextField(blank=True, default='')
 	owner = models.ForeignKey('auth.User', related_name='items', on_delete=models.CASCADE)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.title + '(id:' + str(self.id) + ')'
 
 class Group(models.Model):
@@ -21,7 +21,7 @@ class Group(models.Model):
 	owner = models.ForeignKey('auth.User', related_name='group', on_delete=models.CASCADE)
 	item = models.ManyToManyField('ItemOfGroup', related_name='groupitem', blank=True)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.groupname + '(id:' + str(self.id) + ')'
 
 class ItemOfGroup(models.Model):
@@ -33,5 +33,5 @@ class ItemOfGroup(models.Model):
 	owner = models.ForeignKey('auth.User', related_name='itemofgroupowner', on_delete=models.CASCADE)
 	group = models.ForeignKey('Group', related_name='itemofgroupgroupname', on_delete=models.CASCADE)
 
-	def __str__(self): 
+	def __unicode__(self): 
 		return self.title + '(id:' + str(self.id) + ')'

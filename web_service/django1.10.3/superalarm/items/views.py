@@ -28,9 +28,6 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticated, IsOwner)
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    
-#class UserRegister(generics.CreateAPIView):
-#    serializer_class = UserSerializer
 
 class UserList(generics.ListCreateAPIView):
     #permission_classes = (permissions.IsAuthenticated, IsUser)
@@ -41,7 +38,7 @@ class UserList(generics.ListCreateAPIView):
         return User.objects.filter(username=user.username)
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(password=self.request.user.password)
 
 class UserDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticated, IsUser)
