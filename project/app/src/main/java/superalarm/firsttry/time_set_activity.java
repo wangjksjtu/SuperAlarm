@@ -15,6 +15,7 @@ import java.util.List;
 
 import basic_class.Item;
 import basic_class.ItemManager;
+import basic_class.NotExistException;
 import basic_class.RepeatedAddtionException;
 
 
@@ -26,6 +27,12 @@ public class time_set_activity extends AppCompatActivity {
     private Button btCancelTime, btOkTime;
     private String[] eventData = new String[3];
     private float eventRating;
+    private boolean key = false;
+    private int item_num = -1;
+    private String deadline;
+    private Item item = new Item();
+    private ItemManager itemManager = new ItemManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +41,19 @@ public class time_set_activity extends AppCompatActivity {
 
         //intent接收事项类型
         Intent intent_receive = getIntent();
+        key = intent_receive.getBooleanExtra("key",false);
+        item_num = intent_receive.getIntExtra("num",-1);
         eventData[0] = intent_receive.getStringExtra("eventName");
         eventData[1] = intent_receive.getStringExtra("eventType");
         eventData[2] = intent_receive.getStringExtra("eventDetail");
         eventRating = intent_receive.getFloatExtra("eventRating",-1f);
+
+        itemManager.read(time_set_activity.this);
+
+        if (key){
+            item = itemManager.itemArr.get(item_num);
+            deadline = item.getDeadline();
+        }
 
         //时间属性下拉表Spinner变量
         yearSpinner = (Spinner) findViewById(R.id.spinnerYear);
@@ -96,6 +112,14 @@ public class time_set_activity extends AppCompatActivity {
         hourSpinner.setAdapter(arr_adapter_hour);
         minuteSpinner.setAdapter(arr_adapter_minute);
 
+        //设置默认值
+        if (key) {
+            yearSpinner.setSelection(Integer.valueOf(deadline.substring(0, 4)) - 2016, key);
+            monthSpinner.setSelection(Integer.valueOf(deadline.substring(5, 7)) - 1, key);
+            daySpinner.setSelection(Integer.valueOf(deadline.substring(8, 10)) - 1, key);
+            hourSpinner.setSelection(Integer.valueOf(deadline.substring(11, 13)), key);
+            minuteSpinner.setSelection(Integer.valueOf(deadline.substring(14, 16)), key);
+        }
         //5个提前量Spinner的定义，2345初始不可见
         int[] Ahead_id_list = {R.id.spinnerAd1,R.id.spinnerAd2,R.id.spinnerAd3,R.id.spinnerAd4,R.id.spinnerAd5};
         for (i = 0;i < 5;i++){
@@ -202,31 +226,36 @@ public class time_set_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //创建事项
-                Item item = new Item();
-                item.setClassTitle(eventData[1]);
-                item.setContent(eventData[2]);
-                item.setDeadline(getDeadline());
-                item.setTitle(eventData[0]);
-                item.setImportance((int)eventRating);
+                Item item_new = new Item();
+                item_new.setClassTitle(eventData[1]);
+                item_new.setContent(eventData[2]);
+                item_new.setDeadline(getDeadline());
+                item_new.setTitle(eventData[0]);
+                item_new.setImportance((int)eventRating);
 
                 UpdateItems updateItems = new UpdateItems();
-                updateItems.postItems(item);
+                updateItems.postItems(item_new);
 
-                ItemManager list = new ItemManager();
-                list.read(time_set_activity.this);
+                if (key){
                 try {
-                    list.add(item);
+                    itemManager.delete(item);
+                } catch (NotExistException e) {
+                    e.printStackTrace();
+                }}
+                try {
+                    itemManager.add(item_new);
                 } catch (RepeatedAddtionException e) {
                     e.printStackTrace();
                 }
-                list.sortByDeadline();
-                list.write(time_set_activity.this);
+                itemManager.sortByDeadline();
+                itemManager.write(time_set_activity.this);
 
                 MainActivity.instance.finish();
                 Intent intent = new Intent(time_set_activity.this, MainActivity.class);
                 startActivity(intent);
                 time_set_activity.this.finish();
-                type_set_activity.instance.finish();
+                if (!key)type_set_activity.instance.finish();
+                else Detail.instance.finish();
                 event_start_activity.instance.finish();
             }
         });

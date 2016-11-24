@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, JsonActivity.class);
+                intent.putExtra("key",false);
                 startActivity(intent);
                 //Toast.makeText(MainActivity.this,"No Service",Toast.LENGTH_LONG).show();
             }
@@ -153,48 +154,48 @@ public class MainActivity extends AppCompatActivity {
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+//        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void startRemind(int year, int month, int day, int hour, int minute, int Id) {
-//    private void startRemind() {
-        Calendar mCalendar = Calendar.getInstance();
-        mCalendar.setTimeInMillis(System.currentTimeMillis());
-
-        //获取当前毫秒值
-        long systemTime = System.currentTimeMillis();
-
-        //设置日历的时间，让日历的年月日和当前同步
-        mCalendar.setTimeInMillis(System.currentTimeMillis());
-        //时区设置
-        mCalendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-        mCalendar.set(Calendar.YEAR, year);
-        mCalendar.set(Calendar.MONTH, month - 1);
-        mCalendar.set(Calendar.DAY_OF_MONTH, day);
-        mCalendar.set(Calendar.HOUR_OF_DAY, hour);
-        mCalendar.set(Calendar.MINUTE, minute);
-        mCalendar.set(Calendar.SECOND, 0);
-        mCalendar.set(Calendar.MILLISECOND, 0);
-
-        long selectTime = mCalendar.getTimeInMillis();
-
-        if (systemTime > selectTime) {
-            //Toast.makeText(MainActivity.this, "This alarm time is expired", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        //AlarmReceiver.class为广播接受者
-        Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
-        intent.putExtra("Id", Id);
-        PendingIntent pi = PendingIntent.getBroadcast(
-                MainActivity.this, Id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        //得到AlarmManager实例
-        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-        //String str = String.valueOf(year) + "年" + String.valueOf(month) + "月" +  String.valueOf(day) + "日"
-        //        + String.valueOf(hour) + "点" + String.valueOf(minute) + "分";
-        //Toast.makeText(MainActivity.this, "闹钟时间："+str, Toast.LENGTH_LONG).show();
-        am.setExact(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pi);
-    }
+//    private void startRemind(int year, int month, int day, int hour, int minute, int Id) {
+////    private void startRemind() {
+//        Calendar mCalendar = Calendar.getInstance();
+//        mCalendar.setTimeInMillis(System.currentTimeMillis());
+//
+//        //获取当前毫秒值
+//        long systemTime = System.currentTimeMillis();
+//
+//        //设置日历的时间，让日历的年月日和当前同步
+//        mCalendar.setTimeInMillis(System.currentTimeMillis());
+//        //时区设置
+//        mCalendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+//        mCalendar.set(Calendar.YEAR, year);
+//        mCalendar.set(Calendar.MONTH, month - 1);
+//        mCalendar.set(Calendar.DAY_OF_MONTH, day);
+//        mCalendar.set(Calendar.HOUR_OF_DAY, hour);
+//        mCalendar.set(Calendar.MINUTE, minute);
+//        mCalendar.set(Calendar.SECOND, 0);
+//        mCalendar.set(Calendar.MILLISECOND, 0);
+//
+//        long selectTime = mCalendar.getTimeInMillis();
+//
+//        if (systemTime > selectTime) {
+//            //Toast.makeText(MainActivity.this, "This alarm time is expired", Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//
+//        //AlarmReceiver.class为广播接受者
+//        Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+//        intent.putExtra("Id", Id);
+//        PendingIntent pi = PendingIntent.getBroadcast(
+//                MainActivity.this, Id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        //得到AlarmManager实例
+//        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+//        //String str = String.valueOf(year) + "年" + String.valueOf(month) + "月" +  String.valueOf(day) + "日"
+//        //        + String.valueOf(hour) + "点" + String.valueOf(minute) + "分";
+//        //Toast.makeText(MainActivity.this, "闹钟时间："+str, Toast.LENGTH_LONG).show();
+//        am.setExact(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pi);
+//    }
 
     /*private void stopRemind(int Id) {
         Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
@@ -207,12 +208,12 @@ public class MainActivity extends AppCompatActivity {
         am.cancel(pi);
     } */
 
-    private void clearNotification(int nId) {
-        NotificationManager notificationManager = (NotificationManager) this
-                .getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.cancel(nId);
-
-    }
+//    private void clearNotification(int nId) {
+//        NotificationManager notificationManager = (NotificationManager) this
+//                .getSystemService(NOTIFICATION_SERVICE);
+//        notificationManager.cancel(nId);
+//
+//    }
 
     private void makeItemList() {
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();/*在数组中存放数据*/
@@ -227,16 +228,16 @@ public class MainActivity extends AppCompatActivity {
             final String title = itemArrayList.get(i).getTitle();
             final String deadline = itemArrayList.get(i).getDeadline();
             final String module = itemArrayList.get(i).getClassTitle();
-            int y , m , d , h, min;
-            y = Integer.valueOf(deadline.substring(0,4));
-            m = Integer.valueOf(deadline.substring(5,7));
-            d = Integer.valueOf(deadline.substring(8,10));
-            h = Integer.valueOf(deadline.substring(11,13));
-            min = Integer.valueOf(deadline.substring(14,16));
+//            int y , m , d , h, min;
+//            y = Integer.valueOf(deadline.substring(0,4));
+//            m = Integer.valueOf(deadline.substring(5,7));
+//            d = Integer.valueOf(deadline.substring(8,10));
+//            h = Integer.valueOf(deadline.substring(11,13));
+//            min = Integer.valueOf(deadline.substring(14,16));
             HashMap<String, Object> map = new HashMap<String, Object>();
-            startRemind(y, m, d, h, min, i);
+//            startRemind(y, m, d, h, min, i);
             switch (module) {
-                case "社交":
+                case "交际":
                     map.put("ItemImage", R.drawable.communication);
                     break;
                 case "娱乐":
@@ -277,26 +278,26 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();// ATTENTION: This was auto-generated to implement the App Indexing API.
+//    @Override
+//    protected void onStop() {
+//        super.onStop();// ATTENTION: This was auto-generated to implement the App Indexing API.
 // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+//        AppIndex.AppIndexApi.end(client, getIndexApiAction());
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.disconnect();
-    }
+//        client.disconnect();
+//    }
 
-    @Override
-    protected void onStart() {
+//    @Override
+//    protected void onStart() {
         //clearNotification(intent.getIntExtra("Id", 0));
-        super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
+//        super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
 // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
+//        client.connect();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
+//        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+//    }
 
 //    @Override
 //    protected void onRestart() {
@@ -307,15 +308,15 @@ public class MainActivity extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
+//    public Action getIndexApiAction() {
+//        Thing object = new Thing.Builder()
+//                .setName("Main Page") // TODO: Define a title for the content shown.
+//                // TODO: Make sure this auto-generated URL is correct.
+//                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+//                .build();
+//        return new Action.Builder(Action.TYPE_VIEW)
+//                .setObject(object)
+//                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+//                .build();
+//    }
 }

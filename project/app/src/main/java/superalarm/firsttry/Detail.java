@@ -16,14 +16,19 @@ import basic_class.NotExistException;
 public class Detail extends AppCompatActivity {
 
     private ItemManager items = new ItemManager();
+    public static Detail instance = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
         items.read(Detail.this);
+
+        instance = this;
 
         Intent intent = getIntent();
         final int data = intent.getIntExtra("num",-1);
