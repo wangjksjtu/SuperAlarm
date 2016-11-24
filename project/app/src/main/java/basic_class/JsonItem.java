@@ -21,6 +21,15 @@ public class JsonItem {
         this.content = content;
     }
 
+    public JsonItem(Item item) {
+        Id = item.getId();
+        title = item.getTitle();
+        deadline = item.getDeadline();
+        module = item.getClassTitle();
+        importance = item.getImportance();
+        content = item.getContent();
+    }
+
     public int getId() {
         return Id;
     }

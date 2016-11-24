@@ -26,7 +26,8 @@ public class JsonActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/","GET");
+                new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/","GET","Item",
+                        "wangjk", "wjk19711025wyq");
             }
         });
 

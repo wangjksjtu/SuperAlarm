@@ -15,23 +15,26 @@ public class UpdateItems {
         password = "wjk19711025wyq";
     }
 
-    private void getItems() {
-        new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/","GET");
+    public void getItems() {
+        new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/","GET", "Item", username,
+                password);
     }
 
-    private void postItems(Item item) {
+    public void postItems(Item item) {
         String s = String.valueOf(item.getImportance());
-        new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/","POST","Item", username,
+        JsonTask jsonTask = new JsonTask();
+        jsonTask.execute("http://www.wangjksjtu.com.cn:2117/items/","POST","Item", username,
                 password, item.getTitle(), item.getDeadline(), item.getClassTitle(),
                 String.valueOf(item.getImportance()), item.getContent());
+        item.setId(jsonTask.getLastestItemId());
     }
 
-    private void deleteItems(int id) {
+    public void deleteItems(int id) {
         new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/" + String.valueOf(id) + "/"
                 ,"DELETE",username, password);
     }
 
-    private void putItems(Item item) {
+    public void putItems(Item item) {
         new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/" + String.valueOf(item.getId()) + "/"
                 ,"PUT", "Item", username, password, item.getTitle(), item.getDeadline(),
                 item.getClassTitle(), String.valueOf(item.getImportance()), item.getContent());

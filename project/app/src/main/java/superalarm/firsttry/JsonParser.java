@@ -29,13 +29,22 @@ public class JsonParser {
         for (int i = 0; i < parentArray.length(); i++) {
             JSONObject finalObject = parentArray.getJSONObject(i);
             Item item = new Item();
+            item.setId(finalObject.getInt("id"));
             item.setTitle( finalObject.getString("title"));
             item.setDeadline( finalObject.getString("deadline"));
             item.setClassTitle(finalObject.getString("module"));
+            item.setImportance(finalObject.getInt("importance"));
             item.setContent( finalObject.getString("content"));
             itemManager.add(item);
             itemManager.write(MainActivity.instance);
         }
+    }
+
+    int getLastestItemId() throws JSONException {
+        JSONObject parentObject = new JSONObject(finalJson);
+        JSONArray parentArray = parentObject.getJSONArray("results");
+        JSONObject finalObject = parentArray.getJSONObject(parentArray.length() - 1);
+        return finalObject.getInt("id");
     }
 
     String JsonparserItemOfGroup() throws JSONException {

@@ -209,6 +209,9 @@ public class time_set_activity extends AppCompatActivity {
                 item.setTitle(eventData[0]);
                 item.setImportance((int)eventRating);
 
+                UpdateItems updateItems = new UpdateItems();
+                updateItems.postItems(item);
+
                 ItemManager list = new ItemManager();
                 list.read(time_set_activity.this);
                 try {

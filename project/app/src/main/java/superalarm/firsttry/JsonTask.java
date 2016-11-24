@@ -31,6 +31,12 @@ import basic_class.RepeatedAddtionException;
  */
 
 public class JsonTask extends AsyncTask<String, String, String>{
+    private int LastestItemId;
+
+    public int getLastestItemId() {
+        return LastestItemId;
+    }
+
     @Override
     protected String doInBackground(String... params) {
         HttpURLConnection connection = null;
@@ -51,7 +57,14 @@ public class JsonTask extends AsyncTask<String, String, String>{
                     buffer.append(line);
                 }
                 JsonParser jsp = new JsonParser(buffer.toString());
-                jsp.JsonParserItem();
+                if (params[2] == "Item") {
+                    final String basicAuth= "Basic " + Base64.encodeToString(
+                            (params[3]+":"+params[4]).getBytes(), Base64.NO_WRAP);
+                    connection.setRequestProperty ("Authorization", basicAuth);
+                    jsp.JsonParserItem();
+                    int id = jsp.getLastestItemId();
+                    LastestItemId = id;
+                }
             }
 
             if (params[1] == "POST") {
@@ -80,16 +93,16 @@ public class JsonTask extends AsyncTask<String, String, String>{
                     final String basicAuth= "Basic " + Base64.encodeToString(
                             (params[3]+":"+params[4]).getBytes(), Base64.NO_WRAP);
                     connection.setRequestProperty ("Authorization", basicAuth);
-                    String module = params[5];
-                    String title = params[6];
-                    String deadline = params[7];
+                    String title = params[5];
+                    String deadline = params[6];
+                    String module = params[7];
                     String importance = params[8];
                     String content = params[9];
                     List<Pair<String, String>> arrlist = new ArrayList<>();
                     arrlist.add(new Pair<>("title", title));
                     arrlist.add(new Pair<>("deadline",deadline));
                     arrlist.add(new Pair<>("module",module));
-                    //arrlist.add(new Pair<>("importance",importance));
+                    arrlist.add(new Pair<>("importance",importance));
                     arrlist.add(new Pair<>("content",content));
                     OutputStream os = connection.getOutputStream();
                     BufferedWriter writer = new BufferedWriter(
