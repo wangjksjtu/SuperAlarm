@@ -28,6 +28,9 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticated, IsOwner)
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    
+#class UserRegister(generics.CreateAPIView):
+#    serializer_class = UserSerializer
 
 class UserList(generics.ListCreateAPIView):
     #permission_classes = (permissions.IsAuthenticated, IsUser)

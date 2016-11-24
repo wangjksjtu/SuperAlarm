@@ -8,6 +8,7 @@ class Item(models.Model):
 	title = models.CharField(max_length=100, blank=True, default='')
 	deadline = models.CharField(max_length=20)
 	module = models.CharField(max_length=50)
+	importance = models.PositiveSmallIntegerField(default=3,blank=False)
 	content = models.TextField(blank=True, default='')
 	owner = models.ForeignKey('auth.User', related_name='items', on_delete=models.CASCADE)
 

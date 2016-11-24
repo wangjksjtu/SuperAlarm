@@ -7,7 +7,7 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Item
-		fields = ('url', 'id', 'owner', 'title', 'deadline', 'module', 'content', 'created')
+		fields = ('url', 'id', 'owner', 'title', 'deadline', 'module', 'importance','content', 'created')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
