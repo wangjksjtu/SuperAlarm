@@ -25,7 +25,7 @@ SECRET_KEY = 'h)jsnqy=hy+_&i#m2%cr$5p=ijba4=sv%+**!ti7(&oz2=l9=1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.wangjksjtu.com.cn']
+ALLOWED_HOSTS = ['www.wangjksjtu.com.cn', u'127.0.0.1']
 
 
 # Application definition

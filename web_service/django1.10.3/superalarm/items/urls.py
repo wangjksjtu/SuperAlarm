@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 from items import views
+from django.contrib.auth.forms import UserCreationForm
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = format_suffix_patterns([
@@ -7,6 +8,7 @@ urlpatterns = format_suffix_patterns([
     url(r'^items/$', views.ItemList.as_view(), name='item-list'),
     url(r'^items/(?P<pk>[0-9]+)/$', views.ItemDetail.as_view(), name='item-detail'),
     url(r'^users/$', views.UserList.as_view(), name='user-list'),
+    #url(r'^users/register$', views.UserRegister.as_view(), name='user-register'),
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view(), name='user-detail'),
     url(r'^groups/$', views.GroupList.as_view(), name='group-list'),
     url(r'^groups/(?P<pk>[0-9]+)/$', views.GroupDetail.as_view(), name='group-detail'),
