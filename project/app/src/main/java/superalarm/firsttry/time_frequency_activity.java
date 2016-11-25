@@ -1,26 +1,21 @@
 package superalarm.firsttry;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import java.util.ArrayList;
-import java.util.List;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import basic_class.Item;
 import basic_class.ItemManager;
 import basic_class.NotExistException;
 import basic_class.RepeatedAddtionException;
-
-import static android.widget.Toast.makeText;
 
 
 public class time_frequency_activity extends AppCompatActivity {
@@ -158,7 +153,7 @@ public class time_frequency_activity extends AppCompatActivity {
                     //创建事项
 //                    String circle;
                     Item item = new Item();
-                    item.setClassTitle(eventData[1]);
+                    item.setModule(eventData[1]);
                     item.setContent(eventData[2]);
 //                    switch (getCircle()){
 //                        case 0:circle = "每天"+getDeadline();break;

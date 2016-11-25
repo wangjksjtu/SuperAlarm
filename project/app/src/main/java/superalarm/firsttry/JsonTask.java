@@ -23,7 +23,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import basic_class.JsonItem;
+import basic_class.Item;
 import basic_class.RepeatedAddtionException;
 
 /**
@@ -142,7 +142,7 @@ public class JsonTask extends AsyncTask<String, String, String>{
                     String deadline = params[7];
                     int importance = Integer.parseInt(params[8]);
                     String content = params[9];
-                    JsonItem item = new JsonItem(id, module, title, deadline, importance, content);
+                    Item item = new Item(id, module, title, deadline, importance, content);
                     Gson gson = new Gson();
                     String data = gson.toJson(item);
                     osw.write(data);

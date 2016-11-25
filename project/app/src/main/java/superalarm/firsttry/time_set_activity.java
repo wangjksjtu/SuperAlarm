@@ -227,14 +227,11 @@ public class time_set_activity extends AppCompatActivity {
             public void onClick(View v) {
                 //创建事项
                 Item item_new = new Item();
-                item_new.setClassTitle(eventData[1]);
+                item_new.setModule(eventData[1]);
                 item_new.setContent(eventData[2]);
                 item_new.setDeadline(getDeadline());
                 item_new.setTitle(eventData[0]);
                 item_new.setImportance((int)eventRating);
-
-                UpdateItems updateItems = new UpdateItems();
-                updateItems.postItems(item_new);
 
                 if (key){
                 try {
@@ -244,6 +241,8 @@ public class time_set_activity extends AppCompatActivity {
                 }}
                 try {
                     itemManager.add(item_new);
+                    UpdateItems updateItems = new UpdateItems();
+                    updateItems.postItems(item_new);
                 } catch (RepeatedAddtionException e) {
                     e.printStackTrace();
                 }

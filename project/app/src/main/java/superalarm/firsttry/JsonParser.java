@@ -32,7 +32,7 @@ public class JsonParser {
             item.setId(finalObject.getInt("id"));
             item.setTitle( finalObject.getString("title"));
             item.setDeadline( finalObject.getString("deadline"));
-            item.setClassTitle(finalObject.getString("module"));
+            item.setModule(finalObject.getString("module"));
             item.setImportance(finalObject.getInt("importance"));
             item.setContent( finalObject.getString("content"));
             itemManager.add(item);

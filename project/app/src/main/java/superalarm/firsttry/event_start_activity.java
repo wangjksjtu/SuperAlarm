@@ -1,12 +1,11 @@
 package superalarm.firsttry;
 
 
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -52,7 +51,7 @@ public class event_start_activity extends AppCompatActivity {
             item_num = intent_receive.getIntExtra("value",-1);
             itemManager.read(event_start_activity.this);
             item = itemManager.itemArr.get(item_num);
-            eventType = item.getClassTitle();
+            eventType = item.getModule();
         }
         typeTitle = (TextView) findViewById(R.id.textTitleMid);
         typeTitle.setText(eventType);

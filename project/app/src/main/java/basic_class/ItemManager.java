@@ -98,7 +98,7 @@ public class ItemManager {
         try {
             String data = "";
             for (int i = 0; i < length; ++i) {
-                data += itemArr.get(i).getClassTitle() + "\r\n";
+                data += itemArr.get(i).getModule() + "\r\n";
                 data += itemArr.get(i).getTitle() + "\r\n";
                 data += itemArr.get(i).getDeadline() + "\r\n";
                 data += itemArr.get(i).getImportance() + "\r\n";
@@ -126,7 +126,7 @@ public class ItemManager {
                     for (int i = 0; i < 5; ++i) {
                         switch(i % 5) {
                             case 0:
-                                item.setClassTitle(data);
+                                item.setModule(data);
                                 data = bufferedReader.readLine();
                                 break;
                             case 1:
@@ -160,49 +160,5 @@ public class ItemManager {
         } catch (RepeatedAddtionException e) {
             e.printStackTrace();
         }
-    }
-
-
-
-    /*public void read() throws IOException, RepeatedAddtionException{
-    	  BufferedReader fr=new BufferedReader (new FileReader("items.txt"));
-          String data = fr.readLine();
-          while  (data!=null) {
-              Item item = new Item();
-              for (int i = 0; i < 5; ++i) {
-                switch(i % 5) {
-                    case 0:
-                        item.setClassTitle(data); 
-                        data = fr.readLine(); 
-                        break;
-                    case 1: 
-                        item.setTitle(data); data = fr.readLine(); 
-                        break;
-                    case 2: 
-                        item.setDeadline(data); data = fr.readLine(); 
-                        break;
-                    case 3: 
-                        int importance = Integer.parseInt(data); 
-                        item.setImportance(importance); 
-                        data = fr.readLine(); 
-                        break;
-                    default: 
-                        item.setContent(data);
-                        fr.readLine();
-                        data = fr.readLine();
-                        add(item);
-                }
-              }
-          }
-          fr.close();   
-    } */
-    
-    String display() {
-        String s = "";
-        for (int i = 0; i < length; ++i) {
-            s = s + itemArr.get(i).getClassTitle() + "\t" + itemArr.get(i).getTitle() + "\t" + itemArr.get(i).getDeadline() + "\t\t" + 
-            itemArr.get(i).getImportance() + "\t" + itemArr.get(i).getContent() + "\n";
-        }
-        return s;
     }
 }

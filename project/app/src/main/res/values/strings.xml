@@ -1,5 +1,5 @@
 ﻿<resources>
-    <string name="app_name">超级闹钟 Super Alarm</string>
+    <string name="app_name">超级闹钟</string>
 
     <string name="title_activity_welcome">Welcome To Super Alarm</string>
     <string name="UserName">用户名：</string>
