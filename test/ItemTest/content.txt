@@ -1,0 +1,12 @@
+!define TEST_SYSTEM {slim}
+!path D:\fitnesse\fitnesse-standalone.jar
+!path D:\eclipse workplace\FitnesseTest\bin
+
+
+!|ItemTest|
+|title|deadline|importance|content|get title?|get deadline?|get importance?|get content?|get equals?|
+|abc  |10.25   |3         |meeting|abc       |10.25        |3              |meeting     |no         |
+|小明 |3.15    |4         |上学   |小明      |3.15         |4              |上学        |no         |
+|abc  |2.15    |5         |ttt    |abc       |2.15         |5              |ttt         |yes        |
+
+
