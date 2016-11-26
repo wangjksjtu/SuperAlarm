@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_zero_margin"
+    android:paddingLeft="@dimen/activity_zero_margin"
+    android:paddingRight="@dimen/activity_zero_margin"
+    android:paddingTop="@dimen/activity_zero_margin"
+    tools:context="superalarm.firsttry.event_start_activity">
+
+
+    <TextView
+        android:id = "@+id/groupTextTitle"
+        android:text = "创建小组群"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        />
+
+
+    <TextView
+        android:id="@+id/groupTextEvent"
+        android:text="小组群名称:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/groupTextTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/groupTextMaxPeople"
+        android:text="最大人数:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/groupTextEvent"
+        android:layout_marginTop="30dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/groupTextDetails"
+        android:text="备注信息:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/groupTextMaxPeople"
+        android:layout_marginTop="30dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/groupTextFillName"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_toRightOf="@+id/groupTextEvent"
+        android:layout_alignBottom="@+id/groupTextEvent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#32728ea3"
+        />
+
+    <EditText
+        android:id="@+id/groupTextFillMaxPeople"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="MaxNum"
+        android:layout_alignLeft="@+id/groupTextFillName"
+        android:layout_alignBottom="@+id/groupTextMaxPeople"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="#32728ea3"
+        />
+
+    <EditText
+        android:id="@+id/groupTextFillDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="225dp"
+        android:inputType="textMultiLine"
+        android:hint="Details"
+        android:ems="300"
+        android:gravity="start"
+        android:maxLines="10"
+        android:background="#32728ea3"
+        android:layout_below="@+id/groupTextDetails"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/buttonCancelGroup"
+            android:text="@string/cancel"
+            tools:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="#036197"
+            tools:text="@android:string/no"
+        />
+
+        <Button
+            android:id="@+id/buttonOkGroup"
+            android:text="@string/ok"
+            tools:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="#e08ddad4"
+            tools:text="@android:string/VideoView_error_button"
+            /></LinearLayout>
+
+
+</RelativeLayout>

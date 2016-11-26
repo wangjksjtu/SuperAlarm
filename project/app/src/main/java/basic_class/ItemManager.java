@@ -20,14 +20,14 @@ public class ItemManager {
          itemArr = new ArrayList();
          length = 0;
     }
-    private boolean isExist(Item item) {
+    protected boolean isExist(Item item) {
         for (int i = 0; i < length; ++i) {
             if (itemArr.get(i).equals(item))
                 return true;
         }
         return false;
     } 
-    private Item search(Item item) {
+    protected Item search(Item item) {
         for (int i = 0; i < length; ++i) {
             if (itemArr.get(i).equals(item))
                 return (Item) itemArr.get(i);

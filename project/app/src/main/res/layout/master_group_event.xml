@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_zero_margin"
+    android:paddingLeft="@dimen/activity_zero_margin"
+    android:paddingRight="@dimen/activity_zero_margin"
+    android:paddingTop="@dimen/activity_zero_margin"
+    tools:context="superalarm.firsttry.event_start_activity">
+
+
+    <TextView
+        android:id = "@+id/masterTextTitle"
+        android:text = "你的小组群：（小组群id在此）"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        />
+
+
+    <TextView
+        android:id="@+id/masterTextEvent"
+        android:text="小组群名称:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/masterTextTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/masterTextJoinPeople"
+        android:text="人员加入情况："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/masterTextEvent"
+        android:layout_marginTop="30dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/masterTextDetails"
+        android:text="备注信息:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/masterTextJoinPeople"
+        android:layout_marginTop="30dp"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        tools:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/masterTextFillName"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_toRightOf="@+id/masterTextEvent"
+        android:layout_alignBottom="@+id/masterTextEvent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:text="name"
+        />
+
+    <TextView
+        android:id="@+id/masterTextFillJoinPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/masterTextFillName"
+        android:layout_alignBottom="@+id/masterTextJoinPeople"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:text = "xx/maxNum"
+        />
+
+    <TextView
+        android:id="@+id/masterTextFillDetails"
+        android:text = "xxxxxxx"
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
+        android:ems="300"
+        android:gravity="start"
+        android:maxLines="10"
+        android:layout_below="@+id/masterTextDetails"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <ImageButton
+        android:id="@+id/masterImageButton_person"
+        android:scaleType="fitXY"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="#FFFFFFFF"
+        app:srcCompat="@drawable/btn_person"
+        android:contentDescription=""
+        tools:ignore="ContentDescription,RtlHardcoded"
+        android:layout_toRightOf="@id/masterTextFillJoinPeople"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBottom="@id/masterTextJoinPeople"
+        />
+
+    <ImageButton
+        android:id="@+id/masterImageButton_invite"
+        android:scaleType="fitXY"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="#FFFFFFFF"
+        app:srcCompat="@drawable/btn_add"
+        android:contentDescription=""
+        tools:ignore="ContentDescription,RtlHardcoded"
+        android:layout_toRightOf="@id/masterImageButton_person"
+        android:layout_marginLeft="15dp"
+        android:layout_alignBottom="@id/masterTextJoinPeople" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/buttonReviseInfoMaster"
+            android:text="修改小组群信息"
+            tools:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="#036197"
+            />
+
+        <Button
+            android:id="@+id/buttonAddEventMaster"
+            android:text="查看小组群事项"
+            tools:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="#e08ddad4"
+            /></LinearLayout>
+
+
+</RelativeLayout>

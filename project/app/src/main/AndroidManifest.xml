@@ -22,6 +22,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MONKEY"/>
             </intent-filter>
         </activity>
 
@@ -54,6 +55,7 @@
         <activity android:name=".event_start_activity" />
         <activity android:name=".time_set_activity" />
         <activity android:name=".time_frequency_activity" />
+        <activity android:name=".group_start_activity" />
         >>>>>>> 1bea59cb90122b6e2e759f3f8e820205182cb5df
         <activity android:name=".PresonalInformationHaveLogin" />
 
