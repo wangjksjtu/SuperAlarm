@@ -124,13 +124,6 @@
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"/>
 
-<!--From GuideActivity-->
-    <Button
-        android:id="@+id/btn_again"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:layout_centerInParent="true"
-        android:text="@string/play_again" />
+
 
 </RelativeLayout>

@@ -19,7 +19,7 @@
     <!--<string name="secret">保密</string>-->
     <string name="errormail">邮箱地址无效！</string>
     <!--<string name="errorage">输入年龄有误！</string>-->
-    <string name="longname">用户名不得超过8位！</string>
+    <string name="longname">用户名不得超过20位！</string>
     <string name="shortpass">密码长度不得少于8位！</string>
     <string name="differpass">两次输入密码不一致！</string>
     <!--GuideActivity-->
@@ -28,11 +28,11 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Lonely</string>
-    <string name="slide_2_title">Meet</string>
-    <string name="slide_3_title">Fall in love at first sight</string>
-    <string name="slide_4_title">Both fall in love</string>
-    <string name="slide_5_title">Together forever</string>
+    <string name="slide_1_title">Busy</string>
+    <string name="slide_2_title">Challenging</string>
+    <string name="slide_3_title">Memorable</string>
+    <string name="slide_4_title">Well-organized</string>
+    <string name="slide_5_title">Friendly</string>
 
     <string name="play_again">play again</string>
     <string name="cancel">Cancel</string>

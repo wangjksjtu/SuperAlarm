@@ -17,7 +17,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import android.content.SharedPreferences;
+
+
+
 public class GuideActivity extends AppCompatActivity {
+
+    private boolean isFirst;
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -25,18 +31,14 @@ public class GuideActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     private Button btnSkip,btnNext;
-    private PrefManager prefManager;
+//    private PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //在setContentView()前检查是否第一次运行
-        prefManager = new PrefManager(this);
-        if(!prefManager.isFirstTimeLaunch()){
-            launchHomeScreen();
-            finish();
-        }
+        isFirstIn();
+
 
         //让状态栏透明
         if(Build.VERSION.SDK_INT >= 21){
@@ -71,10 +73,11 @@ public class GuideActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchHomeScreen();
+                Intent intent = new Intent(GuideActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
-
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,12 +85,30 @@ public class GuideActivity extends AppCompatActivity {
                 if(current < layouts.length){
                     viewPager.setCurrentItem(current);
                 }else{
-                    launchHomeScreen();
+                    Intent intent = new Intent(GuideActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
+       }
 
+    private void isFirstIn(){
+        //用SharedPreferences保存数据
+        SharedPreferences sharedPreferences = getSharedPreferences("isFirst",MODE_PRIVATE);
+        isFirst = sharedPreferences.getBoolean("isFirstIn",true);
+        if(!isFirst){
+            Intent intent = new Intent(GuideActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }else {
+            //第二次打开就不经过引导页了
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isFirstIn",false);
+            editor.commit();
+        }
     }
+
 
     private void addBottomDots(int currentPage){
         dots = new TextView[layouts.length];
@@ -111,12 +132,6 @@ public class GuideActivity extends AppCompatActivity {
 
     private int getItem(int i){
         return viewPager.getCurrentItem() + i;
-    }
-
-    private void launchHomeScreen(){
-        prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(this,MainActivity.class));
-        finish();
     }
 
     /**
@@ -151,15 +166,12 @@ public class GuideActivity extends AppCompatActivity {
         }
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     };
     public class MyViewPagerAdapter extends PagerAdapter{
 
         private LayoutInflater layoutInflater;
-
         public MyViewPagerAdapter(){}
-
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -168,17 +180,14 @@ public class GuideActivity extends AppCompatActivity {
             container.addView(view);
             return view;
         }
-
         @Override
         public int getCount() {
             return layouts.length;
         }
-
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
-
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             View view = (View)object;
