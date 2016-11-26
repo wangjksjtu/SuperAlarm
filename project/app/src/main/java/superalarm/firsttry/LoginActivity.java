@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button insure;
     private EditText inEmail, inPassword, rePassword, inName, inAge;
     private String upassword, repass, uName, uemail;
-    private boolean flag;
+    private boolean flag = true;
 
 //    private RadioGroup ugender;
 //    private RadioButton male, female, secret;
