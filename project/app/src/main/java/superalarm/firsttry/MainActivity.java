@@ -30,11 +30,24 @@ public class MainActivity extends AppCompatActivity {
     private ListView lv;
     private ItemManager items = new ItemManager();
 
+
+    PrefManager prefManager;
+    private Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         items.read(MainActivity.this);
+
+//        prefManager = new PrefManager(this);
+//        button = (Button) findViewById(R.id.btn_again);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                prefManager.setFirstTimeLaunch(true);
+//                finish();
+//            }
 
         lv = (ListView) findViewById(R.id.list);
 

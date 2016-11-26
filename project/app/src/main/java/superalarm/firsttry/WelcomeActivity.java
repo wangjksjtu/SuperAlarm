@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class WelcomeActivity extends Activity {
     public static WelcomeActivity instance = null;
@@ -36,11 +37,17 @@ public class WelcomeActivity extends Activity {
                 String thisPassWord = aPassWord.getText().toString();
 
                 //下接密码判断机制……
-                //跳转至已登陆
+                if (!thisUserName.matches("123123")) {
+                    Toast.makeText(WelcomeActivity.this,R.string.errname,Toast.LENGTH_SHORT).show();
+                }
+                else if (!thisPassWord.matches("abcabcabc")) {
+                    Toast.makeText(WelcomeActivity.this,R.string.errpassword,Toast.LENGTH_SHORT).show();
+                }
+                else{//跳转至已登陆
                 Intent it = new Intent();
                 it.setClass(WelcomeActivity.this, PresonalInformationHaveLogin.class);
                 startActivity(it);
-                finish();
+                finish();}
             }
         };
             //点击“注册”按钮，跳转至注册信息填写界面

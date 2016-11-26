@@ -28,7 +28,6 @@ public class AvatarActivity extends AppCompatActivity {
                 AvatarActivity.this.finish();
                 WelcomeActivity.instance.finish();
                 LoginActivity.instance.finish();
-                SelfInfoActivity.instance.finish();
             }
         });
         //Head.setOnClickListener(RandomAvatarOnClick);
