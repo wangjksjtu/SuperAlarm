@@ -20,7 +20,7 @@ import java.util.ArrayList;
          itemOGArr = new ArrayList();
          length = 0;
     }
-    private boolean isExist(ItemOfGroupManager itemOG) {
+    private boolean isExist(ItemOfGroup itemOG) {
         for (int i = 0; i < length; ++i) {
             if (itemOGArr.get(i).equals(itemOG))
                 return true;
@@ -54,7 +54,7 @@ import java.util.ArrayList;
         --length;
     }
     void modify(ItemOfGroup itemOG, String u, String Id,String o, String t,String d,String mod,String impo,String con,String cre) throws NotExistException {
-        if (!isExist(item)) throw new NotExistException();
+        if (!isExist(itemOG)) throw new NotExistException();
         itemOG.setUrl(u);
         itemOG.setId(Id);
         itemOG.setOwner(o);
