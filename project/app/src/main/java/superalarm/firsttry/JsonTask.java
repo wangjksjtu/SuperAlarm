@@ -136,12 +136,12 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 OutputStreamWriter osw = new OutputStreamWriter(connection.getOutputStream());
 
                 if (params[2] == "Item") {
-                    int id = Integer.parseInt(params[10]);
-                    String module = params[5];
+                    int id = Integer.parseInt(params[5]);
                     String title = params[6];
                     String deadline = params[7];
-                    int importance = Integer.parseInt(params[8]);
-                    String content = params[9];
+                    String module = params[8];
+                    int importance = Integer.parseInt(params[9]);
+                    String content = params[10];
                     Item item = new Item(id, module, title, deadline, importance, content);
                     Gson gson = new Gson();
                     String data = gson.toJson(item);

@@ -37,7 +37,9 @@ public class UpdateItems {
 
     public void putItems(Item item) {
         new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/" + String.valueOf(item.getId()) + "/"
-                ,"PUT", "Item", username, password, item.getTitle(), item.getDeadline(),
-                item.getModule(), String.valueOf(item.getImportance()), item.getContent());
+                ,"PUT", "Item", username, password, String.valueOf(item.getId()),
+                item.getTitle(), item.getDeadline(), item.getModule(),
+                String.valueOf(item.getImportance()), item.getContent()
+                );
     }
 }

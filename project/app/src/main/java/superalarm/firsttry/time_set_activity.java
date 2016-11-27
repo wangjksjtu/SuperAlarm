@@ -263,9 +263,6 @@ public class time_set_activity extends AppCompatActivity {
                     }
                 }
 
-                UpdateItems updateItems = new UpdateItems();
-                updateItems.postItems(item_new);
-
                 itemManager.sortByDeadline();
                 itemManager.write(time_set_activity.this);
 
