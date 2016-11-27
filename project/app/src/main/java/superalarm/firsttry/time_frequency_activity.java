@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import basic_class.Item;
@@ -88,6 +90,12 @@ public class time_frequency_activity extends AppCompatActivity {
         if (key){
             hourSpinner_f.setSelection(Integer.valueOf(deadline.substring(0, 2)),key);
             minuteSpinner_f.setSelection(Integer.valueOf(deadline.substring(3, 5)),key);
+        }else{
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+            Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+            String str = formatter.format(curDate);
+            hourSpinner_f.setSelection(Integer.valueOf(str.substring(0, 2)),key);
+            minuteSpinner_f.setSelection(Integer.valueOf(str.substring(3, 5)),key);
         }
 
 
@@ -167,16 +175,19 @@ public class time_frequency_activity extends AppCompatActivity {
 
                     if (key){
                         try {
-                            itemManager.delete(item0);
+                            itemManager.modify(item0,item.getTitle(),item.getDeadline(),item.getImportance(),item.getContent());
                         } catch (NotExistException e) {
                             e.printStackTrace();
-                        }}
-
-                    try {
-                        itemManager.add(item);
-                    } catch (RepeatedAddtionException e) {
-                        e.printStackTrace();
+                        }
                     }
+                    else{
+                        try {
+                            itemManager.add(item);
+                        } catch (RepeatedAddtionException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     itemManager.sortByDeadline();
                     itemManager.write(time_frequency_activity.this);
                     MainActivity.instance.finish();

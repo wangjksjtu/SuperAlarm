@@ -4,7 +4,7 @@
     android:id="@+id/layout_titlebar"
     android:layout_width="match_parent"
     android:layout_height="52dp"
-    android:background="#6655ff" >
+    android:background="#3322dd" >
 
     <TextView
         android:id="@+id/text_title"
@@ -18,7 +18,7 @@
         android:textSize="20dp" />
 
     <ImageButton
-        android:background="#6655ff"
+        android:background="#3322dd"
         android:singleLine="true"
         android:id="@+id/button_backward"
         android:layout_width="60dp"
@@ -32,7 +32,7 @@
         android:visibility="invisible" />
 
     <ImageButton
-        android:background="#6655ff"
+        android:background="#3322dd"
         android:singleLine="true"
         app:srcCompat="@android:drawable/ic_menu_edit"
         android:id="@+id/button_forward"

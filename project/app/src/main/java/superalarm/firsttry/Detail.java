@@ -53,14 +53,15 @@ public class Detail extends TitleActivity {
         listItem.add(map);
 
         map = new HashMap<String, Object>();
+        map.put("title","期限");
+        map.put("text",item.getDeadline());
+        listItem.add(map);
+
+        map = new HashMap<String, Object>();
         map.put("title","详情");
         map.put("text",item.getContent());
         listItem.add(map);
 
-        map = new HashMap<String, Object>();
-        map.put("title","期限");
-        map.put("text",item.getDeadline());
-        listItem.add(map);
 
         SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this, listItem, R.layout.listitem2,
                 new String[]{"title", "text"}, new int[]{R.id.title, R.id.text});
