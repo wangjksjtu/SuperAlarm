@@ -25,6 +25,7 @@ package basic_class;
 			       created=crea;
 	         	}
 		public void ItemOfGroup(){}
+
 	    public void setUrl(String u){url=u;}
 	    
 	    public void setId(String i){id=i; }

@@ -21,11 +21,11 @@ public class UserManager {
 
     private final ArrayList<User> userArr = new ArrayList();
 
-    void addUser(User user)  {
+    public void addUser(User user)  {
         userArr.add(user);
     }
 
-    User searchUser(User user) {
+    public User searchUser(User user) {
         for (int i = 0; i < userArr.size(); ++i) {
             if (userArr.get(i).equals(user)) {
                 return userArr.get(i);
