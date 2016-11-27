@@ -12,77 +12,23 @@
     tools:context="superalarm.firsttry.Detail"
     android:background="#ffffff">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFFFF"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        android:id="@+id/imageButton_edit"
-        android:adjustViewBounds="false"
-        android:contentDescription=""
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFFFF"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        android:id="@+id/imageButton_revert"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="TextView"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="详细"
-        android:textSize="50dp"
-        android:textColor="#000000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/imageButton_revert"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="提醒"
-        android:textColor="#000000"
-        android:textSize="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView2" />
-
-    <TextView
-        android:text="TextView"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView5"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="删除事项"
         android:textColor="#ffffff"
         android:textSize="40dp"
-        android:background="#cc0000"
+        android:background="#ff9999"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/button" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_zero_margin"
+        android:layout_above="@id/button"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/list"/>
 
 </RelativeLayout>

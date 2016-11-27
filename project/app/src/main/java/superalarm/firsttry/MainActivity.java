@@ -15,6 +15,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextClock;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -93,6 +94,8 @@ public void onCreate(Bundle savedInstanceState) {
     }
 
     private void makeItemList() {
+        int result;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy:MM:dd:HH:mm");
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();/*在数组中存放数据*/
         ItemManager itemManager = new ItemManager();
         itemManager.read(this);
@@ -102,6 +105,7 @@ public void onCreate(Bundle savedInstanceState) {
             Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
         }
         for (int i = 0; i < itemManager.getLength(); ++i) {
+
             final String title = itemArrayList.get(i).getTitle();
             final String deadline = itemArrayList.get(i).getDeadline();
             final String module = itemArrayList.get(i).getModule();

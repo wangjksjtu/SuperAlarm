@@ -1,55 +1,83 @@
 package superalarm.firsttry;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import basic_class.Item;
 import basic_class.ItemManager;
 import basic_class.NotExistException;
 
 
 
-public class Detail extends AppCompatActivity {
+public class Detail extends TitleActivity {
 
     private ItemManager items = new ItemManager();
     public static Detail instance = null;
-
+    private ListView list;
+    private Item item = new Item();
+    private int data;
+    ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        items.read(Detail.this);
+        list = (ListView)findViewById(R.id.list);
+
+        items.read(this);
 
         instance = this;
 
         Intent intent = getIntent();
-        final int data = intent.getIntExtra("num",-1);
+        data = intent.getIntExtra("num",-1);
 
-        TextView info = (TextView)findViewById(R.id.textView4);
-        TextView time = (TextView)findViewById(R.id.textView5);
+        item = items.itemArr.get(data);
 
-        String title = items.itemArr.get(data).getTitle();
-        String content = items.itemArr.get(data).getContent();
-        String deadline = items.itemArr.get(data).getDeadline();
+        setTitle(item.getTitle());
+        showBackwardView(R.id.button_backward,true);
+        showForwardView(R.id.button_forward,true);
 
-        setTitle(title);
-        info.setText(content);
-        time.setText(deadline);
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("title","重要性");
+        map.put("text",item.getImportance());
+        listItem.add(map);
+
+        map = new HashMap<String, Object>();
+        map.put("title","详情");
+        map.put("text",item.getContent());
+        listItem.add(map);
+
+        map = new HashMap<String, Object>();
+        map.put("title","期限");
+        map.put("text",item.getDeadline());
+        listItem.add(map);
+
+        SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this, listItem, R.layout.listitem2,
+                new String[]{"title", "text"}, new int[]{R.id.title, R.id.text});
+        list.setAdapter(mSimpleAdaptr);
 
         Button btn_delete = (Button)findViewById(R.id.button);
         btn_delete.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    items.delete(items.itemArr.get(data));
+                    items.delete(item);
                     items.write(Detail.this);
                 } catch (NotExistException e) {
                     e.printStackTrace();
@@ -60,25 +88,17 @@ public class Detail extends AppCompatActivity {
                 finish();
             }
         });
-
-        ImageButton btn_revert = (ImageButton)findViewById(R.id.imageButton_revert);
-        btn_revert.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        ImageButton btn_edit = (ImageButton)findViewById(R.id.imageButton_edit);
-        btn_edit.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_send = new Intent(Detail.this, event_start_activity.class);
-                intent_send.putExtra("key",true);
-                intent_send.putExtra("value",data);
-                startActivity(intent_send);
-            }
-        });
+    }
+    @Override
+    protected void onForward(View forwardView) {
+        Intent intent_send = new Intent(Detail.this, event_start_activity.class);
+        intent_send.putExtra("key",true);
+        intent_send.putExtra("value",data);
+        startActivity(intent_send);
+    }
+    @Override
+    protected void onBackward(View backwardView) {
+        finish();
     }
 }
 
