@@ -10,7 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import basic_class.Item;
@@ -119,6 +121,15 @@ public class time_set_activity extends AppCompatActivity {
             daySpinner.setSelection(Integer.valueOf(deadline.substring(8, 10)) - 1, key);
             hourSpinner.setSelection(Integer.valueOf(deadline.substring(11, 13)), key);
             minuteSpinner.setSelection(Integer.valueOf(deadline.substring(14, 16)), key);
+        }else{
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy:MM:dd:HH:mm");
+            Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+            String str = formatter.format(curDate);
+            yearSpinner.setSelection(Integer.valueOf(str.substring(0, 4)) - 2016, true);
+            monthSpinner.setSelection(Integer.valueOf(str.substring(5, 7)) - 1, true);
+            daySpinner.setSelection(Integer.valueOf(str.substring(8, 10)) - 1, true);
+            hourSpinner.setSelection(Integer.valueOf(str.substring(11, 13)), true);
+            minuteSpinner.setSelection(Integer.valueOf(str.substring(14, 16)), true);
         }
         //5个提前量Spinner的定义，2345初始不可见
         int[] Ahead_id_list = {R.id.spinnerAd1,R.id.spinnerAd2,R.id.spinnerAd3,R.id.spinnerAd4,R.id.spinnerAd5};
@@ -234,18 +245,23 @@ public class time_set_activity extends AppCompatActivity {
                 item_new.setImportance((int)eventRating);
 
                 if (key){
-                try {
-                    itemManager.delete(item);
-                } catch (NotExistException e) {
-                    e.printStackTrace();
-                }}
-                try {
-                    itemManager.add(item_new);
-                    UpdateItems updateItems = new UpdateItems();
-                    updateItems.postItems(item_new);
-                } catch (RepeatedAddtionException e) {
-                    e.printStackTrace();
+                    try {
+                        itemManager.modify(item,item_new.getTitle(),item_new.getDeadline(),item_new.getImportance(),item_new.getContent());
+                    } catch (NotExistException e) {
+                        e.printStackTrace();
+                    }
                 }
+                else{
+                    try {
+                        itemManager.add(item_new);
+                    } catch (RepeatedAddtionException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                UpdateItems updateItems = new UpdateItems();
+                updateItems.postItems(item_new);
+
                 itemManager.sortByDeadline();
                 itemManager.write(time_set_activity.this);
 

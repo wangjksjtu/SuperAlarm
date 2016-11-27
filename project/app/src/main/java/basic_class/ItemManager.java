@@ -53,7 +53,7 @@ public class ItemManager {
         itemArr.remove(item);
         --length;
     }
-    void modify(Item item, String t, String d, int i, String c) throws NotExistException {
+    public void modify(Item item, String t, String d, int i, String c) throws NotExistException {
         if (!isExist(item)) throw new NotExistException();
         item.setTitle(t);
         item.setDeadline(d);

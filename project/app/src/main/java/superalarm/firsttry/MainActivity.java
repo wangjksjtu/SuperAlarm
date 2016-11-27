@@ -22,7 +22,7 @@ import java.util.HashMap;
 import basic_class.Item;
 import basic_class.ItemManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends TitleActivity {
 
     public static MainActivity instance = null;
     private TextClock hTextClock;
@@ -37,7 +37,7 @@ public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         items.read(MainActivity.this);
 
-
+        setTitle("超级闹钟");
 
         lv = (ListView) findViewById(R.id.list);
 
