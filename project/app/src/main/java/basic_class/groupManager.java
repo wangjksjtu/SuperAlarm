@@ -110,11 +110,11 @@ import java.util.ArrayList;
                                    data = bufferedReader.readLine();
                                    break;
                                case 5:    
-                                   group.setMember(data);
+                                   
                                    data = bufferedReader.readLine();
                                    break;
                                case 6:
-                            	   group.setItem(data);
+                            	  
                                    data = bufferedReader.readLine();
                                    break;
                                   
@@ -126,12 +126,12 @@ import java.util.ArrayList;
 
                }
           }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        } catch (RepeatedAddtionException e) {
-            e.printStackTrace();
-        }
+           catch (FileNotFoundException e) {
+               Log.e("login activity", "File not found: " + e.toString());
+           } catch (IOException e) {
+               Log.e("login activity", "Can not read file: " + e.toString());
+           } catch (RepeatedAddtionException e) {
+               e.printStackTrace();
+           }
 } 
 }
