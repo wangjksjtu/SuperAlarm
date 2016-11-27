@@ -33,7 +33,7 @@ public class group_start_activity extends AppCompatActivity {
         btOkGroup.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(group_start_activity.this, MainActivity.class);
+                Intent intent = new Intent(group_start_activity.this, not_yet_activity.class);
                 startActivity(intent);
                 group_start_activity.this.finish();
             }

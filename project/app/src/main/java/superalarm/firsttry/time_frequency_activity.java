@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -20,7 +21,7 @@ import basic_class.NotExistException;
 import basic_class.RepeatedAddtionException;
 
 
-public class time_frequency_activity extends AppCompatActivity {
+public class time_frequency_activity extends TitleActivity {
 
     public static time_frequency_activity instance = null;
     private Spinner  hourSpinner_f, minuteSpinner_f;
@@ -37,9 +38,13 @@ public class time_frequency_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_frequency);
         instance = this;
+
+        setTitle("设置提醒周期");
+        showBackwardView(R.id.button_backward,true);
 
         itemManager.read(time_frequency_activity.this);
 
@@ -144,15 +149,7 @@ public class time_frequency_activity extends AppCompatActivity {
         }
 
 
-        //OK按钮和CANCEL按钮的链接
-        btCancelTime_f = (Button)findViewById(R.id.buttonCancelTime_f);
-        btCancelTime_f.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                time_frequency_activity.this.finish();
-            }
-        });
-
+        //OK按钮的链接
         btOkTime_f = (Button)findViewById(R.id.buttonOkTime_f);
         btOkTime_f.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,4 +242,8 @@ public class time_frequency_activity extends AppCompatActivity {
     public String getEventType() {return eventData[1];}
     public String getEventDetail() {return eventData[2];}
     public float getRating() {return eventRating;}
+    @Override
+    protected void onBackward(View backwardView) {
+        finish();
+    }
 }

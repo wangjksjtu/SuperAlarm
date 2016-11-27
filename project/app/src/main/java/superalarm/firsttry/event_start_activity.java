@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -19,7 +20,7 @@ import basic_class.Item;
 import basic_class.ItemManager;
 
 
-public class event_start_activity extends AppCompatActivity {
+public class event_start_activity extends TitleActivity {
 
     public static event_start_activity instance;
     private EditText textEventName, textEventDetails;
@@ -33,13 +34,16 @@ public class event_start_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         ItemManager itemManager = new ItemManager();
         Item item = new Item();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_starter);
         instance = this;
+
+        setTitle("设置事项内容");
+        showBackwardView(R.id.button_backward,true);
 
         //intent接收事项类型
         String eventType;
@@ -117,15 +121,11 @@ public class event_start_activity extends AppCompatActivity {
                 }}
             }
         });
-        btCancelEvent = (Button)findViewById(R.id.buttonCancelEvent);
-        btCancelEvent.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(event_start_activity.this,type_set_activity.class);
-//                startActivity(intent);
-                event_start_activity.this.finish();
-            }
-        });
+    }
+
+    @Override
+    protected void onBackward(View backwardView) {
+        finish();
     }
 
 

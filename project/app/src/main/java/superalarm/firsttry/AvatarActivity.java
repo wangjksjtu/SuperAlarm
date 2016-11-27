@@ -8,6 +8,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import static android.R.attr.bitmap;
+
 public class AvatarActivity extends AppCompatActivity {
     private Button yesTo;
     private ImageButton Head;
@@ -30,7 +32,13 @@ public class AvatarActivity extends AppCompatActivity {
                 LoginActivity.instance.finish();
             }
         });
-        //Head.setOnClickListener(RandomAvatarOnClick);
+        Head.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(AvatarActivity.this,ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
 

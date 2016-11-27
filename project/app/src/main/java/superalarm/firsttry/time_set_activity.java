@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import basic_class.NotExistException;
 import basic_class.RepeatedAddtionException;
 
 
-public class time_set_activity extends AppCompatActivity {
+public class time_set_activity extends TitleActivity {
 
     public static time_set_activity instance = null;
     private Spinner yearSpinner, monthSpinner, daySpinner, hourSpinner, minuteSpinner;
@@ -37,10 +39,13 @@ public class time_set_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_setter);
         instance = this;
 
+        setTitle("设置截止日期");
+        showBackwardView(R.id.button_backward,true);
         //intent接收事项类型
         Intent intent_receive = getIntent();
         key = intent_receive.getBooleanExtra("key",false);
@@ -223,56 +228,56 @@ public class time_set_activity extends AppCompatActivity {
         });
 
 
-        //OK按钮和CANCEL按钮的链接
-        btCancelTime = (Button)findViewById(R.id.buttonCancelTime);
-        btCancelTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                time_set_activity.this.finish();
-            }
-        });
+        //OK按钮的链接
 
         btOkTime = (Button)findViewById(R.id.buttonOkTime);
         btOkTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //创建事项
-                Item item_new = new Item();
-                item_new.setModule(eventData[1]);
-                item_new.setContent(eventData[2]);
-                item_new.setDeadline(getDeadline());
-                item_new.setTitle(eventData[0]);
-                item_new.setImportance((int)eventRating);
-
-                if (key){
-                    try {
-                        itemManager.modify(item,item_new.getTitle(),item_new.getDeadline(),item_new.getImportance(),item_new.getContent());
-                        UpdateItems updateItems = new UpdateItems();
-                        updateItems.putItems(item);
-                    } catch (NotExistException e) {
-                        e.printStackTrace();
-                    }
+                if (TestValidOrNot() == 1){
+                    Toast.makeText(time_set_activity.this,"Invalid Deadline",Toast.LENGTH_LONG).show();
                 }
-                else{
-                    try {
-                        itemManager.add(item_new);
-                        UpdateItems updateItems = new UpdateItems();
-                        updateItems.postItems(item_new);
-                    } catch (RepeatedAddtionException e) {
-                        e.printStackTrace();
-                    }
+                else if (TestValidOrNot() == 2){
+                    Toast.makeText(time_set_activity.this,"Current time is later than Deadline",Toast.LENGTH_LONG).show();
                 }
+                else {
+                    Item item_new = new Item();
+                    item_new.setModule(eventData[1]);
+                    item_new.setContent(eventData[2]);
+                    item_new.setDeadline(getDeadline());
+                    item_new.setTitle(eventData[0]);
+                    item_new.setImportance((int) eventRating);
 
-                itemManager.sortByDeadline();
-                itemManager.write(time_set_activity.this);
+                    if (key) {
+                        try {
+                            itemManager.modify(item, item_new.getTitle(), item_new.getDeadline(), item_new.getImportance(), item_new.getContent());
+                            UpdateItems updateItems = new UpdateItems();
+                            updateItems.putItems(item);
+                        } catch (NotExistException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            itemManager.add(item_new);
+                            UpdateItems updateItems = new UpdateItems();
+                            updateItems.postItems(item_new);
+                        } catch (RepeatedAddtionException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-                MainActivity.instance.finish();
-                Intent intent = new Intent(time_set_activity.this, MainActivity.class);
-                startActivity(intent);
-                time_set_activity.this.finish();
-                if (!key)type_set_activity.instance.finish();
-                else Detail.instance.finish();
-                event_start_activity.instance.finish();
+                    itemManager.sortByDeadline();
+                    itemManager.write(time_set_activity.this);
+
+                    MainActivity.instance.finish();
+                    Intent intent = new Intent(time_set_activity.this, MainActivity.class);
+                    startActivity(intent);
+                    time_set_activity.this.finish();
+                    if (!key) type_set_activity.instance.finish();
+                    else Detail.instance.finish();
+                    event_start_activity.instance.finish();
+                }
             }
         });
     }
@@ -311,11 +316,30 @@ public class time_set_activity extends AppCompatActivity {
         if (feedback.compareTo("") == 0) {feedback = "0,m";}//Default为准时
         return feedback;
     }
-
-    public String getEventName() {return eventData[0];}
-    public String getEventType() {return eventData[1];}
-    public String getEventDetail() {return eventData[2];}
-    public float getRating() {return eventRating;}
+    @Override
+    protected void onBackward(View backwardView) {
+        finish();
+    }
+    public int TestValidOrNot(){
+        int i;
+        String[] ddl_str = getDeadline().split(":");
+        int [] ddl_int = new int [5];
+        int [] month_days = {31,28,31,30,31,30,31,31,30,31,30,31};
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy:MM:dd:HH:mm");
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        String curTimeStr = formatter.format(curDate);
+        for (i = 0; i < 5; i++ ){
+            ddl_int[i] = Integer.parseInt(ddl_str[i]);
+        }
+        if (ddl_int[0] % 4 != 0 || ddl_int[1] != 2) {
+            if (ddl_int[2] > month_days[ddl_int[1]-1]) {return 1;}
+        }
+        else {
+            if (ddl_int[0] % 4 == 0 && ddl_int[2] > 29) {return 1;}//1日期不合法
+        }
+        if (curTimeStr.compareTo(getDeadline()) > 0) {return 2;}//2表示日期早于当前时期
+        return 0;//0表示合法
+    }
 
 
 }

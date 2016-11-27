@@ -1,4 +1,4 @@
-package superalarm.firsttry;
+package basic_class;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,6 +7,9 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.TimeZone;
+
+import superalarm.firsttry.AlarmReceiver;
+import superalarm.firsttry.MainActivity;
 
 import static android.content.Context.ALARM_SERVICE;
 
@@ -74,7 +77,7 @@ public class AlarmReminder {
         am.setExact(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pi);
     }
 
-    private void stopRemind() {
+    public void stopRemind() {
         Intent intent = new Intent(MainActivity.instance, AlarmReceiver.class);
         intent.putExtra("Id", Id);
         PendingIntent pi = PendingIntent.getBroadcast(MainActivity.instance, Id,
@@ -83,5 +86,13 @@ public class AlarmReminder {
         //取消警报
         Toast.makeText(MainActivity.instance, "关闭闹钟", Toast.LENGTH_SHORT).show();
         am.cancel(pi);
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 }
