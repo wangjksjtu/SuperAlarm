@@ -34,6 +34,13 @@ public class UserManager {
         return null;
     }
 
+    int ifUserexist(String username){
+        for (int i = 0; i < userArr.size(); ++i){
+            if (username.equals(userArr.get(i).getUsername())) return i;
+        }
+        return -1;
+    }
+
     boolean deleteUser(User user)  {
         if (searchUser(user) != null) {
             userArr.remove(searchUser(user));

@@ -15,13 +15,14 @@ import android.widget.SimpleAdapter;
 import android.widget.TextClock;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import basic_class.Item;
 import basic_class.ItemManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends TitleActivity {
 
     public static MainActivity instance = null;
     private TextClock hTextClock;
@@ -36,7 +37,7 @@ public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         items.read(MainActivity.this);
 
-
+        setTitle("超级闹钟");
 
         lv = (ListView) findViewById(R.id.list);
 
@@ -93,6 +94,8 @@ public void onCreate(Bundle savedInstanceState) {
     }
 
     private void makeItemList() {
+        int result;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy:MM:dd:HH:mm");
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();/*在数组中存放数据*/
         ItemManager itemManager = new ItemManager();
         itemManager.read(this);
@@ -102,6 +105,7 @@ public void onCreate(Bundle savedInstanceState) {
             Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
         }
         for (int i = 0; i < itemManager.getLength(); ++i) {
+
             final String title = itemArrayList.get(i).getTitle();
             final String deadline = itemArrayList.get(i).getDeadline();
             final String module = itemArrayList.get(i).getModule();

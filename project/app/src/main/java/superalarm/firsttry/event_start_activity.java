@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -13,12 +14,13 @@ import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import basic_class.Item;
 import basic_class.ItemManager;
 
 
-public class event_start_activity extends AppCompatActivity {
+public class event_start_activity extends TitleActivity {
 
     public static event_start_activity instance;
     private EditText textEventName, textEventDetails;
@@ -32,13 +34,16 @@ public class event_start_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         ItemManager itemManager = new ItemManager();
         Item item = new Item();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_starter);
         instance = this;
+
+        setTitle("设置事项内容");
+        showBackwardView(R.id.button_backward,true);
 
         //intent接收事项类型
         String eventType;
@@ -91,37 +96,36 @@ public class event_start_activity extends AppCompatActivity {
         btOkEvent.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( annoyMode.getCheckedRadioButtonId() == annoySingle.getId() ) {
-                    Intent intent_send = new Intent(event_start_activity.this, time_set_activity.class);
-                    intent_send.putExtra("key",key);
-                    intent_send.putExtra("num",item_num);
-                    intent_send.putExtra("eventName",textEventName.getText().toString());
-                    intent_send.putExtra("eventDetail",textEventDetails.getText().toString());
-                    intent_send.putExtra("eventType",typeTitle.getText().toString());
-                    intent_send.putExtra("eventRating",ratingBar.getRating());
-                    startActivity(intent_send);
-                }
-                else if ( annoyMode.getCheckedRadioButtonId() == annoyFrequent.getId() ) {
-                    Intent intent_send = new Intent(event_start_activity.this, time_frequency_activity.class);
-                    intent_send.putExtra("key",key);
-                    intent_send.putExtra("num",item_num);
-                    intent_send.putExtra("eventName",textEventName.getText().toString());
-                    intent_send.putExtra("eventDetail",textEventDetails.getText().toString());
-                    intent_send.putExtra("eventType",typeTitle.getText().toString());
-                    intent_send.putExtra("eventRating",ratingBar.getRating());
-                    startActivity(intent_send);
-                }
+                if (textEventName.getText().toString().length() > 9){
+                    Toast.makeText(event_start_activity.this,"名称不能超过九个字",Toast.LENGTH_LONG).show();
+                }else{
+                    if ( annoyMode.getCheckedRadioButtonId() == annoySingle.getId() ) {
+                        Intent intent_send = new Intent(event_start_activity.this, time_set_activity.class);
+                        intent_send.putExtra("key",key);
+                        intent_send.putExtra("num",item_num);
+                        intent_send.putExtra("eventName",textEventName.getText().toString());
+                        intent_send.putExtra("eventDetail",textEventDetails.getText().toString());
+                        intent_send.putExtra("eventType",typeTitle.getText().toString());
+                        intent_send.putExtra("eventRating",ratingBar.getRating());
+                        startActivity(intent_send);
+                    }
+                    else if ( annoyMode.getCheckedRadioButtonId() == annoyFrequent.getId() ) {
+                        Intent intent_send = new Intent(event_start_activity.this, time_frequency_activity.class);
+                        intent_send.putExtra("key",key);
+                        intent_send.putExtra("num",item_num);
+                        intent_send.putExtra("eventName",textEventName.getText().toString());
+                        intent_send.putExtra("eventDetail",textEventDetails.getText().toString());
+                        intent_send.putExtra("eventType",typeTitle.getText().toString());
+                        intent_send.putExtra("eventRating",ratingBar.getRating());
+                        startActivity(intent_send);
+                }}
             }
         });
-        btCancelEvent = (Button)findViewById(R.id.buttonCancelEvent);
-        btCancelEvent.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(event_start_activity.this,type_set_activity.class);
-//                startActivity(intent);
-                event_start_activity.this.finish();
-            }
-        });
+    }
+
+    @Override
+    protected void onBackward(View backwardView) {
+        finish();
     }
 
 

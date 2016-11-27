@@ -34,7 +34,7 @@ public class Item {
     }
 
     public Item() {
-        this(0, "","","",1,"");
+        this(-1, "","","",1,"");
     }
 
     public int getId() {

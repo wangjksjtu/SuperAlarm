@@ -55,6 +55,9 @@
         <activity android:name=".time_set_activity" />
         <activity android:name=".time_frequency_activity" />
         <activity android:name=".group_start_activity" />
+        <activity android:name=".masters_activity" />
+        <activity android:name=".joined_activity" />
+        <activity android:name=".not_yet_activity" />
         >>>>>>> 1bea59cb90122b6e2e759f3f8e820205182cb5df
         <activity android:name=".PresonalInformationHaveLogin" />
 

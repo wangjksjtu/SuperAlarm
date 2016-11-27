@@ -1,0 +1,14 @@
+!define TEST_SYSTEM {slim}
+!path D:\eclipse workplace\FitnesseTest\bin
+
+|script:userManagerTest|
+|setPw|abcdefg|
+|ensure|checkPw|
+|setuser;|123456789@sjtu.edu.cn|abcdefg|man|xyz|99|1234|
+|ensure|add|
+|setuser;|987654321@sjtu.edu.cn|1234567|woman|sand|0|2580|
+|ensure|add|
+|ensure|search|
+|setmail|ahdjaiwodalk.com|
+|ensure|validMail|
+|ensure|delete|

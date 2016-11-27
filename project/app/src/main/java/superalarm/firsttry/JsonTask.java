@@ -48,6 +48,9 @@ public class JsonTask extends AsyncTask<String, String, String>{
             connection.setConnectTimeout(5000);
             connection.setRequestProperty("encoding","UTF-8");
             if (params[1] == "GET") {
+                final String basicAuth= "Basic " + Base64.encodeToString(
+                        (params[3]+":"+params[4]).getBytes(), Base64.NO_WRAP);
+                connection.setRequestProperty ("Authorization", basicAuth);
                 connection.connect();
                 InputStream stream = connection.getInputStream();
                 reader = new BufferedReader(new InputStreamReader(stream));
@@ -58,9 +61,6 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 }
                 JsonParser jsp = new JsonParser(buffer.toString());
                 if (params[2] == "Item") {
-                    final String basicAuth= "Basic " + Base64.encodeToString(
-                            (params[3]+":"+params[4]).getBytes(), Base64.NO_WRAP);
-                    connection.setRequestProperty ("Authorization", basicAuth);
                     jsp.JsonParserItem();
                     int id = jsp.getLastestItemId();
                     LastestItemId = id;
@@ -136,12 +136,12 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 OutputStreamWriter osw = new OutputStreamWriter(connection.getOutputStream());
 
                 if (params[2] == "Item") {
-                    int id = Integer.parseInt(params[10]);
-                    String module = params[5];
+                    int id = Integer.parseInt(params[5]);
                     String title = params[6];
                     String deadline = params[7];
-                    int importance = Integer.parseInt(params[8]);
-                    String content = params[9];
+                    String module = params[8];
+                    int importance = Integer.parseInt(params[9]);
+                    String content = params[10];
                     Item item = new Item(id, module, title, deadline, importance, content);
                     Gson gson = new Gson();
                     String data = gson.toJson(item);
