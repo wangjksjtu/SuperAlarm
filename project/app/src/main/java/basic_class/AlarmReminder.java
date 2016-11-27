@@ -25,20 +25,20 @@ public class AlarmReminder {
     private int minute;
     private int Id;
 
-    private AlarmReminder(int y, int m, int d, int h, int min, int id) {
+    public AlarmReminder(int y, int m, int d, int h, int min, int id) {
         year = y; month = m;
         day = d; hour = h;
-        minute = m; Id = id;
+        minute = min; Id = id;
 
     }
 
-    private String getDateInfo() {
+    public String getDateInfo() {
         String str = String.valueOf(year) + "年" + String.valueOf(month) + "月" +  String.valueOf(day) + "日"
                 + String.valueOf(hour) + "点" + String.valueOf(minute) + "分";
         return str;
     }
 
-    private void startRemind() {
+    public void startRemind() {
         Calendar mCalendar = Calendar.getInstance();
         mCalendar.setTimeInMillis(System.currentTimeMillis());
 
@@ -60,7 +60,7 @@ public class AlarmReminder {
         long selectTime = mCalendar.getTimeInMillis();
 
         if (systemTime > selectTime) {
-            Toast.makeText(MainActivity.instance, "闹钟设置时间过期啦", Toast.LENGTH_LONG).show();
+//            Toast.makeText(MainActivity.instance, "闹钟设置时间过期啦", Toast.LENGTH_LONG).show();
             return;
         }
 
