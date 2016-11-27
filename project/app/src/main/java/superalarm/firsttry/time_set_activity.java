@@ -236,6 +236,8 @@ public class time_set_activity extends AppCompatActivity {
                 if (key){
                 try {
                     itemManager.delete(item);
+                    UpdateItems updateItems = new UpdateItems();
+                    updateItems.deleteItems(item);
                 } catch (NotExistException e) {
                     e.printStackTrace();
                 }}

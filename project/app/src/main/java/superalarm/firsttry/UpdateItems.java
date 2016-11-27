@@ -26,11 +26,12 @@ public class UpdateItems {
         jsonTask.execute("http://www.wangjksjtu.com.cn:2117/items/","POST","Item", username,
                 password, item.getTitle(), item.getDeadline(), item.getModule(),
                 String.valueOf(item.getImportance()), item.getContent());
+        getItems();
         item.setId(jsonTask.getLastestItemId());
     }
 
-    public void deleteItems(int id) {
-        new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/" + String.valueOf(id) + "/"
+    public void deleteItems(Item item) {
+        new JsonTask().execute("http://www.wangjksjtu.com.cn:2117/items/" + String.valueOf(item.getId()) + "/"
                 ,"DELETE",username, password);
     }
 

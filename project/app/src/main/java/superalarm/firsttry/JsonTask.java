@@ -48,6 +48,9 @@ public class JsonTask extends AsyncTask<String, String, String>{
             connection.setConnectTimeout(5000);
             connection.setRequestProperty("encoding","UTF-8");
             if (params[1] == "GET") {
+                final String basicAuth= "Basic " + Base64.encodeToString(
+                        (params[3]+":"+params[4]).getBytes(), Base64.NO_WRAP);
+                connection.setRequestProperty ("Authorization", basicAuth);
                 connection.connect();
                 InputStream stream = connection.getInputStream();
                 reader = new BufferedReader(new InputStreamReader(stream));
@@ -58,9 +61,6 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 }
                 JsonParser jsp = new JsonParser(buffer.toString());
                 if (params[2] == "Item") {
-                    final String basicAuth= "Basic " + Base64.encodeToString(
-                            (params[3]+":"+params[4]).getBytes(), Base64.NO_WRAP);
-                    connection.setRequestProperty ("Authorization", basicAuth);
                     jsp.JsonParserItem();
                     int id = jsp.getLastestItemId();
                     LastestItemId = id;

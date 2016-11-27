@@ -43,12 +43,11 @@ public class ItemManager {
         return itemArr;
     }
 
-    public void add(Item item) throws RepeatedAddtionException {   //whether I should set this method private?
-        if (isExist(item)) throw new RepeatedAddtionException();
+    public void add(Item item) throws RepeatedAddtionException {
         itemArr.add(item);
         ++length;
     }
-    public void delete(Item item) throws NotExistException {   //whether I should set this method private?
+    public void delete(Item item) throws NotExistException {
         if (!isExist(item)) throw new NotExistException();
         itemArr.remove(item);
         --length;
@@ -98,6 +97,7 @@ public class ItemManager {
         try {
             String data = "";
             for (int i = 0; i < length; ++i) {
+                data += itemArr.get(i).getId() + "\r\n";
                 data += itemArr.get(i).getModule() + "\r\n";
                 data += itemArr.get(i).getTitle() + "\r\n";
                 data += itemArr.get(i).getDeadline() + "\r\n";
@@ -123,19 +123,23 @@ public class ItemManager {
                 String data = bufferedReader.readLine();
                 while  (data!=null) {
                     Item item = new Item();
-                    for (int i = 0; i < 5; ++i) {
-                        switch(i % 5) {
+                    for (int i = 0; i < 6; ++i) {
+                        switch(i % 6) {
                             case 0:
-                                item.setModule(data);
+                                item.setId(Integer.valueOf(data));
                                 data = bufferedReader.readLine();
                                 break;
                             case 1:
-                                item.setTitle(data); data = bufferedReader.readLine();
+                                item.setModule(data);
+                                data = bufferedReader.readLine();
                                 break;
                             case 2:
-                                item.setDeadline(data); data = bufferedReader.readLine();
+                                item.setTitle(data); data = bufferedReader.readLine();
                                 break;
                             case 3:
+                                item.setDeadline(data); data = bufferedReader.readLine();
+                                break;
+                            case 4:
                                 int importance = Integer.parseInt(data);
                                 item.setImportance(importance);
                                 data = bufferedReader.readLine();

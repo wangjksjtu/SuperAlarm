@@ -1,18 +1,12 @@
 package superalarm.firsttry;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,6 +72,8 @@ public class Detail extends TitleActivity {
             public void onClick(View v) {
                 try {
                     items.delete(item);
+                    UpdateItems updateItems = new UpdateItems();
+                    updateItems.deleteItems(item);
                     items.write(Detail.this);
                 } catch (NotExistException e) {
                     e.printStackTrace();
