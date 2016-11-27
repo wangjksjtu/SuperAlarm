@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -21,7 +22,7 @@ import basic_class.NotExistException;
 import basic_class.RepeatedAddtionException;
 
 
-public class time_set_activity extends AppCompatActivity {
+public class time_set_activity extends TitleActivity {
 
     public static time_set_activity instance = null;
     private Spinner yearSpinner, monthSpinner, daySpinner, hourSpinner, minuteSpinner;
@@ -37,10 +38,13 @@ public class time_set_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_setter);
         instance = this;
 
+        setTitle("设置截止日期");
+        showBackwardView(R.id.button_backward,true);
         //intent接收事项类型
         Intent intent_receive = getIntent();
         key = intent_receive.getBooleanExtra("key",false);
@@ -223,14 +227,7 @@ public class time_set_activity extends AppCompatActivity {
         });
 
 
-        //OK按钮和CANCEL按钮的链接
-        btCancelTime = (Button)findViewById(R.id.buttonCancelTime);
-        btCancelTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                time_set_activity.this.finish();
-            }
-        });
+        //OK按钮的链接
 
         btOkTime = (Button)findViewById(R.id.buttonOkTime);
         btOkTime.setOnClickListener(new View.OnClickListener() {
@@ -311,7 +308,10 @@ public class time_set_activity extends AppCompatActivity {
         if (feedback.compareTo("") == 0) {feedback = "0,m";}//Default为准时
         return feedback;
     }
-
+    @Override
+    protected void onBackward(View backwardView) {
+        finish();
+    }
     public String getEventName() {return eventData[0];}
     public String getEventType() {return eventData[1];}
     public String getEventDetail() {return eventData[2];}
