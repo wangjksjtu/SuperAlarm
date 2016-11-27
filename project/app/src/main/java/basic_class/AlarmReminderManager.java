@@ -1,4 +1,4 @@
-package superalarm.firsttry;
+package basic_class;
 
 import java.util.ArrayList;
 
