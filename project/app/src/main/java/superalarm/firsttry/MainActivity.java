@@ -94,8 +94,6 @@ public void onCreate(Bundle savedInstanceState) {
     }
 
     private void makeItemList() {
-        int result;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy:MM:dd:HH:mm");
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();/*在数组中存放数据*/
         ItemManager itemManager = new ItemManager();
         itemManager.read(this);
@@ -103,42 +101,40 @@ public void onCreate(Bundle savedInstanceState) {
         ArrayList<Item> itemArrayList = itemManager.getItemArr();
         if (itemManager.getLength() != 0) {
             Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
-        }
-        for (int i = 0; i < itemManager.getLength(); ++i) {
-
-            final String title = itemArrayList.get(i).getTitle();
-            final String deadline = itemArrayList.get(i).getDeadline();
-            final String module = itemArrayList.get(i).getModule();
+            for (int i = 0; i < itemManager.getLength(); ++i) {
+                final String title = itemArrayList.get(i).getTitle();
+                final String deadline = itemArrayList.get(i).getDeadline();
+                final String module = itemArrayList.get(i).getModule();
 //            int y , m , d , h, min;
 //            y = Integer.valueOf(deadline.substring(0,4));
 //            m = Integer.valueOf(deadline.substring(5,7));
 //            d = Integer.valueOf(deadline.substring(8,10));
 //            h = Integer.valueOf(deadline.substring(11,13));
 //            min = Integer.valueOf(deadline.substring(14,16));
-            HashMap<String, Object> map = new HashMap<String, Object>();
+                HashMap<String, Object> map = new HashMap<String, Object>();
 //            startRemind(y, m, d, h, min, i);
-            switch (module) {
-                case "交际":
-                    map.put("ItemImage", R.drawable.communication);
-                    break;
-                case "娱乐":
-                    map.put("ItemImage", R.drawable.entertainment);
-                    break;
-                case "学习":
-                    map.put("ItemImage", R.drawable.study);
-                    break;
-                case "运动":
-                    map.put("ItemImage", R.drawable.exercise);
-                    break;
-                case "餐饮":
-                    map.put("ItemImage", R.drawable.food);
-                    break;
-                default:
-                    map.put("ItemImage", R.drawable.clock1);
-            }
-            map.put("ItemTitle", title);
-            map.put("ItemText", deadline);
-            listItem.add(map);
+                switch (module) {
+                    case "交际":
+                        map.put("ItemImage", R.drawable.communication);
+                        break;
+                    case "娱乐":
+                        map.put("ItemImage", R.drawable.entertainment);
+                        break;
+                    case "学习":
+                        map.put("ItemImage", R.drawable.study);
+                        break;
+                    case "运动":
+                        map.put("ItemImage", R.drawable.exercise);
+                        break;
+                    case "餐饮":
+                        map.put("ItemImage", R.drawable.food);
+                        break;
+                    default:
+                        map.put("ItemImage", R.drawable.clock1);
+                }
+                map.put("ItemTitle", title);
+                map.put("ItemText", deadline);
+                listItem.add(map);
         }
 
         SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this, listItem, R.layout.listitem,
@@ -156,7 +152,15 @@ public void onCreate(Bundle savedInstanceState) {
             }
         });
 
-        instance = this;
+        instance = this;}
+        else{
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("text","快来创建一个事项吧！");
+            listItem.add(map);
+            SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this, listItem, R.layout.nothing,
+                    new String[]{"text"}, new int[]{R.id.textView});
+            lv.setAdapter(mSimpleAdaptr);
+        }
     }
 
 }
