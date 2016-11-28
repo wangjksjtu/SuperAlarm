@@ -2,7 +2,6 @@ package superalarm.firsttry;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -17,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import basic_class.AlarmReminder;
 import basic_class.Item;
 import basic_class.ItemManager;
 import basic_class.NotExistException;
@@ -249,11 +249,24 @@ public class time_set_activity extends TitleActivity {
                     item_new.setTitle(eventData[0]);
                     item_new.setImportance((int) eventRating);
 
+                    String deadline = item_new.getDeadline();
+                    int y, m, d, h, min;
+                    y = Integer.valueOf(deadline.substring(0, 4));
+                    m = Integer.valueOf(deadline.substring(5, 7));
+                    d = Integer.valueOf(deadline.substring(8, 10));
+                    h = Integer.valueOf(deadline.substring(11, 13));
+                    min = Integer.valueOf(deadline.substring(14, 16));
+
                     if (key) {
                         try {
                             itemManager.modify(item, item_new.getTitle(), item_new.getDeadline(), item_new.getImportance(), item_new.getContent());
                             UpdateItems updateItems = new UpdateItems();
                             updateItems.putItems(item);
+
+                            AlarmReminder alarmReminder = new AlarmReminder(y, m, d, h, min,
+                                    item.getId());
+                            alarmReminder.stopRemind();
+                            alarmReminder.startRemind();
                         } catch (NotExistException e) {
                             e.printStackTrace();
                         }
@@ -262,6 +275,9 @@ public class time_set_activity extends TitleActivity {
                             itemManager.add(item_new);
                             UpdateItems updateItems = new UpdateItems();
                             updateItems.postItems(item_new);
+                            AlarmReminder alarmReminder = new AlarmReminder(y, m, d, h, min,
+                                    item.getId());
+                            alarmReminder.startRemind();
                         } catch (RepeatedAddtionException e) {
                             e.printStackTrace();
                         }

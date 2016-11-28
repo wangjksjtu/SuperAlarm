@@ -1,18 +1,22 @@
 package superalarm.firsttry;
 
 import android.app.Activity;
-import android.content.Intent;;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import basic_class.UserManager;
+
+;
 
 public class WelcomeActivity extends Activity {
     public static WelcomeActivity instance = null;
     private EditText aUserName, aPassWord;
     private Button aLogin, aRegister;
+    private UserManager userManager = new UserManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class WelcomeActivity extends Activity {
                 String thisUserName = aUserName.getText().toString();
                 String thisPassWord = aPassWord.getText().toString();
 
+                UserManager userManager = new UserManager();
                 //下接密码判断机制……
                 if (!thisUserName.matches("123123")) {
                     Toast.makeText(WelcomeActivity.this,R.string.errname,Toast.LENGTH_SHORT).show();

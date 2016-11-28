@@ -21,11 +21,11 @@ public class UserManager {
 
     private final ArrayList<User> userArr = new ArrayList();
 
-    void addUser(User user)  {
+    public void addUser(User user)  {
         userArr.add(user);
     }
 
-    User searchUser(User user) {
+    public User searchUser(User user) {
         for (int i = 0; i < userArr.size(); ++i) {
             if (userArr.get(i).equals(user)) {
                 return userArr.get(i);
@@ -34,19 +34,19 @@ public class UserManager {
         return null;
     }
 
-    int ifUserexist(String username){
-        for (int i = 0; i < userArr.size(); ++i){
-            if (username.equals(userArr.get(i).getUsername())) return i;
-        }
-        return -1;
-    }
-
-    boolean deleteUser(User user)  {
+    public boolean deleteUser(User user)  {
         if (searchUser(user) != null) {
             userArr.remove(searchUser(user));
             return true;
         }
         return false;
+    }
+
+    public int ifUserexist(String username){
+        for (int i = 0; i < userArr.size(); ++i){
+            if (username.equals(userArr.get(i).getUsername())) return i;
+        }
+        return -1;
     }
 
     public void write(Context context) {

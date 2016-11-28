@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -30,6 +29,7 @@ public class MainActivity extends TitleActivity {
     private boolean have_login;
     private ListView lv;
     private ItemManager items = new ItemManager();
+    private boolean isFirst = true;
 
 
 public void onCreate(Bundle savedInstanceState) {
@@ -99,6 +99,7 @@ public void onCreate(Bundle savedInstanceState) {
         itemManager.read(this);
         itemManager.write(this);
         ArrayList<Item> itemArrayList = itemManager.getItemArr();
+<<<<<<< HEAD
         if (itemManager.getLength() != 0) {
             Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
             for (int i = 0; i < itemManager.getLength(); ++i) {
@@ -135,7 +136,52 @@ public void onCreate(Bundle savedInstanceState) {
                 map.put("ItemTitle", title);
                 map.put("ItemText", deadline);
                 listItem.add(map);
+=======
+//        if (itemManager.getLength() != 0) {
+//            Toast.makeText(this, "已经帮您设置好所有闹钟！", Toast.LENGTH_SHORT).show();
+//        }
+        for (int i = 0; i < itemManager.getLength(); ++i) {
+
+            final String title = itemArrayList.get(i).getTitle();
+            final String deadline = itemArrayList.get(i).getDeadline();
+            final String module = itemArrayList.get(i).getModule();
+//            if (isFirst) {
+//                int y, m, d, h, min;
+//                y = Integer.valueOf(deadline.substring(0, 4));
+//                m = Integer.valueOf(deadline.substring(5, 7));
+//                d = Integer.valueOf(deadline.substring(8, 10));
+//                h = Integer.valueOf(deadline.substring(11, 13));
+//                min = Integer.valueOf(deadline.substring(14, 16));
+//                AlarmReminder alarmReminder = new AlarmReminder(y, m, d, h, min,
+//                        itemManager.getItemArr().get(i).getId());
+//                alarmReminder.startRemind();
+//            }
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            switch (module) {
+                case "交际":
+                    map.put("ItemImage", R.drawable.communication);
+                    break;
+                case "娱乐":
+                    map.put("ItemImage", R.drawable.entertainment);
+                    break;
+                case "学习":
+                    map.put("ItemImage", R.drawable.study);
+                    break;
+                case "运动":
+                    map.put("ItemImage", R.drawable.exercise);
+                    break;
+                case "餐饮":
+                    map.put("ItemImage", R.drawable.food);
+                    break;
+                default:
+                    map.put("ItemImage", R.drawable.clock1);
+            }
+            map.put("ItemTitle", title);
+            map.put("ItemText", deadline);
+            listItem.add(map);
+>>>>>>> 4dcfc0037a3e51ab06e1360f6dbf02b7c1ad81d0
         }
+        isFirst = false;
 
         SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this, listItem, R.layout.listitem,
                 new String[]{"ItemImage", "ItemTitle", "ItemText"}, new int[]{R.id.ItemImage, R.id.ItemTitle, R.id.ItemText});
@@ -162,5 +208,4 @@ public void onCreate(Bundle savedInstanceState) {
             lv.setAdapter(mSimpleAdaptr);
         }
     }
-
 }

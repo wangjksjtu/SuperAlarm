@@ -25,6 +25,7 @@ import java.util.List;
 
 import basic_class.Item;
 import basic_class.RepeatedAddtionException;
+import basic_class.User;
 
 /**
  * Created by wangjksjtu on 2016/11/19.
@@ -75,11 +76,19 @@ public class JsonTask extends AsyncTask<String, String, String>{
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
                 if (params[2] == "User") {
+                    String username_origin = "testAccount";
+                    String password_origin = "testPassword";
+                    final String basicAuth= "Basic " + Base64.encodeToString(
+                            (username_origin+":"+password_origin).getBytes(), Base64.NO_WRAP);
+                    connection.setRequestProperty ("Authorization", basicAuth);
                     String username = params[3];
                     String password = params[4];
+                    String email = params[5];
+                    User user = new User(username, password, email);
                     List<Pair<String, String>> arrlist = new ArrayList<>();
                     arrlist.add(new Pair<>("username", username));
                     arrlist.add(new Pair<>("password", password));
+                    arrlist.add(new Pair<>("email", email));
                     OutputStream os = connection.getOutputStream();
                     BufferedWriter writer = new BufferedWriter(
                             new OutputStreamWriter(os, "UTF-8"));
@@ -88,6 +97,10 @@ public class JsonTask extends AsyncTask<String, String, String>{
                     writer.close();
                     os.close();
                     connection.connect();
+                    basic_class.UserManager userManager = new basic_class.UserManager();
+                    userManager.read(MainActivity.instance);
+                    userManager.addUser(user);
+                    userManager.write(MainActivity.instance);
                 }
                 if (params[2] == "Item") {
                     final String basicAuth= "Basic " + Base64.encodeToString(
@@ -172,7 +185,6 @@ public class JsonTask extends AsyncTask<String, String, String>{
             }
         }
         return null;
-
     }
 
     private String getQuery(List<Pair<String, String>> params) throws UnsupportedEncodingException {

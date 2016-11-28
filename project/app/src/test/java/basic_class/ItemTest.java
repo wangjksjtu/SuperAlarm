@@ -1,11 +1,14 @@
-package superalarm.firsttry;
-//Dulou on 10-29
+package basic_class;
+
+/**
+ * Created by Dulou on 2016/11/27 0027.
+ */
 
 public class ItemTest {
-    private String title;
-    private String deadline;
-    private int importance; 
-    private String content;
+    protected String title;
+    protected String deadline;
+    protected int importance;
+    protected String content;
     public ItemTest(String t, String d, int i, String c) {
         title = t; deadline = d; importance = i; content = c;
     }
@@ -22,7 +25,7 @@ public class ItemTest {
     public boolean equals(ItemTest it) {
         if (this == it) return true;
         if (it == null) return false;
-        return title.equals(it.title) && deadline.equals(it.deadline) && (importance == it.importance) 
+        return title.equals(it.title) && deadline.equals(it.deadline) && (importance == it.importance)
                 && content.equals(it.content);
     }
     void copy(ItemTest it) { //After test, I will delete the public
@@ -35,4 +38,5 @@ public class ItemTest {
         ItemTest m = new ItemTest("abc","2.15",5,"ttt");
         return (this.equals(m)?"yes":"no");
     }
+
 }

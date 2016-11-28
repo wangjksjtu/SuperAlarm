@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_groupcontent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="superalarm.firsttry.Groupcontent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <Button
+            android:id="@+id/BtnSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@android:style/Widget.Button"
+            android:text="创建"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp"
+            android:textStyle="normal|bold" />
+
+        <Button
+            android:id="@+id/BtnJoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@android:style/Widget.Button"
+            android:text="加入"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp"
+            android:textStyle="normal|bold" /></LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我创建的小组群"
+        android:textSize="28dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="50dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/set"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我加入的小组群"
+        android:textSize="28dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="320dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:id="@+id/join"
+        android:layout_marginTop="350dp"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

@@ -1,17 +1,17 @@
 package superalarm.firsttry;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.EditText;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
-import java.util.regex.*;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
     public static LoginActivity instance = null;
@@ -86,10 +86,16 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (flag) {
-                Intent it = new Intent();
-                it.setClass(LoginActivity.this, AvatarActivity.class);
-                startActivity(it);
-                finish();
+                UserSignUp userLogInSignUp = new UserSignUp(uName, upassword, uemail);
+                userLogInSignUp.signUp();
+//                    Intent it = new Intent();
+//                    it.setClass(LoginActivity.this, AvatarActivity.class);
+//                    startActivity(it);
+//                    finish();
+//                }
+//                else {
+//                    Toast.makeText(LoginActivity.this, "用户名已经有人注册", Toast.LENGTH_SHORT).show();
+//                }
             }
         }
     };
@@ -119,6 +125,50 @@ public class LoginActivity extends AppCompatActivity {
             if (ch < '0' || ch > '9') return false;
         }
         return true;
+    }
+
+    private class UserSignUp {
+
+        private String username;
+        private String password;
+        private String email;
+
+        public UserSignUp(String username, String password, String email) {
+            this.username = username;
+            this.password = password;
+            this.email = email;
+        }
+
+//    public boolean logIn() {
+//        JsonTask jsonTask = new JsonTask();
+//        jsonTask.execute("http://www.wangjksjtu.com.cn:2117/users/","GET", "User", username,
+//                password);
+//        return jsonTask.isOK();
+//    }
+
+        public void signUp() {
+            JsonTask2 jsonTask = new JsonTask2();
+            jsonTask.execute("http://www.wangjksjtu.com.cn:2117/users/","POST", "User", username,
+                    password, email);
+        }
+
+        class JsonTask2 extends JsonTask{
+            @Override
+            protected void onPostExecute(String result) {
+                if (result == "success") {
+                    Intent it = new Intent();
+                    it.setClass(LoginActivity.this, AvatarActivity.class);
+                    startActivity(it);
+                    finish();
+                }
+                else if (result == "failure") {
+                    Toast.makeText(LoginActivity.this, "用户名已经有人注册", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(LoginActivity.this, "网络无服务", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
 }
