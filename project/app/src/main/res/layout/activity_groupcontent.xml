@@ -25,7 +25,7 @@
             style="@android:style/Widget.Button"
             android:text="创建"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="30dp"
+            android:textSize="20sp"
             android:textStyle="normal|bold" />
 
         <Button
@@ -36,7 +36,7 @@
             style="@android:style/Widget.Button"
             android:text="加入"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="30dp"
+            android:textSize="20sp"
             android:textStyle="normal|bold" /></LinearLayout>
 
     <TextView
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="我创建的小组群"
-        android:textSize="23sp"
+        android:textSize="17sp"
         android:textColor="@color/colorPrimary"
         android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:layout_below="@+id/linear"
@@ -52,7 +52,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="145dp"
         android:id="@+id/set"
         android:layout_below="@id/yourSet"
         android:layout_alignParentStart="true" />
@@ -62,18 +62,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="我加入的小组群"
-        android:textSize="23sp"
+        android:textSize="17sp"
         android:layout_below="@id/set"
         android:textColor="@color/colorPrimary"
         android:background="@color/common_google_signin_btn_text_dark_disabled"
         />
 
+    <Button
+        android:text="退出"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/buttonQuitGroup"
+        android:background="#ff99a7"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:ignore="HardcodedText" />
+
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="match_parent"
         android:id="@+id/join"
         android:layout_below="@id/yourJoin"
+        android:layout_above="@id/buttonQuitGroup"
         android:layout_alignParentStart="true" />
+
+
 
 
 

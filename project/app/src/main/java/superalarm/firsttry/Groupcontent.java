@@ -20,9 +20,10 @@ public class Groupcontent extends TitleActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupcontent);
 
-        setTitle("小组");
+        setTitle("小组群");
         showBackwardView(R.id.button_backward,true);
 
+        //为两个listview分别添加基础提示信息
         ListView lvSet = (ListView)findViewById(R.id.set);
         ArrayList<HashMap<String, Object>> listItem1 = new ArrayList<HashMap<String, Object>>();
         HashMap<String, Object> map1 = new HashMap<String, Object>();
@@ -39,8 +40,9 @@ public class Groupcontent extends TitleActivity {
         listItem2.add(map2);
         SimpleAdapter mSimpleAdaptr2 = new SimpleAdapter(this, listItem2, R.layout.nothing,
                 new String[]{"text"}, new int[]{R.id.textView});
-        lvJoin.setAdapter(mSimpleAdaptr);
+        lvJoin.setAdapter(mSimpleAdaptr2);
 
+        //创建，加入和退回mainactivity的按钮定义
         Button btnset = (Button)findViewById(R.id.BtnSet);
         btnset.setOnClickListener(new Button.OnClickListener(){
 
@@ -48,7 +50,6 @@ public class Groupcontent extends TitleActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Groupcontent.this,group_start_activity.class);
                 startActivity(intent);
-                Groupcontent.this.finish();
             }
         });
 
@@ -57,6 +58,15 @@ public class Groupcontent extends TitleActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Groupcontent.this,Groupsearch.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnQuitGroup = (Button)findViewById(R.id.buttonQuitGroup);
+        btnQuitGroup.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Groupcontent.this,MainActivity.class);
                 startActivity(intent);
                 Groupcontent.this.finish();
             }

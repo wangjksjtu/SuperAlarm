@@ -22,9 +22,11 @@ public class Groupsearch extends TitleActivity {
         setTitle("搜索小组");
         showBackwardView(R.id.button_backward,true);
 
+        //查询结果对应控件（同user查询）
         tmpGroupResult = (TextView)findViewById(R.id.textGroupSearchResult);
         tmpGroupResult.setVisibility(View.INVISIBLE);
 
+        //增加查询按钮的响应
         btnSearchResult = (Button)findViewById(R.id.buttonLookUpGroup);
         btnSearchResult.setVisibility(View.INVISIBLE);
         btnSearchResult.setOnClickListener(new Button.OnClickListener() {
@@ -33,7 +35,7 @@ public class Groupsearch extends TitleActivity {
                 Toast.makeText(Groupsearch.this,"功能尚未完善",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Groupsearch.this,not_yet_activity.class);
                 startActivity(intent);
-                Groupsearch.this.finish();
+//                Groupsearch.this.finish();
             }
         });
 

@@ -22,9 +22,11 @@ public class user_search_activity extends TitleActivity {
         setTitle("邀请用户加入小组群");
         showBackwardView(R.id.button_backward,true);
 
+        //查询结果框预先设为不可见，待查询后读取信息后可见
         tmpUserResult = (TextView)findViewById(R.id.textUserSearchResult);
         tmpUserResult.setVisibility(View.INVISIBLE);
 
+        //增加查询按钮的响应
         btnUserSearchResult = (Button)findViewById(R.id.buttonInviteUser);
         btnUserSearchResult.setVisibility(View.INVISIBLE);
         btnUserSearchResult.setOnClickListener(new Button.OnClickListener() {
@@ -33,7 +35,7 @@ public class user_search_activity extends TitleActivity {
                 Toast.makeText(user_search_activity.this,"邀请成功(功能尚未完善)",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(user_search_activity.this,Groupcontent.class);
                 startActivity(intent);
-                user_search_activity.this.finish();
+//                user_search_activity.this.finish();
             }
         });
 

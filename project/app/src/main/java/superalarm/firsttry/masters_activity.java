@@ -38,7 +38,7 @@ public class masters_activity extends TitleActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(masters_activity.this,Groupcontent.class);
                 startActivity(intent);
-                masters_activity.this.finish();
+//                masters_activity.this.finish();
                 Toast.makeText(masters_activity.this,"修改组群信息(功能尚未完善)",Toast.LENGTH_SHORT).show();
             }
         });
@@ -71,7 +71,7 @@ public class masters_activity extends TitleActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(masters_activity.this,user_search_activity.class);
                 startActivity(intent);
-                masters_activity.this.finish();
+//                masters_activity.this.finish();
             }
         });
     }

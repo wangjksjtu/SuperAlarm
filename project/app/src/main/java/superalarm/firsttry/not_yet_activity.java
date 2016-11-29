@@ -39,7 +39,7 @@ public class not_yet_activity extends TitleActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(not_yet_activity.this, joined_activity.class);
                 startActivity(intent);
-                not_yet_activity.this.finish();
+//                not_yet_activity.this.finish();
             }
         });
 
