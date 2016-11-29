@@ -79,7 +79,8 @@
     <Button
         android:textColor="#ffffff"
         android:id="@+id/button_type_7"
-        android:text="Button7"
+        android:text="化妆品"
+        android:textSize="26sp"
         android:layout_width="160dp"
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
@@ -91,7 +92,8 @@
     <Button
         android:textColor="#ffffff"
         android:id="@+id/button_type_8"
-        android:text="Button8"
+        android:text="琐事"
+        android:textSize="26sp"
         android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:layout_alignBottom="@+id/button_type_7"
@@ -105,7 +107,8 @@
     <Button
         android:textColor="#ffffff"
         android:id="@+id/button_type_4"
-        android:text="Button4"
+        android:text="其他"
+        android:textSize="26sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_type_8"
@@ -121,6 +124,7 @@
         android:textColor="#ffffff"
         android:id="@+id/button_type_9"
         android:text="后退"
+        android:textSize="26sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_type_1"

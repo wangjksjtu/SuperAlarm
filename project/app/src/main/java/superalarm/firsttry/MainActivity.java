@@ -68,10 +68,8 @@ public void onCreate(Bundle savedInstanceState) {
         btn_group.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent();
-                //intent.putExtra("key",false);
-                //startActivity(intent);
-                Toast.makeText(MainActivity.this,"No Service",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this,Groupcontent.class);
+                startActivity(intent);
             }
         });
 

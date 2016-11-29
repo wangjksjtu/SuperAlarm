@@ -10,15 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="superalarm.firsttry.Groupsearch">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="搜索小组群"
-        android:textSize="50dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textColor="@color/colorPrimary" />
-
     <EditText
         android:id="@+id/searchGroup"
         android:layout_width="400dp"

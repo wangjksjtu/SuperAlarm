@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
-public class joined_activity extends AppCompatActivity {
+public class joined_activity extends TitleActivity {
 
     private ImageButton  btPeopleJoined;
     private Button btEventJoined, btQuitGroupJoined;
@@ -17,8 +19,12 @@ public class joined_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.joined_group_event);
+
+        setTitle("小组id");
+        showBackwardView(R.id.button_backward,true);
 
         //赋值组群情况
         tvjGroupName = (TextView)findViewById(R.id.joinedTextFillName);
@@ -31,7 +37,7 @@ public class joined_activity extends AppCompatActivity {
         btQuitGroupJoined.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(joined_activity.this, MainActivity.class);
+                Intent intent = new Intent(joined_activity.this, not_yet_activity.class);
                 startActivity(intent);
                 joined_activity.this.finish();
             }
@@ -41,9 +47,8 @@ public class joined_activity extends AppCompatActivity {
         btEventJoined.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(joined_activity.this,MainActivity.class);
-                startActivity(intent);
-                joined_activity.this.finish();
+//                joined_activity.this.finish();
+                Toast.makeText(joined_activity.this,"功能尚未完善",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -57,6 +62,9 @@ public class joined_activity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onBackward(View backwardView){finish();}
 
 
 }

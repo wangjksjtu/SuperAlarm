@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
-public class not_yet_activity extends AppCompatActivity {
+public class not_yet_activity extends TitleActivity {
 
     private ImageButton  btPeopleNotYet;
     private Button btJoinGroupNotYet;
@@ -17,8 +18,12 @@ public class not_yet_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.not_join_yet_group_event);
+
+        setTitle("小组id");
+        showBackwardView(R.id.button_backward,true);
 
         //赋值组群情况
         tvnyGroupName = (TextView)findViewById(R.id.notYetTextFillName);
@@ -47,6 +52,8 @@ public class not_yet_activity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onBackward(View backwardView){finish();}
 
 
 }

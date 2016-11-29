@@ -11,6 +11,7 @@
     tools:context="superalarm.firsttry.Groupcontent">
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -23,7 +24,7 @@
             style="@android:style/Widget.Button"
             android:text="创建"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="30sp"
+            android:textSize="30dp"
             android:textStyle="normal|bold" />
 
         <Button
@@ -36,15 +37,6 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30dp"
             android:textStyle="normal|bold" /></LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我创建的小组群"
-        android:textSize="28dp"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="50dp"
-        android:background="@color/common_google_signin_btn_text_dark_disabled"
-        />
 
     <ListView
         android:layout_width="match_parent"
@@ -68,6 +60,16 @@
         android:layout_height="270dp"
         android:id="@+id/join"
         android:layout_marginTop="350dp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我创建的小组群"
+        android:textSize="28dp"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        android:layout_below="@+id/linear"
         android:layout_alignParentStart="true" />
 
 

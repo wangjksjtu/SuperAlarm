@@ -110,35 +110,16 @@
         android:layout_alignParentStart="true"
         />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/buttonOkGroup"
+        android:text="@string/ok"
+        tools:textStyle="bold"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            android:id="@+id/buttonCancelGroup"
-            android:text="@string/cancel"
-            tools:textStyle="bold"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:background="#036197"
-            tools:text="@android:string/no"
+        android:clickable="true"
+        android:background="#e08ddad4"
+        tools:text="@android:string/VideoView_error_button"
         />
-
-        <Button
-            android:id="@+id/buttonOkGroup"
-            android:text="@string/ok"
-            tools:textStyle="bold"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:background="#e08ddad4"
-            tools:text="@android:string/VideoView_error_button"
-            /></LinearLayout>
-
-
 </RelativeLayout>
