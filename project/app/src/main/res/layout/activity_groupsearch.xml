@@ -46,7 +46,7 @@
 
     <TextView
         android:id="@+id/textGroupSearchResult"
-        android:text="用户名：xxxxxxx \n用户id：xxxxxxxx \n（左侧应有头像）"
+        android:text="小组群名：xxxxxxx \n加入情况：num/Maxnum \n组长：xxxxxx"
         android:textSize="15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
