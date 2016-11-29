@@ -11,17 +11,17 @@
     tools:context="superalarm.firsttry.Groupsearch">
 
     <EditText
-        android:id="@+id/searchBoxGroup"
+        android:id="@+id/searchBoxUser"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:hint="    输入小组ID"
+        android:hint="    输入用户名或ID"
         android:textColorHint="@color/grey"
-        android:textSize="25sp"
+        android:textSize="30dp"
         android:background="@android:drawable/edit_text" />
 
     <Button
-        android:id="@+id/searchGroup"
+        android:id="@+id/searchUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search"
@@ -32,25 +32,27 @@
         android:layout_marginTop="260dp"
         android:layout_centerHorizontal="true"/>
 
+
+
     <Button
-        android:id="@+id/buttonLookUpGroup"
-        android:text="查看此小组群"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textGroupSearchResult"
-        android:background="#FF99FF99"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/buttonInviteUser"
+        android:text="邀请此用户"
         android:textSize="25sp"
-        android:layout_marginTop="40dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchUser"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:background="#FF99FF99"
         />
 
     <TextView
-        android:id="@+id/textGroupSearchResult"
-        android:text="小组群名：xxxxxxx \n加入情况：num/Maxnum \n组长：xxxxxx"
+        android:id="@+id/textUserSearchResult"
+        android:text="用户名：xxxxxxx \n用户id：xxxxxxxx \n（左侧应有头像）"
         android:textSize="15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/searchGroup"
+        android:layout_below="@+id/searchUser"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         />

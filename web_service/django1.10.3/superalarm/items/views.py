@@ -9,6 +9,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import renderers
+from django.contrib.auth import get_user_model
+from rest_framework.generics import CreateAPIView
 
 class ItemList(generics.ListCreateAPIView):
     serializer_class = ItemSerializer
@@ -29,19 +31,33 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     
-#class UserRegister(generics.CreateAPIView):
-#    serializer_class = UserSerializer
 
+'''
 class UserList(generics.ListCreateAPIView):
     #permission_classes = (permissions.IsAuthenticated, IsUser)
     serializer_class = UserSerializer
-
+#    def __init__(self):
+#        self.create_user_myself()
+    def perform_create(self, serializer):
+	    if self.request.method == 'POST':
+		    userform = UserForm(self.request.POST)
+            if userform.is_valid():
+                username = userform.cleaned_data['username']
+                password = userform.cleaned_data['password']
+                email = userform.cleaned_data['email']
+                User.objects.create_user(username, email, password)
+        
     def get_queryset(self):
         user = self.request.user
         return User.objects.filter(username=user.username)
 
-    def perform_create(self, serializer):
-        serializer.save(password=self.request.user.password)
+#    def perform_create(self, serializer):
+#        serializer.save(password=self.request.user.password) '''
+
+class CreateUserView(CreateAPIView):
+    model = get_user_model()
+    permission_classes = [ permissions.AllowAny ]
+    serializer_class = UserSerializer
 
 class UserDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticated, IsUser)
@@ -84,7 +100,7 @@ class ItemOfGroupDetail(generics.RetrieveUpdateDestroyAPIView):
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'users': reverse('user-list', request=request, format=format),
+        'users': reverse('user-register', request=request, format=format),
         'items': reverse('item-list', request=request, format=format),
 	'groups':  reverse('group-list', request=request, format=format),
 	'items of groups': reverse('itemofgroup-list', request=request, format=format),

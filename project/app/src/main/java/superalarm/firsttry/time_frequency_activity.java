@@ -187,9 +187,9 @@ public class time_frequency_activity extends TitleActivity {
 
                     itemManager.sortByDeadline();
                     itemManager.write(time_frequency_activity.this);
-                    MainActivity.instance.finish();
-                    Intent intent = new Intent(time_frequency_activity.this, MainActivity.class);
-                    startActivity(intent);
+//                    MainActivity.instance.finish();
+//                    Intent intent = new Intent(time_frequency_activity.this, MainActivity.class);
+//                    startActivity(intent);
                     time_frequency_activity.this.finish();
                     if (key)Detail.instance.finish();
                     else type_set_activity.instance.finish();

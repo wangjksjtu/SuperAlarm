@@ -11,32 +11,16 @@
     android:paddingTop="@dimen/activity_zero_margin"
     tools:context="superalarm.firsttry.event_start_activity">
 
-
-    <TextView
-        android:id = "@+id/masterTextTitle"
-        android:text = "你的小组群:（id）"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        />
-
-
     <TextView
         android:id="@+id/masterTextEvent"
         android:text="小组群名称:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/masterTextTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="17sp"
         tools:textStyle="bold"
         />
 
@@ -50,7 +34,7 @@
         android:layout_below="@+id/masterTextEvent"
         android:layout_marginTop="10dp"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="17sp"
         tools:textStyle="bold"
         />
 
@@ -64,7 +48,7 @@
         android:layout_below="@+id/masterTextJoinPeople"
         android:layout_marginTop="10dp"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="17sp"
         tools:textStyle="bold"
         />
 
@@ -79,7 +63,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:text="name"
         />
 
@@ -90,7 +74,7 @@
         android:layout_alignLeft="@+id/masterTextFillName"
         android:layout_alignBottom="@+id/masterTextJoinPeople"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:text = "xx/maxNum"
         />
 
@@ -102,6 +86,7 @@
         android:ems="300"
         android:gravity="start"
         android:maxLines="10"
+        android:textSize="18sp"
         android:layout_below="@+id/masterTextDetails"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

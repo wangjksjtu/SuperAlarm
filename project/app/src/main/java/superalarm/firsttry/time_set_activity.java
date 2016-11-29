@@ -146,7 +146,8 @@ public class time_set_activity extends TitleActivity {
         }
 
 
-        //提前量spinner的选择事件处理
+        //提前量spinner的选择事件处理，此处实现：若前一个提前量选择spinner为none，
+        // 则后面就都不显示，若前一个选择非none后跳出下一个
         timeAhead[0].setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -286,9 +287,9 @@ public class time_set_activity extends TitleActivity {
                     itemManager.sortByDeadline();
                     itemManager.write(time_set_activity.this);
 
-                    MainActivity.instance.finish();
-                    Intent intent = new Intent(time_set_activity.this, MainActivity.class);
-                    startActivity(intent);
+//                    MainActivity.instance.finish();
+//                    Intent intent = new Intent(time_set_activity.this, MainActivity.class);
+//                    startActivity(intent);
                     time_set_activity.this.finish();
                     if (!key) type_set_activity.instance.finish();
                     else Detail.instance.finish();
@@ -298,6 +299,7 @@ public class time_set_activity extends TitleActivity {
         });
     }
 
+    //ddl表示形式的规范化，事例："2016:02:29:00:07"
     public String getDeadline() {
         String yearData = ((String)yearSpinner.getSelectedItem()).substring(0,4);
         String monthData = ((String)monthSpinner.getSelectedItem()).substring(0,2);
@@ -307,6 +309,7 @@ public class time_set_activity extends TitleActivity {
         return (yearData + ":" + monthData + ":" + dayData + ":"  + hourData + ":" + minuteData);
     }
 
+    //提前量规范化，事例："5,m:2,d:5,h"
     public String AheadConvert() {
         String[] AheadData = new String[5];
         String feedback = "";
@@ -336,6 +339,8 @@ public class time_set_activity extends TitleActivity {
     protected void onBackward(View backwardView) {
         finish();
     }
+
+    //实现日期合法性检测
     public int TestValidOrNot(){
         int i;
         String[] ddl_str = getDeadline().split(":");
