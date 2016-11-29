@@ -1,6 +1,7 @@
 package superalarm.firsttry;
 
 import basic_class.Item;
+import basic_class.UserManager;
 
 /**
  * Created by wangjksjtu on 2016/11/23.
@@ -11,8 +12,17 @@ public class UpdateItems {
     private String password;
 
     public UpdateItems() {
-        username = "testAccount";
-        password = "testPassword";
+        UserManager userManager = new UserManager();
+        userManager.read(MainActivity.instance);
+        try {
+            username = userManager.getUserArr().get(0).getUsername();
+            password = userManager.getUserArr().get(0).getPassword();
+//            byte[] b = Base64.decode(userManager.getUserArr().get(0).getPassword(), Base64.DEFAULT);
+//            password = new String(b);
+        } catch(Exception e) {
+            username = "testAccount";
+            password = "testPassword";
+        }
     }
 
     public void getItems() {

@@ -21,7 +21,7 @@ public class UserManager {
 
     private final ArrayList<User> userArr = new ArrayList();
 
-    public void addUser(User user)  {
+    public  void addUser(User user)  {
         userArr.add(user);
     }
 
@@ -47,6 +47,10 @@ public class UserManager {
             if (username.equals(userArr.get(i).getUsername())) return i;
         }
         return -1;
+    }
+
+    public ArrayList<User> getUserArr() {
+        return userArr;
     }
 
     public void write(Context context) {

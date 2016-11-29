@@ -3,13 +3,14 @@ package superalarm.firsttry;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import basic_class.UserManager;
 
 public class PresonalInformationHaveLogin extends AppCompatActivity {
 
@@ -21,6 +22,17 @@ public class PresonalInformationHaveLogin extends AppCompatActivity {
 
 
         final ImageView btn_close = (ImageView) findViewById(R.id.imageButton_close);
+        btn_close.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(PresonalInformationHaveLogin.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
         Button btn = (Button) findViewById(R.id.btn);
         btn.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -34,6 +46,19 @@ public class PresonalInformationHaveLogin extends AppCompatActivity {
                             bitmap.getHeight(), matrix, true);
                     btn_close.setImageBitmap(bit);
                 }
+                finish();
+            }
+        });
+
+        Button btn2 = (Button) findViewById(R.id.btn_login);
+        btn2.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserManager userManager = new UserManager();
+                userManager.write(MainActivity.instance);
+                Intent intent = new Intent();
+                intent.setClass(PresonalInformationHaveLogin.this, WelcomeActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

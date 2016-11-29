@@ -24,7 +24,14 @@ package basic_class;
 			       content=con;
 			       created=crea;
 	         	}
-		public void ItemOfGroup(){}
+
+     public ItemOfGroup() {
+         this("", "", "", "", "", "", "", "", "");
+     }
+
+     public void ItemOfGroup(){
+
+		}
 
 	    public void setUrl(String u){url=u;}
 	    

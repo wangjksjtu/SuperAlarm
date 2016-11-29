@@ -47,6 +47,21 @@ public class JsonParser {
         return finalObject.getInt("id");
     }
 
+//    void JsonParserUser () throws JSONException, RepeatedAddtionException, IOException {
+//        JSONObject parentObject = new JSONObject(finalJson);
+//        JSONArray parentArray = parentObject.getJSONArray("results");
+//        UserManager userManager = new UserManager();
+//        //StringBuffer finalBufferData = new StringBuffer();
+//        for (int i = 0; i < parentArray.length(); i++) {
+//            JSONObject finalObject = parentArray.getJSONObject(i);
+//            User user = new User();
+//            user.setUsername(finalObject.getString("username"));
+//            user.setPassword( finalObject.getString("password"));
+//            userManager.addUser(user);
+//            userManager.write(MainActivity.instance);
+//        }
+//    }
+
     String JsonparserItemOfGroup() throws JSONException {
         JSONObject parentObject = new JSONObject(finalJson);
         JSONArray parentArray = parentObject.getJSONArray("results");

@@ -26,6 +26,7 @@ import java.util.List;
 import basic_class.Item;
 import basic_class.RepeatedAddtionException;
 import basic_class.User;
+import basic_class.UserManager;
 
 /**
  * Created by wangjksjtu on 2016/11/19.
@@ -53,18 +54,30 @@ public class JsonTask extends AsyncTask<String, String, String>{
                         (params[3]+":"+params[4]).getBytes(), Base64.NO_WRAP);
                 connection.setRequestProperty ("Authorization", basicAuth);
                 connection.connect();
-                InputStream stream = connection.getInputStream();
-                reader = new BufferedReader(new InputStreamReader(stream));
-                StringBuffer buffer = new StringBuffer();
-                String line = "";
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line);
-                }
-                JsonParser jsp = new JsonParser(buffer.toString());
                 if (params[2] == "Item") {
+                    InputStream stream = connection.getInputStream();
+                    reader = new BufferedReader(new InputStreamReader(stream));
+                    StringBuffer buffer = new StringBuffer();
+                    String line = "";
+                    while ((line = reader.readLine()) != null) {
+                        buffer.append(line);
+                    }
+                    JsonParser jsp = new JsonParser(buffer.toString());
                     jsp.JsonParserItem();
                     int id = jsp.getLastestItemId();
                     LastestItemId = id;
+                }
+                if (params[2] == "User") {
+                    if (connection.getResponseCode() / 100 == 2) {
+                        UserManager userManager = new UserManager();
+                        User user = new User();
+                        user.setUsername(params[3]);
+                        user.setPassword(params[4]);
+                        userManager.addUser(user);
+                        userManager.write(MainActivity.instance);
+                        return "success";
+                    }
+                    else return "failure";
                 }
             }
 
@@ -167,6 +180,8 @@ public class JsonTask extends AsyncTask<String, String, String>{
 
             if (connection.getResponseCode() / 100 == 2) {
                 return "success";
+//            } else if (connection.getResponseCode() / 100 == 4){
+//                return "failure";
             } else {
                 return "failure";
             }

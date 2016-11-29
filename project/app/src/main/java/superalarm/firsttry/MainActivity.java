@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 import basic_class.Item;
 import basic_class.ItemManager;
+import basic_class.UserManager;
 
 public class MainActivity extends TitleActivity {
 
@@ -30,9 +31,10 @@ public class MainActivity extends TitleActivity {
     private ListView lv;
     private ItemManager items = new ItemManager();
     private boolean isFirst = true;
+    private boolean isLogin = false;
 
 
-public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         items.read(MainActivity.this);
@@ -55,10 +57,17 @@ public void onCreate(Bundle savedInstanceState) {
         btn_person.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, PersonalInformation.class);
-                startActivity(intent);
-//                finish();
+                if (!isLogin) {
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, PersonalInformation.class);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, PresonalInformationHaveLogin.class);
+                    startActivity(intent);
+                }
+                //                finish();
             }
         });
 
@@ -69,7 +78,7 @@ public void onCreate(Bundle savedInstanceState) {
                 //Intent intent = new Intent();
                 //intent.putExtra("key",false);
                 //startActivity(intent);
-                Toast.makeText(MainActivity.this,"No Service",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "No Service", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -80,10 +89,15 @@ public void onCreate(Bundle savedInstanceState) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, type_set_activity.class);
                 startActivity(intent);
-//                finish();
+                //                finish();
             }
         });
 
+        UserManager userManager = new UserManager();
+        userManager.read(MainActivity.this);
+        if (userManager.getUserArr().size() != 0) {
+            isLogin = true;
+        }
     }
 
     private void clearNotification(int nId) {

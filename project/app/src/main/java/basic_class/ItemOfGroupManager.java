@@ -150,8 +150,6 @@ class ItemOfGroupManager {
            Log.e("login activity", "File not found: " + e.toString());
        } catch (IOException e) {
            Log.e("login activity", "Can not read file: " + e.toString());
-       } catch (RepeatedAddtionException e) {
-           e.printStackTrace();
        }
    }
 }
