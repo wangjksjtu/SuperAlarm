@@ -25,6 +25,7 @@ public class Groupcontent extends TitleActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Groupcontent.this,group_start_activity.class);
                 startActivity(intent);
+                Groupcontent.this.finish();
             }
         });
 
@@ -34,6 +35,7 @@ public class Groupcontent extends TitleActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Groupcontent.this,Groupsearch.class);
                 startActivity(intent);
+                Groupcontent.this.finish();
             }
         });
     }

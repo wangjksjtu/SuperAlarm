@@ -79,7 +79,7 @@
     <Button
         android:textColor="#ffffff"
         android:id="@+id/button_type_7"
-        android:text="化妆品"
+        android:text="其他"
         android:textSize="26sp"
         android:layout_width="160dp"
         android:layout_height="200dp"
@@ -107,7 +107,7 @@
     <Button
         android:textColor="#ffffff"
         android:id="@+id/button_type_4"
-        android:text="其他"
+        android:text="化妆"
         android:textSize="26sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

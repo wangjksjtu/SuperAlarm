@@ -33,13 +33,14 @@ public class group_start_activity extends TitleActivity {
         groupTextDetails = (EditText)findViewById(R.id.groupTextFillDetails);
         groupTextMaxPeople = (EditText)findViewById(R.id.groupTextFillMaxPeople);
 
-        //OK按钮和CANCEL按钮的链接
+        //OK按钮的链接
         btOkGroup = (Button)findViewById(R.id.buttonOkGroup);
         btOkGroup.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(group_start_activity.this, masters_activity.class);
                 startActivity(intent);
+                group_start_activity.this.finish();
             }
         });
     }

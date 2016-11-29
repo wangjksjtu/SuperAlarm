@@ -11,17 +11,17 @@
     tools:context="superalarm.firsttry.Groupsearch">
 
     <EditText
-        android:id="@+id/searchGroup"
+        android:id="@+id/searchBoxGroup"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:hint="    输入小组ID"
         android:textColorHint="@color/grey"
-        android:textSize="30dp"
+        android:textSize="25sp"
         android:background="@android:drawable/edit_text" />
 
     <Button
-        android:id="@+id/search"
+        android:id="@+id/searchGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search"
@@ -31,5 +31,29 @@
         android:textStyle="normal|bold"
         android:layout_marginTop="260dp"
         android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/buttonLookUpGroup"
+        android:text="查看此小组群"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textGroupSearchResult"
+        android:background="#FF99FF99"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/textGroupSearchResult"
+        android:text="用户名：xxxxxxx \n用户id：xxxxxxxx \n（左侧应有头像）"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchGroup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        />
+
 
 </RelativeLayout>

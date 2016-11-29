@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Groupsearch extends TitleActivity {
 
+    Button btnSearch,btnSearchResult;
+    TextView tmpGroupResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -19,15 +22,33 @@ public class Groupsearch extends TitleActivity {
         setTitle("搜索小组");
         showBackwardView(R.id.button_backward,true);
 
-        Button btnsearch = (Button)findViewById(R.id.search);
-        btnsearch.setOnClickListener(new Button.OnClickListener() {
+        tmpGroupResult = (TextView)findViewById(R.id.textGroupSearchResult);
+        tmpGroupResult.setVisibility(View.INVISIBLE);
+
+        btnSearchResult = (Button)findViewById(R.id.buttonLookUpGroup);
+        btnSearchResult.setVisibility(View.INVISIBLE);
+        btnSearchResult.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(Groupsearch.this,"功能尚未完善",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Groupsearch.this,not_yet_activity.class);
                 startActivity(intent);
+                Groupsearch.this.finish();
             }
         });
+
+        btnSearch = (Button)findViewById(R.id.searchGroup);
+        btnSearch.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnSearchResult.setVisibility(View.VISIBLE);
+                tmpGroupResult.setVisibility(View.VISIBLE);
+                Toast.makeText(Groupsearch.this,"测试用小组Button",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
     @Override
     protected void onBackward(View backwardView){finish();}

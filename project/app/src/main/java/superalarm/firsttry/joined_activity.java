@@ -37,7 +37,7 @@ public class joined_activity extends TitleActivity {
         btQuitGroupJoined.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(joined_activity.this, not_yet_activity.class);
+                Intent intent = new Intent(joined_activity.this, Groupcontent.class);
                 startActivity(intent);
                 joined_activity.this.finish();
             }
@@ -47,7 +47,6 @@ public class joined_activity extends TitleActivity {
         btEventJoined.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-//                joined_activity.this.finish();
                 Toast.makeText(joined_activity.this,"功能尚未完善",Toast.LENGTH_SHORT).show();
             }
         });
@@ -56,9 +55,7 @@ public class joined_activity extends TitleActivity {
         btPeopleJoined.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(joined_activity.this,masters_activity.class);
-                startActivity(intent);
-                joined_activity.this.finish();
+                Toast.makeText(joined_activity.this,"查看组群人员(功能尚未完善)",Toast.LENGTH_SHORT).show();
             }
         });
     }
