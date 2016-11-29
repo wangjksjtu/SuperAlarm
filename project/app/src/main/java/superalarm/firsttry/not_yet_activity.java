@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class not_yet_activity extends TitleActivity {
 
@@ -46,9 +47,10 @@ public class not_yet_activity extends TitleActivity {
         btPeopleNotYet.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(not_yet_activity.this,MainActivity.class);
-                startActivity(intent);
-                not_yet_activity.this.finish();
+//                Intent intent = new Intent(not_yet_activity.this,MainActivity.class);
+//                startActivity(intent);
+//                not_yet_activity.this.finish();
+                Toast.makeText(not_yet_activity.this,"查看组群人员(功能尚未完善)",Toast.LENGTH_SHORT).show();
             }
         });
     }
