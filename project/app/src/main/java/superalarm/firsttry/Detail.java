@@ -79,9 +79,9 @@ public class Detail extends TitleActivity {
                 } catch (NotExistException e) {
                     e.printStackTrace();
                 }
-                MainActivity.instance.finish();
-                Intent intent_jump = new Intent(Detail.this,MainActivity.class);
-                startActivity(intent_jump);
+//                MainActivity.instance.finish();
+//                Intent intent_jump = new Intent(Detail.this,MainActivity.class);
+//                startActivity(intent_jump);
                 finish();
             }
         });

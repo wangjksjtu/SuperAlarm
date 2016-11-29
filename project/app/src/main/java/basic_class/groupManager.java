@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //package basic_class;
 //
 //import android.content.Context;
@@ -136,7 +136,6 @@
 //        }
 //}
 //}
-=======
 package basic_class;
 
 import android.content.Context;
@@ -268,6 +267,4 @@ class groupManager {
        } catch (IOException e) {
            Log.e("login activity", "Can not read file: " + e.toString());
        } 
-}
-}
->>>>>>> 4dcfc0037a3e51ab06e1360f6dbf02b7c1ad81d0
+}}

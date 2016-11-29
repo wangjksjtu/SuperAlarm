@@ -286,9 +286,9 @@ public class time_set_activity extends TitleActivity {
                     itemManager.sortByDeadline();
                     itemManager.write(time_set_activity.this);
 
-                    MainActivity.instance.finish();
-                    Intent intent = new Intent(time_set_activity.this, MainActivity.class);
-                    startActivity(intent);
+//                    MainActivity.instance.finish();
+//                    Intent intent = new Intent(time_set_activity.this, MainActivity.class);
+//                    startActivity(intent);
                     time_set_activity.this.finish();
                     if (!key) type_set_activity.instance.finish();
                     else Detail.instance.finish();
