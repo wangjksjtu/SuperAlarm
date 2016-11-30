@@ -1,0 +1,16 @@
+!define TEST_SYSTEM {slim}
+!path D:\FitNesse\fitnesse-standalone.jar
+!path D:\eclipse workplace\FitnesseTest\bin
+
+!|script:itemManagerTest|
+|setItem;|aaa|10.25|3|bbbbb|
+|check|add|1|
+|setItem;|bbb|5.2|5|vvvvv|
+|check|add|2|
+|ensure|isExist|
+|ensure|search|
+|check|sortByDeadline|5.2|
+|check|delete|1|
+|setItem;|ccc|10.26|5|fffff|
+|check|add|1|
+|check|sortByImportance|5|

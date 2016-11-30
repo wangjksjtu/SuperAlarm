@@ -1,0 +1,13 @@
+!define TEST_SYSTEM {slim}
+!path D:\FitNesse\fitnesse-standalone.jar
+!path D:\eclipse workplace\FitnesseTest\bin
+
+|userTest|
+|mail                   |password  |name  |age  |sex  |get mail?                 |get password?|get name?|get age?|get sex?|get equals?|
+|123456789@sjtu.edu.cn  |abcdef    |xyz   |99   |man  |123456789@sjtu.edu.cn     |abcdef       |xyz      |99      |man     |no         |
+|987654321@sjtu.edu.cn  |abcdefg   |xyz   |99   |man  |987654321@sjtu.edu.cn     |abcdefg      |xyz      |99      |man     |no         |
+|123456789@sjtu.edu.cn  |abcdefg   |abc   |99   |man  |123456789@sjtu.edu.cn     |abcdefg      |abc      |99      |man     |no         |
+|123456789@sjtu.edu.cn  |abcdefg   |xyz   |0    |man  |123456789@sjtu.edu.cn     |abcdefg      |xyz      |0       |man     |no         |
+|123456789@sjtu.edu.cn  |abcdefg   |xyz   |99   |woman|123456789@sjtu.edu.cn     |abcdefg      |abc      |99      |woman   |no         |
+|123456789@sjtu.edu.cn  |abcdefg   |xyz   |99   |man  |123456789@sjtu.edu.cn     |abcdefg      |xyz      |99      |man     |yes        |
+  

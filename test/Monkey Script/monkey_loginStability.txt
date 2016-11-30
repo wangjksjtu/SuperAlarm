@@ -1,0 +1,28 @@
+#正确登录稳定性测试
+#Start Script
+type = user
+count = 10
+speed = 1.0
+start data >>
+LaunchActivity(superalarm.firsttry,superalarm.firsttry.MainActivity);
+UserWait(2000);
+
+Tap(623,1212);
+UserWait(2000);
+Tap(623,1212);
+UserWait(2000);
+
+captureDispatchString(11111);
+Tap(280,589);
+captureDispatchString(123456aaaa);
+captureDispatchPress(66);    
+UserWait(2000)
+
+Tap(623,1212);
+UserWait(1000)
+
+Tap(623,1212);
+UserWait(4000)
+
+DispatchPress(KEYCODE_BACK)
+UserWait(1000)

@@ -1,0 +1,28 @@
+#´íÎóµÇÂ¼
+#Start Script
+type = user
+count = 10
+speed = 1.0
+start data >>
+LaunchActivity(superalarm.firsttry,superalarm.firsttry.MainActivity);
+UserWait(1000);
+
+Tap(623,1212);
+UserWait(2000);
+Tap(623,1212);
+UserWait(2000);
+
+captureDispatchString(111);
+Tap(280,589);
+captureDispatchString(555);
+captureDispatchPress(66);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+UserWait(2000);
+
+Tap(623,1212);
+UserWait(500)
+Tap(623,1212);
+UserWait(500)
+Tap(623,1212);
+UserWait(1000)
+
+DispatchPress(KEYCODE_BACK)
