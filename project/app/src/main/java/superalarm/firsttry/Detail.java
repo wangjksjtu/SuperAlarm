@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import basic_class.AlarmReminder;
 import basic_class.Item;
 import basic_class.ItemManager;
 import basic_class.NotExistException;
@@ -72,10 +73,21 @@ public class Detail extends TitleActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    String deadline = item.getDeadline();
+                    int y, m, d, h, min;
+                    y = Integer.valueOf(deadline.substring(0, 4));
+                    m = Integer.valueOf(deadline.substring(5, 7));
+                    d = Integer.valueOf(deadline.substring(8, 10));
+                    h = Integer.valueOf(deadline.substring(11, 13));
+                    min = Integer.valueOf(deadline.substring(14, 16));
+
                     items.delete(item);
                     UpdateItems updateItems = new UpdateItems();
                     updateItems.deleteItems(item);
                     items.write(Detail.this);
+                    AlarmReminder alarmReminder = new AlarmReminder(y, m, d, h, min,
+                            item.getId());
+                    alarmReminder.stopRemind();
                 } catch (NotExistException e) {
                     e.printStackTrace();
                 }

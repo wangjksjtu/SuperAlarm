@@ -71,7 +71,7 @@ public class WelcomeActivity extends Activity {
 
     public void logIn(String username, String password) {
         JsonTask2 jsonTask = new JsonTask2();
-        jsonTask.execute("http://www.wangjksjtu.com.cn:2117/users/","GET", "User", username,
+        jsonTask.execute("http://www.wangjksjtu.com.cn:2117/items/","GET", "User", username,
                 password);
     }
 

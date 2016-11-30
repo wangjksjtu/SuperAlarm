@@ -15,10 +15,10 @@ import android.widget.SimpleAdapter;
 import android.widget.TextClock;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import basic_class.AlarmReminder;
 import basic_class.Item;
 import basic_class.ItemManager;
 import basic_class.UserManager;
@@ -28,12 +28,12 @@ public class MainActivity extends TitleActivity {
     public static MainActivity instance = null;
     private TextClock hTextClock;
     private TextClock dTextClock;
-    private boolean have_login;
+//    private boolean have_login;
     private ListView lv;
     private ItemManager items = new ItemManager();
-    private boolean isFirst = true;
     private long exitTime = 0;
     private boolean isLogin = false;
+    private boolean isFirst = true;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -114,19 +114,24 @@ public class MainActivity extends TitleActivity {
         itemManager.write(this);
         ArrayList<Item> itemArrayList = itemManager.getItemArr();
         if (itemManager.getLength() != 0) {
-            Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
             for (int i = 0; i < itemManager.getLength(); ++i) {
                 final String title = itemArrayList.get(i).getTitle();
                 final String deadline = itemArrayList.get(i).getDeadline();
                 final String module = itemArrayList.get(i).getModule();
-//            int y , m , d , h, min;
-//            y = Integer.valueOf(deadline.substring(0,4));
-//            m = Integer.valueOf(deadline.substring(5,7));
-//            d = Integer.valueOf(deadline.substring(8,10));
-//            h = Integer.valueOf(deadline.substring(11,13));
-//            min = Integer.valueOf(deadline.substring(14,16));
+                if (isFirst) {
+                    int y, m, d, h, min;
+                    y = Integer.valueOf(deadline.substring(0, 4));
+                    m = Integer.valueOf(deadline.substring(5, 7));
+                    d = Integer.valueOf(deadline.substring(8, 10));
+                    h = Integer.valueOf(deadline.substring(11, 13));
+                    min = Integer.valueOf(deadline.substring(14, 16));
+                    AlarmReminder alarmReminder = new AlarmReminder(y, m, d, h, min,
+                            itemManager.getItemArr().get(i).getId());
+                    alarmReminder.startRemind();
+                }
                 HashMap<String, Object> map = new HashMap<String, Object>();
-//            startRemind(y, m, d, h, min, i);
+
                 switch (module) {
                     case "交际":
                         map.put("ItemImage", R.drawable.communication);
@@ -149,24 +154,25 @@ public class MainActivity extends TitleActivity {
                 map.put("ItemTitle", title);
                 map.put("ItemText", deadline);
                 listItem.add(map);
-        isFirst = false;
 
-        SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this, listItem, R.layout.listitem,
-                new String[]{"ItemImage", "ItemTitle", "ItemText"}, new int[]{R.id.ItemImage, R.id.ItemTitle, R.id.ItemText});
-        lv.setAdapter(mSimpleAdaptr);
+                SimpleAdapter mSimpleAdaptr = new SimpleAdapter(this, listItem, R.layout.listitem,
+                        new String[]{"ItemImage", "ItemTitle", "ItemText"}, new int[]{R.id.ItemImage, R.id.ItemTitle, R.id.ItemText});
+                lv.setAdapter(mSimpleAdaptr);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
-                Intent intent = new Intent(MainActivity.this, Detail.class);
-                intent.putExtra("num", arg2);
-                startActivity(intent);
+                    @Override
+                    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                            long arg3) {
+                        Intent intent = new Intent(MainActivity.this, Detail.class);
+                        intent.putExtra("num", arg2);
+                        startActivity(intent);
+                    }
+                });
+                instance = this;
             }
-        });
-
-        instance = this;}}
+            isFirst = false;
+        }
         else{
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("text","快来创建一个事项吧！");

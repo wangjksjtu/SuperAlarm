@@ -83,8 +83,24 @@ public class AlarmReminder {
         PendingIntent pi = PendingIntent.getBroadcast(MainActivity.instance, Id,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am = (AlarmManager) MainActivity.instance.getSystemService(ALARM_SERVICE);
+
+        Calendar mCalendar = Calendar.getInstance();
+        mCalendar.setTimeInMillis(System.currentTimeMillis());
+        mCalendar.setTimeInMillis(System.currentTimeMillis());
+        //时区设置
+        mCalendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        mCalendar.set(Calendar.YEAR, year);
+        mCalendar.set(Calendar.MONTH, month - 1);
+        mCalendar.set(Calendar.DAY_OF_MONTH, day);
+        mCalendar.set(Calendar.HOUR_OF_DAY, hour);
+        mCalendar.set(Calendar.MINUTE, minute);
+        long selectTime = mCalendar.getTimeInMillis();
+        long systemTime = System.currentTimeMillis();
+        if (systemTime > selectTime) {
+            Toast.makeText(MainActivity.instance, "关闭闹钟", Toast.LENGTH_SHORT).show();
+            return;
+        }
         //取消警报
-        Toast.makeText(MainActivity.instance, "关闭闹钟", Toast.LENGTH_SHORT).show();
         am.cancel(pi);
     }
 
