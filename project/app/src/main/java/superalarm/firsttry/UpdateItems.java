@@ -17,11 +17,9 @@ public class UpdateItems {
         try {
             username = userManager.getUserArr().get(0).getUsername();
             password = userManager.getUserArr().get(0).getPassword();
-//            byte[] b = Base64.decode(userManager.getUserArr().get(0).getPassword(), Base64.DEFAULT);
-//            password = new String(b);
         } catch(Exception e) {
-            username = "testAccount";
-            password = "testPassword";
+            username = "";
+            password = "";
         }
     }
 

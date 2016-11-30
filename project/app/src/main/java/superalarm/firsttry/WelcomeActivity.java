@@ -10,7 +10,8 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-import basic_class.UserManager;
+import basic_class.AlarmReminder;
+import basic_class.ItemManager;
 
 ;
 
@@ -18,7 +19,6 @@ public class WelcomeActivity extends Activity {
     public static WelcomeActivity instance = null;
     private EditText aUserName, aPassWord;
     private Button aLogin, aRegister;
-    private UserManager userManager = new UserManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +43,6 @@ public class WelcomeActivity extends Activity {
                 String thisPassWord = aPassWord.getText().toString();
 
                 logIn(thisUserName, thisPassWord);
-//
-//                //下接密码判断机制……
-//                if (!thisUserName.matches("123123")) {
-//                    Toast.makeText(WelcomeActivity.this,R.string.errname,Toast.LENGTH_SHORT).show();
-//                }
-//                else if (!thisPassWord.matches("abcabcabc")) {
-//                    Toast.makeText(WelcomeActivity.this,R.string.errpassword,Toast.LENGTH_SHORT).show();
-//                }
-//                else{//跳转至已登陆
-//                Intent it = new Intent();
-//                it.setClass(WelcomeActivity.this, PresonalInformationHaveLogin.class);
-//                startActivity(it);
-//                finish();}
             }
         };
             //点击“注册”按钮，跳转至注册信息填写界面
@@ -79,6 +66,32 @@ public class WelcomeActivity extends Activity {
         @Override
         protected void onPostExecute(String result) {
             if (Objects.equals(result, "success")) {
+                finish();
+
+                ItemManager itemManager = new ItemManager();
+                itemManager.read(MainActivity.instance);
+                for (int i = 0; i < itemManager.getLength(); ++i) {
+                    final String deadline = itemManager.getItemArr().get(i).getDeadline();
+                    int y, m, d, h, min;
+                    y = Integer.valueOf(deadline.substring(0, 4));
+                    m = Integer.valueOf(deadline.substring(5, 7));
+                    d = Integer.valueOf(deadline.substring(8, 10));
+                    h = Integer.valueOf(deadline.substring(11, 13));
+                    min = Integer.valueOf(deadline.substring(14, 16));
+                    AlarmReminder alarmReminder = new AlarmReminder(y, m, d, h, min,
+                            itemManager.getItemArr().get(i).getId());
+                    alarmReminder.stopRemind(false);
+                }
+
+                UpdateItems updateItems = new UpdateItems();
+                updateItems.getItems();
+
+                MainActivity.instance.finish();
+                Intent in = new Intent();
+                in.setClass(WelcomeActivity.this, MainActivity.class);
+                startActivity(in);
+
+                Toast.makeText(WelcomeActivity.this, "数据同步成功", Toast.LENGTH_SHORT).show();
                 Intent it = new Intent();
                 it.setClass(WelcomeActivity.this, PresonalInformationHaveLogin.class);
                 startActivity(it);

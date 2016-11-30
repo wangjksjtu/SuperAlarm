@@ -36,8 +36,8 @@ public class JsonParser {
             item.setImportance(finalObject.getInt("importance"));
             item.setContent( finalObject.getString("content"));
             itemManager.add(item);
-            itemManager.write(MainActivity.instance);
         }
+        itemManager.write(MainActivity.instance);
     }
 
     int getLastestItemId() throws JSONException {

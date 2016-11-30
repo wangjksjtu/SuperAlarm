@@ -10,14 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="superalarm.firsttry.ChooseActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_marginTop="150sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/clock2" />
-
     <Button
         android:id="@+id/buttonLocal"
         android:layout_width="wrap_content"
@@ -40,10 +32,20 @@
         android:id="@+id/cHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="400dp"
         android:text="确认"
         android:textSize="28dp"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/clock5"
+        android:layout_below="@+id/buttonCamera"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

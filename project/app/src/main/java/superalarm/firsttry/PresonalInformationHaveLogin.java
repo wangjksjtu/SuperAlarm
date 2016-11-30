@@ -18,7 +18,6 @@ public class PresonalInformationHaveLogin extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_presonal_information_have_login);
 
-
         final ImageView btn_close = (ImageView) findViewById(R.id.imageButton_close);
         btn_close.setOnClickListener(new ImageView.OnClickListener() {
             @Override

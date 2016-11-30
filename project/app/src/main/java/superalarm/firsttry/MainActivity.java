@@ -33,7 +33,6 @@ public class MainActivity extends TitleActivity {
     private ItemManager items = new ItemManager();
     private long exitTime = 0;
     private boolean isLogin = false;
-    private boolean isFirst = true;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +58,9 @@ public class MainActivity extends TitleActivity {
         btn_person.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isLogin) {
+                UserManager userManager = new UserManager();
+                userManager.read(MainActivity.this);
+                if (userManager.getUserArr().size() == 0) {
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this, PersonalInformation.class);
                     startActivity(intent);
@@ -93,19 +94,15 @@ public class MainActivity extends TitleActivity {
             }
         });
 
-        UserManager userManager = new UserManager();
-        userManager.read(MainActivity.this);
-        if (userManager.getUserArr().size() != 0) {
-            isLogin = true;
-        }
+//        if (userManager.getUserArr().size() != 0) {
+//            isLogin = true;
+//        }
 
         ItemManager itemManager = new ItemManager();
         ArrayList<Item> itemArrayList = itemManager.getItemArr();
         itemManager.read(MainActivity.instance);
         for (int i = 0; i < itemManager.getLength(); ++i) {
-            final String title = itemArrayList.get(i).getTitle();
             final String deadline = itemArrayList.get(i).getDeadline();
-            final String module = itemArrayList.get(i).getModule();
             int y, m, d, h, min;
             y = Integer.valueOf(deadline.substring(0, 4));
             m = Integer.valueOf(deadline.substring(5, 7));
@@ -129,7 +126,8 @@ public class MainActivity extends TitleActivity {
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();/*在数组中存放数据*/
         ItemManager itemManager = new ItemManager();
         itemManager.read(this);
-        itemManager.write(this);
+        //itemManager.write(this);
+        //itemManager.sortByDeadline();
         ArrayList<Item> itemArrayList = itemManager.getItemArr();
         if (itemManager.getLength() != 0) {
             //Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
@@ -178,7 +176,6 @@ public class MainActivity extends TitleActivity {
                 });
                 instance = this;
             }
-            isFirst = false;
         }
         else{
             HashMap<String, Object> map = new HashMap<String, Object>();
@@ -192,6 +189,8 @@ public class MainActivity extends TitleActivity {
     @Override
     public void onResume(){
         super.onResume();
+        UpdateItems updateItems = new UpdateItems();
+        updateItems.getItems();
         makeItemList();
     }
     @Override

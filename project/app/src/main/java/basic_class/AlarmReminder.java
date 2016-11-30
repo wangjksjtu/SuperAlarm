@@ -39,6 +39,14 @@ public class AlarmReminder {
     }
 
     public void startRemind() {
+        startRemind(true);
+    }
+
+    public void stopRemind() {
+        stopRemind(true);
+    }
+
+    public void startRemind(boolean isReminding) {
         Calendar mCalendar = Calendar.getInstance();
         mCalendar.setTimeInMillis(System.currentTimeMillis());
 
@@ -73,11 +81,11 @@ public class AlarmReminder {
         //得到AlarmManager实例
         AlarmManager am = (AlarmManager) MainActivity.instance.getSystemService(ALARM_SERVICE);
 
-        Toast.makeText(MainActivity.instance, "闹钟时间："+ getDateInfo(), Toast.LENGTH_LONG).show();
+        if (isReminding) Toast.makeText(MainActivity.instance, "闹钟时间："+ getDateInfo(), Toast.LENGTH_LONG).show();
         am.setExact(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pi);
     }
 
-    public void stopRemind() {
+    public void stopRemind(boolean isReminding) {
         Intent intent = new Intent(MainActivity.instance, AlarmReceiver.class);
         intent.putExtra("Id", Id);
         PendingIntent pi = PendingIntent.getBroadcast(MainActivity.instance, Id,
@@ -96,7 +104,7 @@ public class AlarmReminder {
         mCalendar.set(Calendar.MINUTE, minute);
         long selectTime = mCalendar.getTimeInMillis();
         long systemTime = System.currentTimeMillis();
-        if (systemTime < selectTime) {
+        if (systemTime < selectTime && isReminding) {
             Toast.makeText(MainActivity.instance, "关闭闹钟", Toast.LENGTH_SHORT).show();
             am.cancel(pi);
             return;

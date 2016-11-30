@@ -41,7 +41,7 @@
         android:id="@+id/RandomAvatar"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:src="@drawable/clock2"
+        android:src="@drawable/clock4"
         android:layout_marginTop="140dp"
         android:layout_centerHorizontal="true"/>
 
