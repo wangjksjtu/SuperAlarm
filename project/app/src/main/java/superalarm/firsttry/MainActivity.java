@@ -98,6 +98,24 @@ public class MainActivity extends TitleActivity {
         if (userManager.getUserArr().size() != 0) {
             isLogin = true;
         }
+
+        ItemManager itemManager = new ItemManager();
+        ArrayList<Item> itemArrayList = itemManager.getItemArr();
+        itemManager.read(MainActivity.instance);
+        for (int i = 0; i < itemManager.getLength(); ++i) {
+            final String title = itemArrayList.get(i).getTitle();
+            final String deadline = itemArrayList.get(i).getDeadline();
+            final String module = itemArrayList.get(i).getModule();
+            int y, m, d, h, min;
+            y = Integer.valueOf(deadline.substring(0, 4));
+            m = Integer.valueOf(deadline.substring(5, 7));
+            d = Integer.valueOf(deadline.substring(8, 10));
+            h = Integer.valueOf(deadline.substring(11, 13));
+            min = Integer.valueOf(deadline.substring(14, 16));
+            AlarmReminder alarmReminder = new AlarmReminder(y, m, d, h, min,
+                    itemManager.getItemArr().get(i).getId());
+            alarmReminder.startRemind();
+        }
     }
 
     private void clearNotification(int nId) {
@@ -116,20 +134,9 @@ public class MainActivity extends TitleActivity {
         if (itemManager.getLength() != 0) {
             //Toast.makeText(this, "已经设置好所有闹钟！", Toast.LENGTH_SHORT).show();
             for (int i = 0; i < itemManager.getLength(); ++i) {
-                final String title = itemArrayList.get(i).getTitle();
-                final String deadline = itemArrayList.get(i).getDeadline();
-                final String module = itemArrayList.get(i).getModule();
-                if (isFirst) {
-                    int y, m, d, h, min;
-                    y = Integer.valueOf(deadline.substring(0, 4));
-                    m = Integer.valueOf(deadline.substring(5, 7));
-                    d = Integer.valueOf(deadline.substring(8, 10));
-                    h = Integer.valueOf(deadline.substring(11, 13));
-                    min = Integer.valueOf(deadline.substring(14, 16));
-                    AlarmReminder alarmReminder = new AlarmReminder(y, m, d, h, min,
-                            itemManager.getItemArr().get(i).getId());
-                    alarmReminder.startRemind();
-                }
+                    final String title = itemArrayList.get(i).getTitle();
+                    final String deadline = itemArrayList.get(i).getDeadline();
+                    final String module = itemArrayList.get(i).getModule();
                 HashMap<String, Object> map = new HashMap<String, Object>();
 
                 switch (module) {

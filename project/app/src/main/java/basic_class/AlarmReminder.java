@@ -96,8 +96,9 @@ public class AlarmReminder {
         mCalendar.set(Calendar.MINUTE, minute);
         long selectTime = mCalendar.getTimeInMillis();
         long systemTime = System.currentTimeMillis();
-        if (systemTime > selectTime) {
+        if (systemTime < selectTime) {
             Toast.makeText(MainActivity.instance, "关闭闹钟", Toast.LENGTH_SHORT).show();
+            am.cancel(pi);
             return;
         }
         //取消警报
